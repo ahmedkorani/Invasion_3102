@@ -12,7 +12,7 @@ import com.oop.platformer.Screens.Level1;
 public class GameClass extends Game {
 
 	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
+	public static final int V_HEIGHT = 21*16;
 	public static final float PPM = 100;
 
 	public SpriteBatch batch;
