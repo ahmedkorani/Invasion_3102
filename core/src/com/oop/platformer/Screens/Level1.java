@@ -33,7 +33,7 @@ public class Level1 implements Screen {
         gamePort = new FitViewport(game.V_WIDTH,game.V_HEIGHT,gameCam);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("/home/ahmed/Desktop/Platformer/core/assets/Map/untitled.tmx");
+        map = mapLoader.load("Map/untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
     }
