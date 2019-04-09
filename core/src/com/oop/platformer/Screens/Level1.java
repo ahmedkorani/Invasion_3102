@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.GameClass;
+import com.oop.platformer.Scenes.Hud;
 
 public class Level1 implements Screen {
 
@@ -24,6 +25,7 @@ public class Level1 implements Screen {
 
     private TiledMap map;//reference for the map itself
 
+    private  Hud hud;
     private OrthogonalTiledMapRenderer renderer;
 
     public Level1(GameClass game){
@@ -34,6 +36,7 @@ public class Level1 implements Screen {
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("Map/untitled.tmx");
+        hud = new Hud(game.batch);
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
     }
@@ -75,6 +78,9 @@ public class Level1 implements Screen {
 
         //render our game map
         renderer.render();
+
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
     }
 
     @Override
@@ -99,7 +105,7 @@ public class Level1 implements Screen {
 
     @Override
     public void dispose() {
-
+        hud.dispose();
     }
 
 
