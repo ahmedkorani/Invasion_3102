@@ -9,15 +9,13 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Scenes.Hud;
 
 
 public class Level1 implements Screen {
-
-    private GameClass game; //instance of Game Class to view it through setScreen in GameClass.java
+    
 
     private OrthographicCamera gameCam; //game camera instance to move with the player character
 
@@ -30,17 +28,15 @@ public class Level1 implements Screen {
     private  Hud hud;
     private OrthogonalTiledMapRenderer renderer;
 
-    public Level1(GameClass game){
+    public Level1(){
 
-        this.game = game;
         gameCam = new OrthographicCamera();
 
-        //I think StretchViewport is better - Oracle
-        gamePort = new FitViewport(game.V_WIDTH,game.V_HEIGHT,gameCam);
+        gamePort = new FitViewport(GameClass.V_WIDTH,GameClass.V_HEIGHT,gameCam);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Map/untitled.tmx");
-        hud = new Hud(game.batch);
+        map = mapLoader.load("Map/level1.tmx");
+        hud = new Hud(GameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map);
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
     }
@@ -54,7 +50,7 @@ public class Level1 implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.graphics.setWindowedMode(game.V_WIDTH*2,game.V_HEIGHT*2);
+            Gdx.graphics.setWindowedMode(GameClass.V_WIDTH*2, GameClass.V_HEIGHT*2);
 
     }
 
@@ -75,6 +71,10 @@ public class Level1 implements Screen {
 
     }
 
+
+    /**
+     * Logic Goes Here
+     */
     @Override
     public void render(float delta) {
 
@@ -88,7 +88,7 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        GameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 
