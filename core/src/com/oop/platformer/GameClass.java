@@ -3,6 +3,7 @@ package com.oop.platformer;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.oop.platformer.Screens.Level1;
 
 public class GameClass extends Game {
