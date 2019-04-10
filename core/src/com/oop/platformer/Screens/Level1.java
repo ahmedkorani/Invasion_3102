@@ -10,6 +10,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Scenes.Hud;
 
@@ -43,9 +45,9 @@ public class Level1 implements Screen {
 
     //User Input handling function
     public void handleInput(float deltaTime){
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            gameCam.position.x += 150*deltaTime;
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && Math.ceil(gameCam.position.x) <= 1407)
+            gameCam.position.x += 150 * deltaTime;
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && Math.floor(gameCam.position.x) != 225)
             gameCam.position.x -= 150*deltaTime;
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
@@ -57,7 +59,6 @@ public class Level1 implements Screen {
 
     //update the game state
     public void update(float deltaTime){
-
         handleInput(deltaTime);
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
