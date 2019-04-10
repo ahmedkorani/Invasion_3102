@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="15">
+ <tileset firstgid="1" source="Background.tsx"/>
+ <tileset firstgid="6" source="skyline-a.tsx"/>
+ <tileset firstgid="126" source="tileset.tsx"/>
+ <tileset firstgid="510" source="skyline-a-dawn.tsx"/>
+ <layer id="8" name="Background" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzt1NVuw0AQQFE7LrdJ2WVmZmZmTpn+/yfSXkteybIcq3FbbazMw3m6mc1Eq03GNIwvGAnDMJGAhSJkpOXUUhHmklnmilGCUpShHBWojHGzfzhnucLOtP9gz1RIa0Cj+xlvq/LcWTVqUOvuq5rp7qdaXchcnJq6l2Qe7OJv9Z47c3ZsQjNafM0MaWFzdsS5/zgzaE7di5Lr9wU15z9JifIbnNaKNrS7O3aiC92+Zoa0jpg2I4CpcU/1XpzWg170oR8DGMRQATR1D16/PdN5I1H3VO/FacMYwSjGMI4JTErT2qYwjRnMYg7zWJCmtS1iCctYwSrWsC5Na9vAJrawjR3sYk+a1raPAxziCMc4wak0re0M57jAJa5wjRtpWtst7pDGPR7wiCdpWtszXvCKN7zjA5/StLa0EEIIUQCsLHTvJYTIX9/+ohuL
+  </data>
+ </layer>
+ <layer id="10" name="Bridge" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzt0cEJgDAABMGUaoeWYVu2oGQjijOQ16IJ3BgAAAAA8F/7GNsbztfeu/ock7vOfL/y7qfblX7nP3ZpWs0uTavZpWk1uzStZpem1ezStJpdmlY7ATBxlXo=
+  </data>
+ </layer>
+ <layer id="7" name="Closer Buildings" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztmN+LTVEUx9f+DyYPN4QkD5oyITTJg5R5wn9guoQ/wBtP8yzGix+hiW5G5McNTXRDR/kREk2MUajhgYT4D3zXPWc56+579j77HlNz3Tmrvp3Z++y175n12eusvQ9RaaWV1utWMXP9BKVl2UDJxWtHEJ+jHerYLMR0qOQSZOeg09AZ6CxUS6T7Lmf4MdfRQJ6jiulccimyFll9HYydLbsN3YBuQregRiLd98Dhy0zPQ0vwPEuhZVDdal+iVq7dmi81z70+xzP7fELNXiuyfpnLU+gZ9ByapJiL7nNxeQndgdZjrg3QxoSLbkeWf7dyaXjuubj4fDqx1aa97jKXGegT9JnSfNF9Li7s+wrajjl3QDsTLro9jfY75dOtXCY991xcfD6d2DbTHheObS1HefmyF3Pug/YnXHQ7ovmVL1J3pfaGXHdBwxlcvuXIly/MZY+hkd3QVkMRc8GV0Ob+eceFTerucfidgE6adI1fgMahi9RaezdlcMnbj+XlyyEwOQj1J1xwJbS5v2e5TJnYZzrjnqzXq7h3Dbpu0vpwF7oH3afW2GRxKbofk9/XY+tWO6Le5CI+b007G16vXHcfov8R9NjEtYj1GnoDTVFr7c3iovdejcQ/ZD8mXPTYutWO6P/g8tVzb5XjmV0+Epf38PsAfTRpXL9DP6CflJ8v/7ofu6JUt9oRdR+XoufL0HOl5Ete3c7Ll6L7MVkXp6AJoqqtMYq5dOM+ObQ2d9rHJnHZjDkXG6qug2S96zM3c/HlSx5Xeb8OmVT698GgmSf6f6wn/RF1X76whdZmX58+p0mfnnsl+heBydqEC7/HXGfuIvsx4TJsUunfFy76f8zjUgm8hliRueTZs2qzHW+7XgsD7Wtz4fcYuGxZCCZrVL7ouXVsiuzHmEvFtOYLt20u+jl9XELf7yHfr4vO5arNLH0ulj5dr4VVli+b1Bc5wy1QzPXcvvcYz2Hvx+zvY8xlIOGhr3J+ES76OYWL6zsM1yTf/nosH8lfKzKXxI59D5h4jHwb1H3CgGMrcZZxy/H3CtO8jmguXyjeq8kZrl9xw7xV1mEoIjcXnmOG/PuxPitXROzLXJ4ksdDrk9svoF/Qb/V7wsXeT9vtCQ8H24rMJbHjsYhRc4ww0H3CQJ+VZdygieM5qLj8AbXoAcQ=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Floors">
+  <object id="6" x="9.75" y="160" width="198.75" height="14.25"/>
+  <object id="7" x="201.333" y="111.667" width="61" height="16.3333"/>
+  <object id="8" x="265.5" y="63" width="205" height="17"/>
+  <object id="9" x="521" y="80" width="190" height="14.5"/>
+  <object id="10" x="746" y="193.333" width="530.667" height="15.3333"/>
+  <object id="11" x="1241.5" y="78" width="391.5" height="18.5"/>
+  <object id="12" x="1274" y="223.5" width="358" height="14"/>
+ </objectgroup>
+ <objectgroup id="11" name="Ladders">
+  <object id="14" x="1455.33" y="77.3333" width="16" height="144"/>
+ </objectgroup>
+</map>
