@@ -9,9 +9,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Scenes.Hud;
+
 
 public class Level1 implements Screen {
 
@@ -32,6 +34,8 @@ public class Level1 implements Screen {
 
         this.game = game;
         gameCam = new OrthographicCamera();
+
+        //I think StretchViewport is better - Oracle
         gamePort = new FitViewport(game.V_WIDTH,game.V_HEIGHT,gameCam);
 
         mapLoader = new TmxMapLoader();
@@ -45,8 +49,13 @@ public class Level1 implements Screen {
     public void handleInput(float deltaTime){
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
             gameCam.position.x += 150*deltaTime;
-        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             gameCam.position.x -= 150*deltaTime;
+        if (Gdx.input.isKeyPressed(Input.Keys.F3))
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            Gdx.graphics.setWindowedMode(game.V_WIDTH*2,game.V_HEIGHT*2);
+
     }
 
 
