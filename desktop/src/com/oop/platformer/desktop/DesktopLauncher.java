@@ -9,6 +9,10 @@ import java.awt.*;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+		config.width = 940;
+		config.height = 710;
+
 // 		java - get screen size using the Toolkit class
 //		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //		config.width = (int)screenSize.getWidth();
