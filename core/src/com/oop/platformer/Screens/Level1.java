@@ -65,14 +65,14 @@ public class Level1 implements Screen {
        
         renderFloor();
 
-        
+
         addObjectsToTheWorld();
         
     }
 
     private void addObjectsToTheWorld(){
-        //Adds player to the world
-        player = new Player(world1);
+        //Adds player to the world in position (30,90)
+        player = new Player(world1, new Vector2(30, 90));
     }
 
     private void renderFloor(){
@@ -126,7 +126,10 @@ public class Level1 implements Screen {
         //System.out.printf("%f\n", gameCam.position.x);
         handleInput(deltaTime);
 
-        //set timeStamp and velocity 
+        /*
+        set timeStamp and velocity 
+        to avoid CPU & GPU speed deffrences
+        */
         world1.step(1/60f, 6, 2);
 
         gameCam.update();
