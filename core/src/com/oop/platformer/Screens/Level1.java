@@ -45,7 +45,7 @@ public class Level1 implements Screen {
     public Level1(){
         //setup camera and window
         gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM ,GameClass.V_HEIGHT / GameClass.PPM, gameCam);
+        gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
 
         //Load Map
         mapLoader = new TmxMapLoader();
@@ -110,13 +110,20 @@ public class Level1 implements Screen {
     }
 
     //User Input handling function
-    public void handleInput(float deltaTime){         //ISSUE after placing the ppm ratio
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) // && Math.ceil(gameCam.position.x / GameClass.PPM) <= 1407
-            gameCam.position.x += (150 * deltaTime / GameClass.PPM);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) //&& Math.floor(gameCam.position.x / GameClass.PPM) > 225
-            gameCam.position.x -= (150 * deltaTime / GameClass.PPM);
+    public void handleInput(float deltaTime){         
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+            player.b2body.applyLinearImpulse(new Vector2(0, 3f), player.b2body.getWorldCenter(), true);
+        
+        if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 6) // 6 is the maximum speed, may need to be reduced
+            player.b2body.applyLinearImpulse(new Vector2(1f, 0), player.b2body.getWorldCenter(), true);
+        
+        if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -6)
+            player.b2body.applyLinearImpulse(new Vector2(-1f, 0), player.b2body.getWorldCenter(), true);
+
+
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.graphics.setWindowedMode((int)(GameClass.V_WIDTH * 2), (int)(GameClass.V_HEIGHT * 2));
     }
@@ -131,7 +138,11 @@ public class Level1 implements Screen {
         set timeStamp and velocity 
         to avoid CPU & GPU speed deffrences
         */
-        world1.step(1/60f, 6, 2);
+
+
+        world1.step(1/60f, 60, 2);
+
+        gameCam.position.x = player.b2body.getWorldCenter().x;
 
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world

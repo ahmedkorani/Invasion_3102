@@ -7,11 +7,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 public abstract class GameObjects extends Sprite{
-    protected World world;
+    public World world;
 
-    protected Body b2body;
+    public Body b2body;
 
-    protected Vector2 position;
+    public Vector2 position;
 
 
     public GameObjects(World world, Vector2 position){
