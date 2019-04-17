@@ -45,7 +45,7 @@ public class Level1 implements Screen {
     public Level1(){
         //setup camera and window
         gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(GameClass.V_WIDTH,GameClass.V_HEIGHT,gameCam);
+        gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM ,GameClass.V_HEIGHT / GameClass.PPM, gameCam);
 
         //Load Map
         mapLoader = new TmxMapLoader();
@@ -53,14 +53,15 @@ public class Level1 implements Screen {
 
 
         hud = new Hud(GameClass.batch);
-        renderer = new OrthogonalTiledMapRenderer(map);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / GameClass.PPM);
+
 
 
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
 
 
-        //(0, 0) - No Gravity
-        world1 = new World(new Vector2(0,0), true);
+        //(0, -8) - Gravity on y equals -8
+        world1 = new World(new Vector2(0,-8), true);
 
        
         renderFloor();
@@ -72,7 +73,7 @@ public class Level1 implements Screen {
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world1, new Vector2(30, 90));
+        player = new Player(world1, new Vector2(30 / GameClass.PPM, 150 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
     }
 
     private void renderFloor(){
@@ -98,26 +99,26 @@ public class Level1 implements Screen {
 
             //getX return the start of rect then add half of the width to get the center
             //The same for Y
-            floorBodyDef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+            floorBodyDef.position.set((rect.getX() + rect.getWidth() / 2) / GameClass.PPM, (rect.getY() + rect.getHeight() / 2) / GameClass.PPM);
 
             floor = world1.createBody(floorBodyDef);
 
-            floorShape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            floorShape.setAsBox(rect.getWidth() / 2 / GameClass.PPM, rect.getHeight() / 2 / GameClass.PPM);
             floorFixtureDef.shape = floorShape;
             floor.createFixture(floorFixtureDef);
         }
     }
 
     //User Input handling function
-    public void handleInput(float deltaTime){
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && Math.ceil(gameCam.position.x) <= 1407)
-            gameCam.position.x += 150 * deltaTime;
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && Math.floor(gameCam.position.x) > 225)
-            gameCam.position.x -= 150 * deltaTime;
+    public void handleInput(float deltaTime){         //ISSUE after placing the ppm ratio
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) // && Math.ceil(gameCam.position.x / GameClass.PPM) <= 1407
+            gameCam.position.x += (150 * deltaTime / GameClass.PPM);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) //&& Math.floor(gameCam.position.x / GameClass.PPM) > 225
+            gameCam.position.x -= (150 * deltaTime / GameClass.PPM);
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.graphics.setWindowedMode(GameClass.V_WIDTH*2, GameClass.V_HEIGHT*2);
+            Gdx.graphics.setWindowedMode((int)(GameClass.V_WIDTH * 2), (int)(GameClass.V_HEIGHT * 2));
     }
 
 

@@ -12,7 +12,7 @@ public class GameClass extends Game {
 	public static final int V_WIDTH = 450;
 	public static final int V_HEIGHT = 21*16;
 
-	//Pixels per meter value
+	//Pixels per meter value to fix the ration in the world
 	public static final float PPM = 100;
 
 	public static SpriteBatch batch;
