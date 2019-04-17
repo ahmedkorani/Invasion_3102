@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -18,12 +19,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import com.oop.platformer.GameClass;
+import com.oop.platformer.GameObjects.DestroyerEnemy;
+import com.oop.platformer.GameObjects.GombaEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 
 
 public class Level1 implements Screen {
-    
+
+
+    //private TextureAtlas atlas;
 
     private OrthographicCamera gameCam; //game camera instance to move with the player character
 
@@ -41,8 +46,12 @@ public class Level1 implements Screen {
 
 
     private Player player;
+    private DestroyerEnemy destroyerEnemy;
+    private GombaEnemy gombaEnemy;
     
     public Level1(){
+        //atlas = new TextureAtlas("warped city files/atlas/Mario_and_Enemies.pack");
+
         //setup camera and window
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
@@ -73,8 +82,14 @@ public class Level1 implements Screen {
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world1, new Vector2(30 / GameClass.PPM, 150 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
+        player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
+        gombaEnemy = new GombaEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM), this);
+        //destroyerEnemy = new DestroyerEnemy(world1,new Vector2(100 / GameClass.PPM, 300 / GameClass.PPM), this); // this class has a problem
     }
+
+//    public TextureAtlas getAtlas(){
+//        return atlas;
+//    }
 
     private void renderFloor(){
         level1Floorb2dr = new Box2DDebugRenderer();

@@ -15,6 +15,9 @@ public class GameClass extends Game {
 	//Pixels per meter value to fix the ration in the world
 	public static final float PPM = 100;
 
+	public static final short DEFAULT_BIT = 1;
+	public static final short GAME_BIT = 2;
+
 	public static SpriteBatch batch;
 
 	@Override

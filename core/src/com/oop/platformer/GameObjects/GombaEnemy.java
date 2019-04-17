@@ -8,15 +8,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 
-public class Player extends GameObjects{
-
-    public Player(World world, Vector2 position, Level1 level1Screen){
-        super(world, position,level1Screen);
+public class GombaEnemy extends GameObjects {
+    public GombaEnemy(World world, Vector2 position, Level1 level1Screen) {
+        super(world, position, level1Screen);
         this.define();
     }
 
-
-	@Override
+    @Override
     public void define() {
         BodyDef bdef = new BodyDef();
         bdef.position.set(position);
@@ -31,6 +29,5 @@ public class Player extends GameObjects{
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
-
     }
 }
