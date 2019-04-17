@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import com.oop.platformer.GameClass;
+import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 
 
@@ -38,29 +39,65 @@ public class Level1 implements Screen {
     private World world1;
     private Box2DDebugRenderer level1Floorb2dr;
 
+
+    private Player player;
+    
     public Level1(){
-
+        //setup camera and window
         gameCam = new OrthographicCamera();
-
         gamePort = new FitViewport(GameClass.V_WIDTH,GameClass.V_HEIGHT,gameCam);
 
+        //Load Map
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("Map/level1.tmx");
+
+
         hud = new Hud(GameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map);
+
+
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
+
+
+        //(0, 0) - No Gravity
         world1 = new World(new Vector2(0,0), true);
 
+       
+        renderFloor();
+
+        
+        addObjectsToTheWorld();
+        
+    }
+
+    private void addObjectsToTheWorld(){
+        //Adds player to the world
+        player = new Player(world1);
+    }
+
+    private void renderFloor(){
         level1Floorb2dr = new Box2DDebugRenderer();
+        
+        //defines what the body consists of
         BodyDef floorBodyDef = new BodyDef();
+
         PolygonShape floorShape = new PolygonShape();
+
+        //to add bodies to the world
         FixtureDef floorFixtureDef = new FixtureDef();
+        
         Body floor;
 
+        //Create Floor Objects which's in the 4th layer
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
+            //Shaped as rectangles in the map objects
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
+            
             floorBodyDef.type = BodyDef.BodyType.StaticBody;
+
+            //getX return the start of rect then add half of the width to get the center
+            //The same for Y
             floorBodyDef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
 
             floor = world1.createBody(floorBodyDef);
@@ -76,7 +113,7 @@ public class Level1 implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && Math.ceil(gameCam.position.x) <= 1407)
             gameCam.position.x += 150 * deltaTime;
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && Math.floor(gameCam.position.x) > 225)
-            gameCam.position.x -= 150*deltaTime;
+            gameCam.position.x -= 150 * deltaTime;
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
@@ -88,6 +125,10 @@ public class Level1 implements Screen {
     public void update(float deltaTime){
         //System.out.printf("%f\n", gameCam.position.x);
         handleInput(deltaTime);
+
+        //set timeStamp and velocity 
+        world1.step(1/60f, 6, 2);
+
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
     }
@@ -116,8 +157,11 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
+        //Debugger, may need to remove it
         level1Floorb2dr.render(world1, gameCam.combined);
 
+
+        //Draw Hud
         GameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }

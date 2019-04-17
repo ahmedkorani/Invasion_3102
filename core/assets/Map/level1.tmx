@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="33" nextobjectid="30">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="33" nextobjectid="34">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
   <image source="../warped city files/ENVIRONMENT/tileset.png" width="384" height="256"/>
  </tileset>
@@ -107,11 +107,13 @@
  <objectgroup id="5" name="Floor">
   <object id="14" x="0" y="176" width="176" height="16"/>
   <object id="15" x="160" y="208" width="192" height="16"/>
-  <object id="16" x="352" y="176" width="176" height="16"/>
+  <object id="16" x="355" y="175" width="176" height="16"/>
   <object id="18" x="592" y="160" width="160" height="16"/>
   <object id="22" x="800" y="192" width="304" height="16"/>
   <object id="26" x="1136" y="256" width="176" height="16"/>
   <object id="27" x="1344" y="224" width="256" height="16"/>
   <object id="29" x="1136" y="128" width="176" height="16"/>
+  <object id="32" x="5" y="95" width="161" height="15"/>
+  <object id="33" x="22" y="251" width="125" height="20"/>
  </objectgroup>
 </map>
