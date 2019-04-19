@@ -19,16 +19,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import com.oop.platformer.GameClass;
-import com.oop.platformer.GameObjects.DestroyerEnemy;
-import com.oop.platformer.GameObjects.GombaEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 
 
 public class Level1 implements Screen {
 
+    private GameClass game;
 
-    //private TextureAtlas atlas;
+    private TextureAtlas atlas;
 
     private OrthographicCamera gameCam; //game camera instance to move with the player character
 
@@ -46,11 +45,13 @@ public class Level1 implements Screen {
 
 
     private Player player;
-    private DestroyerEnemy destroyerEnemy;
-    private GombaEnemy gombaEnemy;
+    //private GombaEnemy gombaEnemy;
     
-    public Level1(){
-        //atlas = new TextureAtlas("warped city files/atlas/Mario_and_Enemies.pack");
+    public Level1(GameClass game){
+
+        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+
+        this.game = game;
 
         //setup camera and window
         gameCam = new OrthographicCamera();
@@ -83,13 +84,13 @@ public class Level1 implements Screen {
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
         player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        gombaEnemy = new GombaEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM), this);
+        //gombaEnemy = new GombaEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM), this);
         //destroyerEnemy = new DestroyerEnemy(world1,new Vector2(100 / GameClass.PPM, 300 / GameClass.PPM), this); // this class has a problem
     }
 
-//    public TextureAtlas getAtlas(){
-//        return atlas;
-//    }
+    public TextureAtlas getAtlas(){
+        return atlas;
+    }
 
     private void renderFloor(){
         level1Floorb2dr = new Box2DDebugRenderer();
@@ -174,6 +175,8 @@ public class Level1 implements Screen {
 
         world1.step(1/60f, 60, 2);
 
+        player.update(deltaTime);
+
         gameCam.position.x = player.b2body.getWorldCenter().x;
 
         gameCam.update();
@@ -204,9 +207,12 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        //Debugger, may need to remove it
-        level1Floorb2dr.render(world1, gameCam.combined);
+        level1Floorb2dr.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
 
+        game.batch.setProjectionMatrix(gameCam.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
 
         //Draw Hud
         GameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);

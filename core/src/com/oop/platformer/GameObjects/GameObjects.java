@@ -16,7 +16,8 @@ public abstract class GameObjects extends Sprite{
 
     public Level1 level1Screen;
 
-    public GameObjects(World world, Vector2 position, Level1 level1Screen){
+    public GameObjects(World world, Vector2 position, Level1 level1Screen, String animationName){
+        super(level1Screen.getAtlas().findRegion(animationName));
         this.world = world;
         this.position = position;
         this.level1Screen = level1Screen;
