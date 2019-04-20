@@ -4,10 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
@@ -16,7 +13,7 @@ import javax.xml.soap.Text;
 
 public class Player extends GameObjects{
 
-    private enum State {Falling, Jumping, Standing, Running};
+    public enum State {Falling, Jumping, Standing, Running};
     private State currentState;
     private State previousState;
     private TextureRegion playerStand;
@@ -67,9 +64,12 @@ public class Player extends GameObjects{
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
+
         shape.setRadius(8 / GameClass.PPM);
 
         fdef.shape = shape;
+
+
         b2body.createFixture(fdef);
 
     }
@@ -116,7 +116,7 @@ public class Player extends GameObjects{
         return region;
     }
 
-    private State getState() {
+    public State getState() {
         if(b2body.getLinearVelocity().y > 0)
             return State.Jumping;
         else if (b2body.getLinearVelocity().y < 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.Jumping))

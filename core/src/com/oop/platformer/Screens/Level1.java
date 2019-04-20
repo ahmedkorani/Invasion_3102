@@ -142,9 +142,10 @@ public class Level1 implements Screen {
 //      Oracle - Controls
 
         //movement controls
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0,3f), player.b2body.getWorldCenter(),true);
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            if(player.getState() != Player.State.Jumping && player.getState() != Player.State.Falling)
+                player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f,0), player.b2body.getWorldCenter(),true);
 
