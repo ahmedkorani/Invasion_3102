@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 
+import javax.xml.soap.Text;
+
 public class Player extends GameObjects{
 
     private enum State {Falling, Jumping, Standing, Running};
@@ -18,8 +20,8 @@ public class Player extends GameObjects{
     private State previousState;
 
     private TextureRegion playerStand;
+    private TextureRegion playerJump;
     private Animation playerRun;
-    private Animation playerJump;
     private float stateTimer;
     private boolean runningRight;
 
@@ -35,15 +37,13 @@ public class Player extends GameObjects{
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i<=4; i++)
-            frames.add(new TextureRegion(getTexture(), i*16, 0,16,16));
+            frames.add(new TextureRegion(getTexture(), 1+i*16, 11,16,16));
 
         playerRun = new Animation(0.1f, frames);
 
         frames.clear();
 
-        for(int i=4; i <=6; i++)
-            frames.add(new TextureRegion(getTexture(), i*16, 0,16,32));
-        playerJump = new Animation(0.1f, frames);
+        playerJump = new TextureRegion(getTexture(), 1+5*16, 11, 16,16);    //hard coded, needs to get values of offset and index from atlas
 
         frames.clear();
 
@@ -64,7 +64,7 @@ public class Player extends GameObjects{
         FixtureDef fdef = new FixtureDef();
 
         CircleShape shape = new CircleShape();
-        shape.setRadius(5 / GameClass.PPM);
+        shape.setRadius(10 / GameClass.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
@@ -82,7 +82,7 @@ public class Player extends GameObjects{
         TextureRegion region;
         switch (currentState){
             case Jumping:
-                region = (TextureRegion) playerJump.getKeyFrame(stateTimer);
+                region = playerJump;
                 break;
             case Running:
                 region = (TextureRegion) playerRun.getKeyFrame(stateTimer, true);
