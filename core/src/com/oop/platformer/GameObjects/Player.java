@@ -1,6 +1,7 @@
 package com.oop.platformer.GameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -18,36 +19,39 @@ public class Player extends GameObjects{
     private enum State {Falling, Jumping, Standing, Running};
     private State currentState;
     private State previousState;
-
     private TextureRegion playerStand;
     private TextureRegion playerJump;
     private Animation playerRun;
     private float stateTimer;
     private boolean runningRight;
+    private TextureAtlas atlas;
 
 
     public Player(World world, Vector2 position, Level1 level1Screen){
         super(world, position,level1Screen, "little_mario");
         this.define();
 
+        atlas = level1Screen.getAtlas();
+        TextureAtlas.AtlasRegion atlastRegion = atlas.findRegion("little_mario");
         currentState = State.Standing;
         previousState = State.Standing;
         stateTimer = 0;
         runningRight = true;
 
+
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i<=4; i++)
-            frames.add(new TextureRegion(getTexture(), 1+i*16, 11,16,16));
+            frames.add(new TextureRegion(getTexture(), atlastRegion.getRegionX()+i*16, atlastRegion.getRegionY(),16,16));
 
         playerRun = new Animation(0.1f, frames);
 
         frames.clear();
 
-        playerJump = new TextureRegion(getTexture(), 1+5*16, 11, 16,16);    //hard coded, needs to get values of offset and index from atlas
+        playerJump = new TextureRegion(getTexture(), atlastRegion.getRegionX()+5*16, atlastRegion.getRegionY(), 16,16);    //hard coded, needs to get values of offset and index from atlas
 
         frames.clear();
 
-        playerStand = new TextureRegion(getTexture(), 1, 11, 16, 16);
+        playerStand = new TextureRegion(getTexture(), atlastRegion.getRegionX(), atlastRegion.getRegionY(), 16, 16);
         setBounds(0,0,16 / GameClass.PPM,16 / GameClass.PPM);
         setRegion(playerStand);
     }
@@ -62,9 +66,8 @@ public class Player extends GameObjects{
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-
         CircleShape shape = new CircleShape();
-        shape.setRadius(10 / GameClass.PPM);
+        shape.setRadius(8 / GameClass.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
