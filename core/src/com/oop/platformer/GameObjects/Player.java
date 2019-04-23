@@ -6,51 +6,67 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
-import javax.xml.soap.Text;
 
 public class Player extends GameObjects{
 
-    public enum State {Falling, Jumping, Standing, Running};
+    public enum State {Falling, Jumping, Standing, Running}
+
     private State currentState;
     private State previousState;
-    private TextureRegion playerStand;
-    private TextureRegion playerJump;
-    private Animation playerRun;
     private float stateTimer;
     private boolean runningRight;
-    private TextureAtlas atlas;
+
+    private final TextureRegion standingLeft;
+    private final TextureRegion standingRight;
+    private final TextureRegion walkingLeft;
+    private final TextureRegion walkingRight;
+    private final TextureRegion jumpingLeft;
+    private final TextureRegion jumpingRight;
+
+    private final Animation walkingLeftAnimation;
+    private final Animation walkingRightAnimation;
 
 
     public Player(World world, Vector2 position, Level1 level1Screen){
-        super(world, position,level1Screen, "little_mario");
+        super(world, position,level1Screen);
         this.define();
 
-        atlas = level1Screen.getAtlas();
-        TextureAtlas.AtlasRegion atlastRegion = atlas.findRegion("little_mario");
         currentState = State.Standing;
         previousState = State.Standing;
         stateTimer = 0;
         runningRight = true;
 
+        TextureAtlas atlas = new TextureAtlas(Constants.TEXTURE_ATLAS);
 
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 1; i<=4; i++)
-            frames.add(new TextureRegion(getTexture(), atlastRegion.getRegionX()+i*16, atlastRegion.getRegionY(),16,16));
+        standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
+        standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
+        walkingLeft = atlas.findRegion(Constants.WALKING_LEFT_2);
+        walkingRight = atlas.findRegion(Constants.WALKING_RIGHT_2);
 
-        playerRun = new Animation(0.1f, frames);
+        jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
+        jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
 
-        frames.clear();
+        Array<AtlasRegion> walkingLeftFrames = new Array<AtlasRegion>();
+        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
+        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_1));
+        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
+        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_3));
+        walkingLeftAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingLeftFrames, Animation.PlayMode.LOOP);
 
-        playerJump = new TextureRegion(getTexture(), atlastRegion.getRegionX()+5*16, atlastRegion.getRegionY(), 16,16);    //hard coded, needs to get values of offset and index from atlas
+        Array<AtlasRegion> walkingRightFrames = new Array<AtlasRegion>();
+        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
+        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_1));
+        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
+        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
+        walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, Animation.PlayMode.LOOP);
 
-        frames.clear();
-
-        playerStand = new TextureRegion(getTexture(), atlastRegion.getRegionX(), atlastRegion.getRegionY(), 16, 16);
-        setBounds(0,0,16 / GameClass.PPM,16 / GameClass.PPM);
-        setRegion(playerStand);
+        setBounds(0,0,26 / GameClass.PPM,26 / GameClass.PPM);
+        setRegion(standingRight);
     }
 
 
@@ -65,7 +81,7 @@ public class Player extends GameObjects{
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
 
-        shape.setRadius(8 / GameClass.PPM);
+        shape.setRadius(7 / GameClass.PPM);
 
         fdef.shape = shape;
 
@@ -85,15 +101,15 @@ public class Player extends GameObjects{
         TextureRegion region;
         switch (currentState){
             case Jumping:
-                region = playerJump;
+                region = jumpingRight;
                 break;
             case Running:
-                region = (TextureRegion) playerRun.getKeyFrame(stateTimer, true);
+                region = (TextureRegion) walkingRightAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Falling:
             case Standing:
             default:
-                region = playerStand;
+                region = standingRight;
                 break;
         }
 

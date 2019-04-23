@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -25,15 +24,9 @@ import com.oop.platformer.Scenes.Hud;
 
 public class Level1 implements Screen {
 
-    private GameClass game;
-
-    private TextureAtlas atlas;
-
     private OrthographicCamera gameCam; //game camera instance to move with the player character
 
     private Viewport gamePort; //Manages a Camera and determines how world coordinates are mapped to and from the screen.
-
-    private TmxMapLoader mapLoader; //loads the level from assets
 
     private TiledMap map;//reference for the map itself
 
@@ -41,41 +34,34 @@ public class Level1 implements Screen {
     private OrthogonalTiledMapRenderer renderer;
 
     private World world1;
+
+    // for rendering debugging
     private Box2DDebugRenderer level1Floorb2dr;
 
 
     private Player player;
     //private GombaEnemy gombaEnemy;
     
-    public Level1(GameClass game){
-
-        atlas = new TextureAtlas("Mario_and_Enemies.pack");
-
-        this.game = game;
+    public Level1(){
 
         //setup camera and window
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
 
         //Load Map
-        mapLoader = new TmxMapLoader();
+        //loads the level from assets
+        TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("Map/level1.tmx");
-
 
         hud = new Hud(GameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / GameClass.PPM);
 
-
-
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
-
 
         //(0, -8) - Gravity on y equals -8
         world1 = new World(new Vector2(0,-8), true);
 
-       
         renderFloor();
-
 
         addObjectsToTheWorld();
         
@@ -86,10 +72,6 @@ public class Level1 implements Screen {
         player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
         //gombaEnemy = new GombaEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM), this);
         //destroyerEnemy = new DestroyerEnemy(world1,new Vector2(100 / GameClass.PPM, 300 / GameClass.PPM), this); // this class has a problem
-    }
-
-    public TextureAtlas getAtlas(){
-        return atlas;
     }
 
     private void renderFloor(){
@@ -126,22 +108,8 @@ public class Level1 implements Screen {
     }
 
     //User Input handling function
-    public void handleInput(float deltaTime){
+    private void handleInput(){
 
-//          Abo Amra controls
-
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-//            player.b2body.applyLinearImpulse(new Vector2(0, 3f), player.b2body.getWorldCenter(), true);
-//
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 6) // 6 is the maximum speed, may need to be reduced
-//            player.b2body.applyLinearImpulse(new Vector2(1f, 0), player.b2body.getWorldCenter(), true);
-//
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -6)
-//            player.b2body.applyLinearImpulse(new Vector2(-1f, 0), player.b2body.getWorldCenter(), true);
-
-//      Oracle - Controls
-
-        //movement controls
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             if(player.getState() != Player.State.Jumping && player.getState() != Player.State.Falling)
                 player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
@@ -157,47 +125,35 @@ public class Level1 implements Screen {
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.graphics.setWindowedMode((int)(GameClass.V_WIDTH * 2), (int)(GameClass.V_HEIGHT * 2));
+            Gdx.graphics.setWindowedMode((GameClass.V_WIDTH * 2), (GameClass.V_HEIGHT * 2));
 
 
     }
 
-
     //update the game state
-    public void update(float deltaTime){
+    private void update(float deltaTime){
         //System.out.printf("%f\n", gameCam.position.x);
-        handleInput(deltaTime);
-
+        handleInput();
         /*
         set timeStamp and velocity 
-        to avoid CPU & GPU speed deffrences
+        to avoid CPU & GPU speed differences
         */
-
-
         world1.step(1/60f, 60, 2);
-
         player.update(deltaTime);
-
         gameCam.position.x = player.b2body.getWorldCenter().x;
-
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
     }
-
-
 
     @Override
     public void show() {
 
     }
-
-
     /**
      * Logic Goes Here
      */
     @Override
     public void render(float delta) {
-
         //separate our update logic from render
         update(delta);
 
@@ -210,10 +166,10 @@ public class Level1 implements Screen {
 
         level1Floorb2dr.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
 
-        game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.begin();
-        player.draw(game.batch);
-        game.batch.end();
+        GameClass.batch.setProjectionMatrix(gameCam.combined);
+        GameClass.batch.begin();
+        player.draw(GameClass.batch);
+        GameClass.batch.end();
 
         //Draw Hud
         GameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -244,6 +200,5 @@ public class Level1 implements Screen {
     public void dispose() {
         hud.dispose();
     }
-
 
 }

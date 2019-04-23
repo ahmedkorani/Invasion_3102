@@ -19,7 +19,7 @@ public class GombaEnemy extends GameObjects {
 
 
     public GombaEnemy(World world, Vector2 position, Level1 level1Screen) {
-        super(world, position, level1Screen,"");
+        super(world, position, level1Screen);
         this.define();
     }
 

@@ -1,6 +1,5 @@
 package com.oop.platformer.GameObjects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,8 +15,7 @@ public abstract class GameObjects extends Sprite{
 
     public Level1 level1Screen;
 
-    public GameObjects(World world, Vector2 position, Level1 level1Screen, String animationName){
-        super(level1Screen.getAtlas().findRegion(animationName));
+    public GameObjects(World world, Vector2 position, Level1 level1Screen){
         this.world = world;
         this.position = position;
         this.level1Screen = level1Screen;

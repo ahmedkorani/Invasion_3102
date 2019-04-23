@@ -22,7 +22,7 @@ public class GameClass extends Game {
 		batch = new SpriteBatch();
 
 		//The Play Screen
-		setScreen(new Level1(this));
+		setScreen(new Level1());
 	}
 
 	@Override
