@@ -69,7 +69,7 @@ public class Level1 implements Screen {
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
         player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        droneEnemy = new DroneEnemy(world1,new Vector2(220 / GameClass.PPM, 200 / GameClass.PPM),this);
+        droneEnemy = new DroneEnemy(world1,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this);
     }
 
     private void renderFloor(){
