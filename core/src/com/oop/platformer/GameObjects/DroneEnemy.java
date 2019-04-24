@@ -17,7 +17,7 @@ public class DroneEnemy extends GameObjects {
         super(world, position, level1Screen);
         TextureAtlas atlas = new TextureAtlas(Constants.TEXTURE_ATLAS);
         TextureRegion droneEnemy = new TextureRegion(atlas.findRegion(Constants.enemy));
-        setBounds(0,0,40 / GameClass.PPM,40 / GameClass.PPM);
+        setBounds(0,0,35 / GameClass.PPM,50 / GameClass.PPM);
         setRegion(droneEnemy);
     }
 
@@ -33,13 +33,24 @@ public class DroneEnemy extends GameObjects {
         FixtureDef fdef = new FixtureDef();
 
         CircleShape shape = new CircleShape();
-        shape.setRadius(15 / GameClass.PPM);
+        shape.setRadius(25 / GameClass.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
     }
+    boolean right = true;
+    boolean left = false;
 
     public void update(){
         setPosition(b2body.getPosition().x - getWidth()/2 , b2body.getPosition().y - getHeight()/2);
+        if(b2body.getLinearVelocity().x == 0){
+            right = !right;
+            left = !left;
+        }
+        if (right)
+            b2body.applyLinearImpulse(new Vector2(0.04f,0), b2body.getWorldCenter(),true);
+        if (left)
+            b2body.applyLinearImpulse(new Vector2(-0.04f,0), b2body.getWorldCenter(),true);
+
     }
 }
