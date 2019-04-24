@@ -19,6 +19,7 @@ public abstract class GameObjects extends Sprite{
         this.world = world;
         this.position = position;
         this.level1Screen = level1Screen;
+        define();
     }
 
     public abstract void define();

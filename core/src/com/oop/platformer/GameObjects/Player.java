@@ -34,7 +34,6 @@ public class Player extends GameObjects{
 
     public Player(World world, Vector2 position, Level1 level1Screen){
         super(world, position,level1Screen);
-        this.define();
 
         currentState = State.Standing;
         previousState = State.Standing;

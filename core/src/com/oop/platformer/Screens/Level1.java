@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import com.oop.platformer.GameClass;
+import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 
@@ -36,14 +37,13 @@ public class Level1 implements Screen {
     private World world1;
 
     // for rendering debugging
-    private Box2DDebugRenderer level1Floorb2dr;
+    private Box2DDebugRenderer floorDebugger;
 
 
     private Player player;
-    //private GombaEnemy gombaEnemy;
+    private DroneEnemy droneEnemy;
     
     public Level1(){
-
         //setup camera and window
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
@@ -64,18 +64,16 @@ public class Level1 implements Screen {
         renderFloor();
 
         addObjectsToTheWorld();
-        
     }
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
         player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        //gombaEnemy = new GombaEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM), this);
-        //destroyerEnemy = new DestroyerEnemy(world1,new Vector2(100 / GameClass.PPM, 300 / GameClass.PPM), this); // this class has a problem
+        droneEnemy = new DroneEnemy(world1,new Vector2(100 / GameClass.PPM, 200 / GameClass.PPM),this);
     }
 
     private void renderFloor(){
-        level1Floorb2dr = new Box2DDebugRenderer();
+        floorDebugger = new Box2DDebugRenderer();
         
         //defines what the body consists of
         BodyDef floorBodyDef = new BodyDef();
@@ -92,7 +90,6 @@ public class Level1 implements Screen {
             //Shaped as rectangles in the map objects
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            
             floorBodyDef.type = BodyDef.BodyType.StaticBody;
 
             //getX return the start of rect then add half of the width to get the center
@@ -140,6 +137,7 @@ public class Level1 implements Screen {
         */
         world1.step(1/60f, 60, 2);
         player.update(deltaTime);
+        droneEnemy.update();
         gameCam.position.x = player.b2body.getWorldCenter().x;
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
@@ -164,11 +162,12 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        level1Floorb2dr.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
+        floorDebugger.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
 
         GameClass.batch.setProjectionMatrix(gameCam.combined);
         GameClass.batch.begin();
         player.draw(GameClass.batch);
+        droneEnemy.draw(GameClass.batch);
         GameClass.batch.end();
 
         //Draw Hud
