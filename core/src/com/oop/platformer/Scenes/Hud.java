@@ -30,9 +30,9 @@ public class Hud implements  Disposable{
     private Integer health;
     private Float timer;
 
-    Label lbl_health;
-    Label lbl_score;
-    Label lbl_lives;
+    private Label lbl_health;
+    private Label lbl_score;
+    private Label lbl_lives;
 
 
     public  Hud(SpriteBatch spriteBatch){

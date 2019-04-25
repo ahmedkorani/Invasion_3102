@@ -58,7 +58,7 @@ public class Assets implements Disposable {
             for(int i = 0; i<=13; i++)
                 runFrames.add(atlas.findRegion("Ellie frame_run",i));
 
-            runAnimation = new Animation(0.2f, runFrames, PlayMode.LOOP);
+            runAnimation = new Animation(0.1f, runFrames, PlayMode.LOOP);
 
 
         }

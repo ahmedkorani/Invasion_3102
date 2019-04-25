@@ -8,7 +8,7 @@ import com.oop.platformer.Screens.Level1;
 
 public class GameClass extends Game {
 
-	//Map width and hight
+	//Map width and height
 	public static final int V_WIDTH = 450;
 	public static final int V_HEIGHT = 21*16;
 

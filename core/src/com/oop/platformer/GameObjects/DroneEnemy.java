@@ -14,7 +14,6 @@ import com.oop.platformer.Screens.Level1;
 public class DroneEnemy extends GameObjects {
 
     private boolean top = false;
-    private boolean bottom = true;
 
     public DroneEnemy(World world, Vector2 position, Level1 level1Screen) {
         super(world, position, level1Screen);
@@ -42,53 +41,20 @@ public class DroneEnemy extends GameObjects {
     }
 
 
-    public void update(){
-        setPosition(b2body.getPosition().x - getWidth()/2 , b2body.getPosition().y - getHeight()/2);
+    public void update() {
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
-        if(b2body.getPosition().y >= 2.8f){
+        if (b2body.getPosition().y >= 2.8f) {
             top = true;
-            bottom = false;
         }
 
-        if(b2body.getLinearVelocity().y == 0){
-            bottom = true;
+        if (b2body.getLinearVelocity().y == 0) {
             top = false;
         }
 
-        if (!top){
+        if (!top) {
             b2body.applyForceToCenter(0f, 8.5f, true);
         }
-
-        if (!bottom){
-//            b2body.applyForceToCenter(0f, 2f, true);
-//            b2body.applyLinearImpulse(new Vector2(0, 0f), b2body.getWorldCenter(), true);
-        }
-        System.out.println("speed : " + b2body.getLinearVelocity().y);
-//        if (b2body.getPosition().y >= 3){
-//            System.out.println(b2body.getPosition().y);
-//            top = true;
-//        }
-//
-//        if (b2body.getLinearVelocity().y == 0){
-//            top = false;
-//            bottom = true;
-//        }
-//
-//        if (b2body.getLinearVelocity().y <= 0 && !top){
-//            b2body.applyLinearImpulse(new Vector2(0f,1f), b2body.getWorldCenter(),true);
-//            b2body.applyForceToCenter(0f, 15f, true);
-//        }
-//
-//        if (b2body.getLinearVelocity().y < 0){
-//            for (int i = 0; i<3; i++){
-//                b2body.applyLinearImpulse(new Vector2(0f,0.1f), b2body.getWorldCenter(),true);
-//                System.out.println("speed : " + b2body.getPosition().y);
-//            }
-//        }
-//
-//        if (b2body.getLinearVelocity().y <= 0 && !bottom){
-//            b2body.applyLinearImpulse(new Vector2(0f,1f), b2body.getWorldCenter(),true);
-//            System.out.println(b2body.getPosition().y);
-//        }
     }
+
 }

@@ -1,17 +1,11 @@
 package com.oop.platformer.GameObjects;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.utils.Array;
-import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.oop.platformer.util.Assets;
-
 
 public class Player extends GameObjects{
 
@@ -21,7 +15,6 @@ public class Player extends GameObjects{
     private float stateTimer;
     private boolean runningRight;
 
-
     public Player(World world, Vector2 position, Level1 level1Screen){
         super(world, position,level1Screen);
 
@@ -29,8 +22,6 @@ public class Player extends GameObjects{
         previousState = State.Standing;
         stateTimer = 0;
         runningRight = true;
-
-        //load assets
 
         setBounds(0,0,32 / GameClass.PPM,32 / GameClass.PPM);
         setRegion((TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true));
@@ -48,14 +39,11 @@ public class Player extends GameObjects{
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
 
-        shape.setRadius(16 / GameClass.PPM);
-
+        shape.setRadius(13 / GameClass.PPM);
 
         fdef.shape = shape;
 
-
         b2body.createFixture(fdef);
-
     }
 
     public void update(float deltaTime){
