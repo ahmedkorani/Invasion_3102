@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
@@ -17,8 +18,8 @@ public class DroneEnemy extends GameObjects {
 
     public DroneEnemy(World world, Vector2 position, Level1 level1Screen) {
         super(world, position, level1Screen);
-        TextureAtlas atlas = new TextureAtlas(Constants.TEXTURE_ATLAS);
-        TextureRegion droneEnemy = new TextureRegion(atlas.findRegion(Constants.enemy));
+        TextureAtlas atlas = new TextureAtlas(Constants.GIGAGAL_TEXTURE_ATLAS);
+        TextureRegion droneEnemy = new TextureRegion(atlas.findRegion(Constants.ENEMY));
         setBounds(0,0,35 / GameClass.PPM,50 / GameClass.PPM);
         setRegion(droneEnemy);
     }
@@ -26,18 +27,18 @@ public class DroneEnemy extends GameObjects {
     @Override
     public void define() {
 
-        BodyDef bdef = new BodyDef();
-        bdef.position.set(position);
-        bdef.type = BodyDef.BodyType.DynamicBody;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(position);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        b2body = world.createBody(bdef);
+        b2body = world.createBody(bodyDef);
 
-        FixtureDef fdef = new FixtureDef();
+        FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(25 / GameClass.PPM);
 
-        fdef.shape = shape;
-        b2body.createFixture(fdef);
+        fixtureDef.shape = shape;
+        b2body.createFixture(fixtureDef);
     }
 
 

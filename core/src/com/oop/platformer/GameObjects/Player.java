@@ -3,6 +3,7 @@ package com.oop.platformer.GameObjects;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 import com.oop.platformer.util.Assets;
@@ -30,20 +31,20 @@ public class Player extends GameObjects{
 
 	@Override
     public void define() {
-        BodyDef bdef = new BodyDef();
-        bdef.position.set(position);
-        bdef.type = BodyDef.BodyType.DynamicBody;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(position);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        b2body = world.createBody(bdef);
+        b2body = world.createBody(bodyDef);
 
-        FixtureDef fdef = new FixtureDef();
+        FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
 
         shape.setRadius(13 / GameClass.PPM);
 
-        fdef.shape = shape;
+        fixtureDef.shape = shape;
 
-        b2body.createFixture(fdef);
+        b2body.createFixture(fixtureDef);
     }
 
     public void update(float deltaTime){

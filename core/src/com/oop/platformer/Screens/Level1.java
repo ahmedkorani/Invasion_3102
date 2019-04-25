@@ -3,7 +3,6 @@ package com.oop.platformer.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
@@ -17,15 +16,16 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-
+import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
-import com.oop.platformer.util.Assets;
 
 
 public class Level1 implements Screen {
+
+    private GameClass gameClass;
 
     private OrthographicCamera gameCam; //game camera instance to move with the player character
 
@@ -45,7 +45,9 @@ public class Level1 implements Screen {
     private Player player;
     private DroneEnemy droneEnemy;
     
-    public Level1(){
+    public Level1(GameClass gameClass){
+
+        this.gameClass = gameClass;
         //setup camera and window
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
@@ -53,11 +55,9 @@ public class Level1 implements Screen {
         //Load Map
         //loads the level from assets
         TmxMapLoader mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Map/level1.tmx");
+        map = mapLoader.load(Constants.MAP);
 
-        Assets.instance.init(new AssetManager());
-
-        hud = new Hud(GameClass.batch);
+        hud = new Hud(gameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / GameClass.PPM);
 
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
@@ -151,9 +151,7 @@ public class Level1 implements Screen {
     public void show() {
 
     }
-    /**
-     * Logic Goes Here
-     */
+
     @Override
     public void render(float delta) {
         //separate our update logic from render
@@ -168,14 +166,14 @@ public class Level1 implements Screen {
 
         floorDebugger.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
 
-        GameClass.batch.setProjectionMatrix(gameCam.combined);
-        GameClass.batch.begin();
-        player.draw(GameClass.batch);
-        droneEnemy.draw(GameClass.batch);
-        GameClass.batch.end();
+        gameClass.batch.setProjectionMatrix(gameCam.combined);
+        gameClass.batch.begin();
+        player.draw(gameClass.batch);
+        droneEnemy.draw(gameClass.batch);
+        gameClass.batch.end();
 
         //Draw Hud
-        GameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        gameClass.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 

@@ -2,9 +2,11 @@
 package com.oop.platformer;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import com.oop.platformer.Screens.Level1;
+import com.oop.platformer.Screens.MainMenuScreen;
+import com.oop.platformer.util.Assets;
 
 public class GameClass extends Game {
 
@@ -15,14 +17,14 @@ public class GameClass extends Game {
 	//Pixels per meter value to fix the ration in the world
 	public static final float PPM = 100;
 
-	public static SpriteBatch batch;
+	public SpriteBatch batch;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
+		Assets.instance.init(new AssetManager());
 		//The Play Screen
-		setScreen(new Level1());
+		setScreen(new MainMenuScreen(this));
 	}
 
 	@Override

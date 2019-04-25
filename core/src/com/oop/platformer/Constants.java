@@ -2,22 +2,21 @@ package com.oop.platformer;
 
 public class Constants {
 
-    public static final String TEXTURE_ATLAS = "GigaGal/gigagal.pack.atlas";
+    //GigaGal Atlas path
+    public static final String GIGAGAL_TEXTURE_ATLAS = "GigaGal/gigagal.pack.atlas";
 
-    //GigaGal atlas names
-    public static final String STANDING_RIGHT = "standing-right";
-    public static final String STANDING_LEFT = "standing-left";
-    public static final String JUMPING_RIGHT = "jumping-right";
-    public static final String JUMPING_LEFT = "jumping-left";
-    public static final String WALKING_RIGHT_1 = "walk-1-right";
-    public static final String WALKING_LEFT_1 = "walk-1-left";
-    public static final String WALKING_RIGHT_2 = "walk-2-right";
-    public static final String WALKING_LEFT_2 = "walk-2-left";
-    public static final String WALKING_RIGHT_3 = "walk-3-right";
-    public static final String WALKING_LEFT_3 = "walk-3-left";
-    public static final float WALK_LOOP_DURATION = 0.2f;
+    //Rambo Texture Atlas path
+    public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
+
+    //Level 1 Map Path
+    public static final String MAP = "Map/level1.tmx";
+
+    //Main Menu Buttons and Background
+    public static final String SKIN_ATLAS = "MainMenuAssets/glassy-ui.atlas";
+    public static final String SKIN_JSON = "MainMenuAssets/glassy-ui.json";
+    public static final String BACKGROUND = "MainMenuAssets/cyberpunk-street.png";
 
     //Enemy atlas name
-    public static final String enemy = "enemy";
+    public static final String ENEMY = "enemy";
 
 }
