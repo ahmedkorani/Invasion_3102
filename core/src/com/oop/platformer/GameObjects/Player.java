@@ -33,7 +33,7 @@ public class Player extends GameObjects{
         //load assets
 
         setBounds(0,0,32 / GameClass.PPM,32 / GameClass.PPM);
-        setRegion(Assets.instance.playerAssets.standingRight);
+        setRegion((TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true));
     }
 
 
@@ -48,7 +48,7 @@ public class Player extends GameObjects{
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
 
-        shape.setRadius(7 / GameClass.PPM);
+        shape.setRadius(16 / GameClass.PPM);
 
 
         fdef.shape = shape;
@@ -71,15 +71,15 @@ public class Player extends GameObjects{
         TextureRegion region;
         switch (currentState){
             case Jumping:
-                region = Assets.instance.playerAssets.jumpingRight;
+                region = (TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true);
                 break;
             case Running:
-                region = (TextureRegion) Assets.instance.playerAssets.walkingRightAnimation.getKeyFrame(stateTimer, true);
+                region = (TextureRegion) Assets.instance.feministAssets.runAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Falling:
             case Standing:
             default:
-                region = Assets.instance.playerAssets.standingRight;
+                region = (TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true);
                 break;
         }
 

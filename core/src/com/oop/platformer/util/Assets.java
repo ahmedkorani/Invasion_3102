@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -22,6 +23,7 @@ public class Assets implements Disposable {
     public static final Assets instance = new Assets();
     private AssetManager assetManager;
     public PlayerAssets playerAssets;
+    public  FeministAssets feministAssets;
 
 
     public void init(AssetManager assetManager)
@@ -31,15 +33,36 @@ public class Assets implements Disposable {
         assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
-        playerAssets = new PlayerAssets(atlas);
 
+        playerAssets = new PlayerAssets(atlas);
+        feministAssets = new FeministAssets(new TextureAtlas("Feminist/feminist.atlas"));
     }
     @Override
     public void dispose() {
         assetManager.dispose();
     }
 
+    public class FeministAssets {
+        public final Animation idleAnimation;
+        public final Animation runAnimation;
+        public FeministAssets(TextureAtlas atlas)
+        {
+            Array<AtlasRegion> idleFrames = new Array<AtlasRegion>();
 
+            for(int i  =0; i<=3; i++)
+                idleFrames.add(atlas.findRegion("Ellie frame_idle", i));
+
+            idleAnimation = new Animation(0.2f, idleFrames, PlayMode.LOOP);
+
+            Array<AtlasRegion> runFrames = new Array<AtlasRegion>();
+            for(int i = 0; i<=13; i++)
+                runFrames.add(atlas.findRegion("Ellie frame_run",i));
+
+            runAnimation = new Animation(0.2f, runFrames, PlayMode.LOOP);
+
+
+        }
+    }
     public class PlayerAssets {
 
         public final AtlasRegion standingLeft;
