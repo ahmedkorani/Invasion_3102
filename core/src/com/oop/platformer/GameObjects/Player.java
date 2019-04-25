@@ -10,26 +10,16 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.oop.platformer.util.Assets;
 
 
 public class Player extends GameObjects{
 
     public enum State {Falling, Jumping, Standing, Running}
-
     private State currentState;
     private State previousState;
     private float stateTimer;
     private boolean runningRight;
-
-    private final TextureRegion standingLeft;
-    private final TextureRegion standingRight;
-    private final TextureRegion walkingLeft;
-    private final TextureRegion walkingRight;
-    private final TextureRegion jumpingLeft;
-    private final TextureRegion jumpingRight;
-
-    private final Animation walkingLeftAnimation;
-    private final Animation walkingRightAnimation;
 
 
     public Player(World world, Vector2 position, Level1 level1Screen){
@@ -40,32 +30,10 @@ public class Player extends GameObjects{
         stateTimer = 0;
         runningRight = true;
 
-        TextureAtlas atlas = new TextureAtlas(Constants.TEXTURE_ATLAS);
+        //load assets
 
-        standingLeft = atlas.findRegion(Constants.STANDING_LEFT);
-        standingRight = atlas.findRegion(Constants.STANDING_RIGHT);
-        walkingLeft = atlas.findRegion(Constants.WALKING_LEFT_2);
-        walkingRight = atlas.findRegion(Constants.WALKING_RIGHT_2);
-
-        jumpingLeft = atlas.findRegion(Constants.JUMPING_LEFT);
-        jumpingRight = atlas.findRegion(Constants.JUMPING_RIGHT);
-
-        Array<AtlasRegion> walkingLeftFrames = new Array<AtlasRegion>();
-        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
-        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_1));
-        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_2));
-        walkingLeftFrames.add(atlas.findRegion(Constants.WALKING_LEFT_3));
-        walkingLeftAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingLeftFrames, Animation.PlayMode.LOOP);
-
-        Array<AtlasRegion> walkingRightFrames = new Array<AtlasRegion>();
-        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
-        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_1));
-        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_2));
-        walkingRightFrames.add(atlas.findRegion(Constants.WALKING_RIGHT_3));
-        walkingRightAnimation = new Animation(Constants.WALK_LOOP_DURATION, walkingRightFrames, Animation.PlayMode.LOOP);
-
-        setBounds(0,0,26 / GameClass.PPM,26 / GameClass.PPM);
-        setRegion(standingRight);
+        setBounds(0,0,32 / GameClass.PPM,32 / GameClass.PPM);
+        setRegion(Assets.instance.playerAssets.standingRight);
     }
 
 
@@ -82,6 +50,7 @@ public class Player extends GameObjects{
 
         shape.setRadius(7 / GameClass.PPM);
 
+
         fdef.shape = shape;
 
 
@@ -90,6 +59,7 @@ public class Player extends GameObjects{
     }
 
     public void update(float deltaTime){
+
         setPosition(b2body.getPosition().x - getWidth()/2 , b2body.getPosition().y - getHeight()/2);
         setRegion(getFrame(deltaTime));
     }
@@ -97,18 +67,19 @@ public class Player extends GameObjects{
     private TextureRegion getFrame(float deltaTime) {
         currentState = getState();
 
+
         TextureRegion region;
         switch (currentState){
             case Jumping:
-                region = jumpingRight;
+                region = Assets.instance.playerAssets.jumpingRight;
                 break;
             case Running:
-                region = (TextureRegion) walkingRightAnimation.getKeyFrame(stateTimer, true);
+                region = (TextureRegion) Assets.instance.playerAssets.walkingRightAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Falling:
             case Standing:
             default:
-                region = standingRight;
+                region = Assets.instance.playerAssets.standingRight;
                 break;
         }
 

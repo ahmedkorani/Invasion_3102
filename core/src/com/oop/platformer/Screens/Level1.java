@@ -3,6 +3,7 @@ package com.oop.platformer.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
@@ -21,6 +22,7 @@ import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
+import com.oop.platformer.util.Assets;
 
 
 public class Level1 implements Screen {
@@ -52,6 +54,8 @@ public class Level1 implements Screen {
         //loads the level from assets
         TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("Map/level1.tmx");
+
+        Assets.instance.init(new AssetManager());
 
         hud = new Hud(GameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / GameClass.PPM);
@@ -162,7 +166,7 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        //floorDebugger.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
+        floorDebugger.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
 
         GameClass.batch.setProjectionMatrix(gameCam.combined);
         GameClass.batch.begin();
