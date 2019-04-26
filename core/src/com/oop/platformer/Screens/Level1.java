@@ -45,6 +45,9 @@ public class Level1 implements Screen {
     private Player player;
     private DroneEnemy droneEnemy;
 
+
+    //testing
+    private CollisionHandler collisionHandler;
     public Level1(GameClass gameClass){
 
         this.gameClass = gameClass;
@@ -65,11 +68,15 @@ public class Level1 implements Screen {
         //(0, -8) - Gravity on y equals -8
         world = new World(new Vector2(0,-8), true);
         //Adding contact listener to listen for collisions between bodies
-        world.setContactListener(new CollisionHandler());
+
+
 
         renderFloor();
 
         addObjectsToTheWorld();
+        collisionHandler = new CollisionHandler();
+
+        world.setContactListener(collisionHandler);
     }
 
     private void addObjectsToTheWorld(){
@@ -106,7 +113,7 @@ public class Level1 implements Screen {
 
             floorShape.setAsBox(rect.getWidth() / 2 / GameClass.PPM, rect.getHeight() / 2 / GameClass.PPM);
             floorFixtureDef.shape = floorShape;
-            floor.createFixture(floorFixtureDef);
+            floor.createFixture(floorFixtureDef).setUserData("Floor");
         }
     }
 

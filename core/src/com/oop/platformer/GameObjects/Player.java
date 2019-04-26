@@ -45,7 +45,7 @@ public class Player extends GameObjects{
 
         fixtureDef.shape = shape;
 
-        body.createFixture(fixtureDef).setUserData(super.body);
+        body.createFixture(fixtureDef).setUserData(this);
     }
 
     public void update(float deltaTime){

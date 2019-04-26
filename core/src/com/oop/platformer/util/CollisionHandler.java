@@ -17,12 +17,17 @@ public class CollisionHandler implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
+        /*
         //testing if the contact was null or not
         if(fa == null || fb == null) return;
         System.out.println("Testing collision start 1");
-        if(fa.getBody().getUserData() == null || fb.getBody().getUserData() == null) return;
+
+        if(fa.getUserData() == null || fb.getUserData() == null) return;
 
         System.out.println("Testing collision start 2");
+
+         */
+        System.out.println(fa.getUserData() + " " + fb.getUserData());
 
     }
 
