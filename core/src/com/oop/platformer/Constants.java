@@ -8,6 +8,9 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
+    //Bullet atlas path
+    public static final String BULLET_TEXTURE_ATLAS = "warped city files/Bullet.atlas";
+
     //Level 1 Map Path
     public static final String MAP = "Map/level1.tmx";
 

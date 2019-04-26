@@ -13,11 +13,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
+import com.oop.platformer.GameObjects.Bullet;
 import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
@@ -49,6 +51,7 @@ public class Level1 implements Screen {
 
     private ArrayList<DroneEnemy> droneEnemyArrayList;
 
+    private Array<Bullet> bullets;
 
     public Level1(GameClass gameClass){
 
@@ -84,6 +87,7 @@ public class Level1 implements Screen {
         //Adds player to the world in position (30,90)
         player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
         droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
+        bullets = new Array<Bullet>();
     }
 
     private void renderFloor(){
@@ -131,6 +135,12 @@ public class Level1 implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
             player.body.applyLinearImpulse(new Vector2(-0.1f,0), player.body.getWorldCenter(),true);
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F))
+        {
+//            System.out.println("f Pressed");
+//            bullets.add(new Bullet(this, new Vector2(player.position.x, player.position.y), new Vector2(0.5f,0) ));
+            bullets.add(new Bullet(this, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(0.5f,0) ));
+        }
         //screen controls
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
@@ -153,6 +163,12 @@ public class Level1 implements Screen {
         player.update(deltaTime);
         droneEnemyArrayList.get(0).update();
         //droneEnemy.update();
+//        System.out.println("Player update: " + player.position.x + " " + player.position.y);
+        for (Bullet bullet: bullets) {
+            bullet.update(deltaTime);
+//            System.out.println("Player update: " + player.position.x + " " + player.position.y);
+//            System.out.println("Bullet update: " + bullet.position.x + " " + bullet.position.y);
+        }
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
@@ -181,6 +197,11 @@ public class Level1 implements Screen {
         gameClass.batch.begin();
         player.draw(gameClass.batch);
         droneEnemyArrayList.get(0).draw(gameClass.batch);
+        for (Bullet bullet: bullets) {
+            bullet.draw(gameClass.batch);
+//            bullet.getOriginX();
+//            System.out.println("Bullet rendered");
+        }
         gameClass.batch.end();
 
         //Draw Hud

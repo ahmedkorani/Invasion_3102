@@ -9,11 +9,8 @@ import com.oop.platformer.Screens.Level1;
 
 public abstract class GameObjects extends Sprite{
     public World world;
-
     public Body body;
-
     public Vector2 position;
-
     public Level1 level1Screen;
 
     public GameObjects(World world, Vector2 position, Level1 level1Screen){

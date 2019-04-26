@@ -58,7 +58,8 @@ public class Player extends GameObjects{
 
     public void update(float deltaTime){
 
-        setPosition(body.getPosition().x - getWidth()/2 , body.getPosition().y - getHeight()/2);
+        this.position = body.getPosition();
+        setPosition(body.getPosition().x - getWidth()/2 , body.getPosition().y - getHeight()/2  );
         setRegion(getFrame(deltaTime));
     }
 
