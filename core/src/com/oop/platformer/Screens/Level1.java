@@ -22,6 +22,9 @@ import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
+import com.oop.platformer.util.LevelManager;
+
+import java.util.ArrayList;
 
 
 public class Level1 implements Screen {
@@ -43,11 +46,10 @@ public class Level1 implements Screen {
     private Box2DDebugRenderer floorDebugger;
 
     private Player player;
-    private DroneEnemy droneEnemy;
+
+    private ArrayList<DroneEnemy> droneEnemyArrayList;
 
 
-    //testing
-    private CollisionHandler collisionHandler;
     public Level1(GameClass gameClass){
 
         this.gameClass = gameClass;
@@ -67,22 +69,21 @@ public class Level1 implements Screen {
 
         //(0, -8) - Gravity on y equals -8
         world = new World(new Vector2(0,-8), true);
-        //Adding contact listener to listen for collisions between bodies
-
-
 
         renderFloor();
+        //enemies Initialization
+        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        collisionHandler = new CollisionHandler();
 
-        world.setContactListener(collisionHandler);
+        //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
+        world.setContactListener(new CollisionHandler(new LevelManager(player, droneEnemyArrayList, hud)));
     }
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
         player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        droneEnemy = new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this);
+        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
     }
 
     private void renderFloor(){
@@ -150,7 +151,8 @@ public class Level1 implements Screen {
         */
         world.step(1/60f, 60, 2);
         player.update(deltaTime);
-        droneEnemy.update();
+        droneEnemyArrayList.get(0).update();
+        //droneEnemy.update();
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
@@ -178,7 +180,7 @@ public class Level1 implements Screen {
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();
         player.draw(gameClass.batch);
-        droneEnemy.draw(gameClass.batch);
+        droneEnemyArrayList.get(0).draw(gameClass.batch);
         gameClass.batch.end();
 
         //Draw Hud

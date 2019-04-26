@@ -18,6 +18,7 @@ public class DroneEnemy extends GameObjects {
 
     public DroneEnemy(World world, Vector2 position, Level1 level1Screen) {
         super(world, position, level1Screen);
+        position.y = 2;
         TextureAtlas atlas = new TextureAtlas(Constants.GIGAGAL_TEXTURE_ATLAS);
         TextureRegion droneEnemy = new TextureRegion(atlas.findRegion(Constants.ENEMY));
         setBounds(0,0,35 / GameClass.PPM,50 / GameClass.PPM);

@@ -10,14 +10,22 @@ import com.oop.platformer.util.Assets;
 
 public class Player extends GameObjects{
 
+
     public enum State {Falling, Jumping, Standing, Running}
     private State currentState;
     private State previousState;
     private float stateTimer;
     private boolean runningRight;
+    //player Lives
+    private int lives;
+    //player Score
+    private int score;
 
     public Player(World world, Vector2 position, Level1 level1Screen){
         super(world, position,level1Screen);
+
+        lives = 3;
+        score = 0;
 
         currentState = State.Standing;
         previousState = State.Standing;
@@ -101,5 +109,32 @@ public class Player extends GameObjects{
             return State.Running;
         else
             return State.Standing;
+    }
+
+    public void hitPlayer() {
+        System.out.println("player is hit");
+        lives--;
+
+        pushPlayerAway();
+//        Stage stage = new Stage();
+//        Actor actor = new Actor();
+//        SequenceAction flicker = new SequenceAction(Actions.fadeOut(0.25f), Actions.fadeIn(0.25f));
+//        actor.addAction(Actions.repeat(6, flicker));
+//        stage.addActor(actor);
+
+    }
+
+    private void pushPlayerAway(){
+
+    }
+
+    //Returns lives remaining for the player
+    public int getLives(){
+        return lives;
+    }
+
+    //returns player Current score
+    public int getScore(){
+        return score;
     }
 }

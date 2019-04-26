@@ -20,18 +20,14 @@ public class Hud implements  Disposable{
 
     private Integer score;
     private Integer lives;
-    private Integer health;
-    private Float timer;
 
-    private Label lbl_health;
     private Label lbl_score;
     private Label lbl_lives;
 
 
     public  Hud(SpriteBatch spriteBatch){
 
-        lives = 4;
-        health = 100;
+        lives = 3;
         score = 0;
 
         viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
@@ -41,22 +37,14 @@ public class Hud implements  Disposable{
         table.top();
         table.setFillParent(true);
 
-        lbl_health = new Label("Health: " + health.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         lbl_score = new Label("Score: " + score.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         lbl_lives = new Label("Lives: " + lives.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
 
-//        table.setDebug(true);
-
         table.add(lbl_score).expand().top().left().padLeft(5);
-        table.add(lbl_health).expand().top().right().padRight(5);
-        table.row();
-        table.add(new Actor());
-        table.add(lbl_lives).expand().bottom().right().padRight(5);
+        table.add(lbl_lives).expand().top().right().padRight(5);
 
         stage.addActor(table);
-
-
 
     }
 
@@ -64,5 +52,17 @@ public class Hud implements  Disposable{
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    //Decrease Player lives on hitting enemies
+    public void setPlayerLives(int playerLives) {
+        lives = playerLives;
+        lbl_lives.setText("Lives: " + lives.toString());
+    }
+
+    //To increase player score upon doing achievements
+    public void increasePlayerScore(int playerScore){
+        score = playerScore;
+        lbl_score.setText("Score: " + score.toString());
     }
 }

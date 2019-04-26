@@ -1,40 +1,34 @@
 package com.oop.platformer.util;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.oop.platformer.GameObjects.DroneEnemy;
+import com.oop.platformer.GameObjects.Player;
 
 public class CollisionHandler implements ContactListener {
 
     // Every time a collision happens in any of box2d world objects all of ContactListener methods trigger
 
-    //TODO complete collisionHandler to detect Collisions between objects
-    // Player - Enemy - Bullet
+    private LevelManager levelManager;
+
+    public CollisionHandler(LevelManager levelManager){
+        this.levelManager = levelManager;
+    }
 
     @Override
     public void beginContact(Contact contact) {
-        //begin of contact
-        System.out.println("Collision Started");
 
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
-        /*
-        //testing if the contact was null or not
-        if(fa == null || fb == null) return;
-        System.out.println("Testing collision start 1");
-
-        if(fa.getUserData() == null || fb.getUserData() == null) return;
-
-        System.out.println("Testing collision start 2");
-
-         */
-        System.out.println(fa.getUserData() + " " + fb.getUserData());
+        if(fa.getUserData() instanceof Player && fb.getUserData() instanceof DroneEnemy){
+            levelManager.playerIsHit();
+            levelManager.enemyIsHit((DroneEnemy) fb.getUserData());
+        }
 
     }
 
     @Override
     public void endContact(Contact contact) {
-        //end of contact
-        System.out.println("Collision Ended");
     }
 
     @Override
@@ -44,4 +38,6 @@ public class CollisionHandler implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
     }
+
+
 }

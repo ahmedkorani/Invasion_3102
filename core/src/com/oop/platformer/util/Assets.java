@@ -43,7 +43,7 @@ public class Assets implements Disposable {
             for(int i  =0; i<=3; i++)
                 idleFrames.add(atlas.findRegion("Ellie frame_idle", i));
 
-            idleAnimation = new Animation(0.2f, idleFrames, PlayMode.LOOP);
+            idleAnimation = new Animation(0.1f, idleFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> runFrames = new Array<AtlasRegion>();
             for(int i = 0; i<=13; i++)
