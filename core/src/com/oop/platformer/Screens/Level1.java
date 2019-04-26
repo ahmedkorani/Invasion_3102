@@ -21,6 +21,7 @@ import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
+import com.oop.platformer.util.CollisionHandler;
 
 
 public class Level1 implements Screen {
@@ -36,15 +37,14 @@ public class Level1 implements Screen {
     private  Hud hud;
     private OrthogonalTiledMapRenderer renderer;
 
-    private World world1;
+    private World world;
 
     // for rendering debugging
     private Box2DDebugRenderer floorDebugger;
 
-
     private Player player;
     private DroneEnemy droneEnemy;
-    
+
     public Level1(GameClass gameClass){
 
         this.gameClass = gameClass;
@@ -63,7 +63,9 @@ public class Level1 implements Screen {
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
 
         //(0, -8) - Gravity on y equals -8
-        world1 = new World(new Vector2(0,-8), true);
+        world = new World(new Vector2(0,-8), true);
+        //Adding contact listener to listen for collisions between bodies
+        world.setContactListener(new CollisionHandler());
 
         renderFloor();
 
@@ -72,8 +74,8 @@ public class Level1 implements Screen {
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world1, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        droneEnemy = new DroneEnemy(world1,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this);
+        player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
+        droneEnemy = new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this);
     }
 
     private void renderFloor(){
@@ -100,7 +102,7 @@ public class Level1 implements Screen {
             //The same for Y
             floorBodyDef.position.set((rect.getX() + rect.getWidth() / 2) / GameClass.PPM, (rect.getY() + rect.getHeight() / 2) / GameClass.PPM);
 
-            floor = world1.createBody(floorBodyDef);
+            floor = world.createBody(floorBodyDef);
 
             floorShape.setAsBox(rect.getWidth() / 2 / GameClass.PPM, rect.getHeight() / 2 / GameClass.PPM);
             floorFixtureDef.shape = floorShape;
@@ -113,13 +115,13 @@ public class Level1 implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             if(player.getState() != Player.State.Jumping && player.getState() != Player.State.Falling)
-                player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+                player.body.applyLinearImpulse(new Vector2(0, 4f), player.body.getWorldCenter(), true);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f,0), player.b2body.getWorldCenter(),true);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.body.getLinearVelocity().x <= 2)
+            player.body.applyLinearImpulse(new Vector2(0.1f,0), player.body.getWorldCenter(),true);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f,0), player.b2body.getWorldCenter(),true);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
+            player.body.applyLinearImpulse(new Vector2(-0.1f,0), player.body.getWorldCenter(),true);
 
         //screen controls
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
@@ -139,10 +141,10 @@ public class Level1 implements Screen {
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
         */
-        world1.step(1/60f, 60, 2);
+        world.step(1/60f, 60, 2);
         player.update(deltaTime);
         droneEnemy.update();
-        gameCam.position.x = player.b2body.getWorldCenter().x;
+        gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
     }
@@ -164,7 +166,7 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        floorDebugger.render(world1, gameCam.combined); //remove this line to remove green debugging lines on objects
+        floorDebugger.render(world, gameCam.combined); //remove this line to remove green debugging lines on objects
 
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();

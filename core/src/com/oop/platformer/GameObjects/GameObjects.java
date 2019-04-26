@@ -10,7 +10,7 @@ import com.oop.platformer.Screens.Level1;
 public abstract class GameObjects extends Sprite{
     public World world;
 
-    public Body b2body;
+    public Body body;
 
     public Vector2 position;
 

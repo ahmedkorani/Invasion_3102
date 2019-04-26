@@ -31,30 +31,30 @@ public class DroneEnemy extends GameObjects {
         bodyDef.position.set(position);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        b2body = world.createBody(bodyDef);
+        body = world.createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(25 / GameClass.PPM);
 
         fixtureDef.shape = shape;
-        b2body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
     }
 
 
     public void update() {
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
 
-        if (b2body.getPosition().y >= 2.8f) {
+        if (body.getPosition().y >= 2.8f) {
             top = true;
         }
 
-        if (b2body.getLinearVelocity().y == 0) {
+        if (body.getLinearVelocity().y == 0) {
             top = false;
         }
 
         if (!top) {
-            b2body.applyForceToCenter(0f, 8.5f, true);
+            body.applyForceToCenter(0f, 8.5f, true);
         }
     }
 

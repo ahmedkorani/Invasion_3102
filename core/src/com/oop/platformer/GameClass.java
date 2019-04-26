@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.oop.platformer.Screens.Level1;
 import com.oop.platformer.Screens.MainMenuScreen;
 import com.oop.platformer.util.Assets;
 
@@ -24,7 +25,7 @@ public class GameClass extends Game {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
 		//The Play Screen
-		setScreen(new MainMenuScreen(this));
+		setScreen(new Level1(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 	}
 
 	@Override

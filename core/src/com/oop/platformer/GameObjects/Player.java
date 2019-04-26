@@ -31,11 +31,12 @@ public class Player extends GameObjects{
 
 	@Override
     public void define() {
+
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        b2body = world.createBody(bodyDef);
+        body = world.createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -44,12 +45,12 @@ public class Player extends GameObjects{
 
         fixtureDef.shape = shape;
 
-        b2body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(super.body);
     }
 
     public void update(float deltaTime){
 
-        setPosition(b2body.getPosition().x - getWidth()/2 , b2body.getPosition().y - getHeight()/2);
+        setPosition(body.getPosition().x - getWidth()/2 , body.getPosition().y - getHeight()/2);
         setRegion(getFrame(deltaTime));
     }
 
@@ -72,11 +73,11 @@ public class Player extends GameObjects{
                 break;
         }
 
-        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()){
+        if ((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()){
             region.flip(true, false);
             runningRight = false;
         }
-        else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()){
+        else if ((body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()){
             region.flip(true, false);
             runningRight = true;
         }
@@ -92,11 +93,11 @@ public class Player extends GameObjects{
     }
 
     public State getState() {
-        if(b2body.getLinearVelocity().y > 0)
+        if(body.getLinearVelocity().y > 0)
             return State.Jumping;
-        else if (b2body.getLinearVelocity().y < 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.Jumping))
+        else if (body.getLinearVelocity().y < 0 || (body.getLinearVelocity().y < 0 && previousState == State.Jumping))
             return State.Falling;
-        else if (b2body.getLinearVelocity().x != 0)
+        else if (body.getLinearVelocity().x != 0)
             return State.Running;
         else
             return State.Standing;
