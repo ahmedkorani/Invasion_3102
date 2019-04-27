@@ -92,9 +92,11 @@ public class Level1 implements Screen {
 
 
         Array<Vector2> path = new Array<Vector2>();
-        path.add(new Vector2(200, 300));
-        path.add(new Vector2(200, 100));
-        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
+        path.add(new Vector2(200/GameClass.PPM, 300/GameClass.PPM));
+        path.add(new Vector2(200/GameClass.PPM, 50/GameClass.PPM));
+        path.add(new Vector2(250/GameClass.PPM, 50/GameClass.PPM));
+//        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
+        enemy = new Enemy(world, path.get(0), this, path);
     }
 
     private void renderFloor(){
