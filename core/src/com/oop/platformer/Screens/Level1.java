@@ -47,6 +47,8 @@ public class Level1 implements Screen {
     // for rendering debugging
     private Box2DDebugRenderer floorDebugger;
 
+    private LevelManager levelManager;
+
     private Player player;
 
     private ArrayList<DroneEnemy> droneEnemyArrayList;
@@ -78,9 +80,9 @@ public class Level1 implements Screen {
         droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-
+        levelManager = new LevelManager(this, player, droneEnemyArrayList, hud);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
-        world.setContactListener(new CollisionHandler(new LevelManager(player, droneEnemyArrayList, hud)));
+        world.setContactListener(new CollisionHandler(levelManager));
     }
 
     private void addObjectsToTheWorld(){
@@ -135,11 +137,9 @@ public class Level1 implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
             player.body.applyLinearImpulse(new Vector2(-0.1f,0), player.body.getWorldCenter(),true);
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.F))
-        {
-//            System.out.println("f Pressed");
-//            bullets.add(new Bullet(this, new Vector2(player.position.x, player.position.y), new Vector2(0.5f,0) ));
-            bullets.add(new Bullet(this, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(0.5f,0) ));
+        //Shooting control
+        if(Gdx.input.isKeyPressed(Input.Keys.F)) {
+            bullets.add(levelManager.spawnBullet());
         }
         //screen controls
         if (Gdx.input.isKeyPressed(Input.Keys.F3))
@@ -159,16 +159,18 @@ public class Level1 implements Screen {
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
         */
-        world.step(1/60f, 60, 2);
+        world.step(1/100f, 60, 2);
         player.update(deltaTime);
-        droneEnemyArrayList.get(0).update();
-        //droneEnemy.update();
-//        System.out.println("Player update: " + player.position.x + " " + player.position.y);
+        //droneEnemy Update
+        for (DroneEnemy droneEnemy : droneEnemyArrayList){
+            droneEnemy.update();
+        }
+
+        //Bullet update
         for (Bullet bullet: bullets) {
             bullet.update(deltaTime);
-//            System.out.println("Player update: " + player.position.x + " " + player.position.y);
-//            System.out.println("Bullet update: " + bullet.position.x + " " + bullet.position.y);
         }
+
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
         renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world

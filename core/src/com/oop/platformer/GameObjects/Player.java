@@ -1,5 +1,7 @@
 package com.oop.platformer.GameObjects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -8,10 +10,11 @@ import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 import com.oop.platformer.util.Assets;
 
-public class Player extends GameObjects{
+public class Player extends GameObjects {
 
 
-    public enum State {Falling, Jumping, Standing, Running}
+    public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting}
+
     private State currentState;
     private State previousState;
     private float stateTimer;
@@ -21,8 +24,8 @@ public class Player extends GameObjects{
     //player Score
     private int score;
 
-    public Player(World world, Vector2 position, Level1 level1Screen){
-        super(world, position,level1Screen);
+    public Player(World world, Vector2 position, Level1 level1Screen) {
+        super(world, position, level1Screen);
 
         lives = 3;
         score = 0;
@@ -32,12 +35,12 @@ public class Player extends GameObjects{
         stateTimer = 0;
         runningRight = true;
 
-        setBounds(0,0,32 / GameClass.PPM,32 / GameClass.PPM);
-        setRegion((TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true));
+        setBounds(0, 0, 32 / GameClass.PPM, 32 / GameClass.PPM);
+        setRegion(Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true));
     }
 
 
-	@Override
+    @Override
     public void define() {
 
         BodyDef bodyDef = new BodyDef();
@@ -56,10 +59,10 @@ public class Player extends GameObjects{
         body.createFixture(fixtureDef).setUserData(this);
     }
 
-    public void update(float deltaTime){
+    public void update(float deltaTime) {
 
         this.position = body.getPosition();
-        setPosition(body.getPosition().x - getWidth()/2 , body.getPosition().y - getHeight()/2  );
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
     }
 
@@ -68,25 +71,31 @@ public class Player extends GameObjects{
 
 
         TextureRegion region;
-        switch (currentState){
+
+        switch (currentState) {
             case Jumping:
-                region = (TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true);
+                region = Assets.instance.feministAssets.jumpingAnimation;
                 break;
             case Running:
-                region = (TextureRegion) Assets.instance.feministAssets.runAnimation.getKeyFrame(stateTimer, true);
+                region = Assets.instance.feministAssets.runAnimation.getKeyFrame(stateTimer, true);
+                break;
+            case Shooting:
+            case Jumping_Shooting:
+                region = Assets.instance.feministAssets.shootAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Falling:
+                region = Assets.instance.feministAssets.fallingAnimation.getKeyFrame(stateTimer, true);
+                break;
             case Standing:
             default:
-                region = (TextureRegion) Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer,true);
+                region = Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true);
                 break;
         }
 
-        if ((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()){
+        if ((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
-        }
-        else if ((body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()){
+        } else if ((body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
             region.flip(true, false);
             runningRight = true;
         }
@@ -102,12 +111,16 @@ public class Player extends GameObjects{
     }
 
     public State getState() {
-        if(body.getLinearVelocity().y > 0)
-            return State.Jumping;
-        else if (body.getLinearVelocity().y < 0 || (body.getLinearVelocity().y < 0 && previousState == State.Jumping))
+        if (body.getLinearVelocity().y < 0 || (body.getLinearVelocity().y < 0 && previousState == State.Jumping))
             return State.Falling;
+        else if (body.getLinearVelocity().y > 0 && Gdx.input.isKeyPressed(Input.Keys.F))
+            return State.Jumping_Shooting;
         else if (body.getLinearVelocity().x != 0)
             return State.Running;
+        else if (body.getLinearVelocity().y > 0)
+            return State.Jumping;
+        else if (Gdx.input.isKeyPressed(Input.Keys.F))
+            return State.Shooting;
         else
             return State.Standing;
     }
@@ -116,26 +129,27 @@ public class Player extends GameObjects{
         System.out.println("player is hit");
         lives--;
 
-        pushPlayerAway();
-//        Stage stage = new Stage();
-//        Actor actor = new Actor();
-//        SequenceAction flicker = new SequenceAction(Actions.fadeOut(0.25f), Actions.fadeIn(0.25f));
-//        actor.addAction(Actions.repeat(6, flicker));
-//        stage.addActor(actor);
-
     }
 
-    private void pushPlayerAway(){
+
+    private void pushPlayerAway() {
 
     }
 
     //Returns lives remaining for the player
-    public int getLives(){
+    public int getLives() {
         return lives;
     }
 
     //returns player Current score
-    public int getScore(){
+    public int getScore() {
         return score;
+    }
+
+    private void respawnPlayer() {
+    }
+
+    public boolean isRunningRight() {
+        return runningRight;
     }
 }

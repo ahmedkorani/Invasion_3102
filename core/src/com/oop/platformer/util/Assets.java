@@ -11,8 +11,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 public class Assets implements Disposable {
 
@@ -21,6 +19,7 @@ public class Assets implements Disposable {
     public  FeministAssets feministAssets;
     public MainMenuAssets mainMenuAssets;
     public BulletAssets bulletAssets;
+
 
     public void init(AssetManager assetManager)
     {
@@ -32,14 +31,20 @@ public class Assets implements Disposable {
         mainMenuAssets = new MainMenuAssets();
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
     }
+
     @Override
     public void dispose() {
         assetManager.dispose();
     }
 
     public class FeministAssets {
-        public final Animation idleAnimation;
-        public final Animation runAnimation;
+        public final Animation<AtlasRegion> idleAnimation;
+        public final Animation<AtlasRegion> runAnimation;
+        public final Animation<AtlasRegion> shootAnimation;
+        public final Animation<AtlasRegion> fallingAnimation;
+
+        public final TextureRegion jumpingAnimation;
+
         public FeministAssets(TextureAtlas atlas)
         {
             Array<AtlasRegion> idleFrames = new Array<AtlasRegion>();
@@ -47,25 +52,39 @@ public class Assets implements Disposable {
             for(int i  =0; i<=3; i++)
                 idleFrames.add(atlas.findRegion("Ellie frame_idle", i));
 
-            idleAnimation = new Animation(0.1f, idleFrames, PlayMode.LOOP);
+            idleAnimation = new Animation<AtlasRegion>(0.1f, idleFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> runFrames = new Array<AtlasRegion>();
             for(int i = 0; i<=13; i++)
                 runFrames.add(atlas.findRegion("Ellie frame_run",i));
 
-            runAnimation = new Animation(0.1f, runFrames, PlayMode.LOOP);
+            runAnimation = new Animation<AtlasRegion>(0.1f, runFrames, PlayMode.LOOP);
 
+            Array<AtlasRegion> shootFrames = new Array<AtlasRegion>();
+            for(int i = 0; i <= 3; i++)
+                shootFrames.add(atlas.findRegion("Ellie frame_shoot",i));
 
+            shootAnimation = new Animation<AtlasRegion>(0.1f, shootFrames, PlayMode.LOOP);
+
+            Array<AtlasRegion> fallingFrames = new Array<AtlasRegion>();
+            for(int i = 0; i <= 7; i++) {
+                fallingFrames.add(atlas.findRegion("Ellie frame_aim",i));
+            }
+
+            fallingAnimation = new Animation<AtlasRegion>(0.1f, fallingFrames, PlayMode.LOOP);
+
+            jumpingAnimation = new TextureRegion(atlas.findRegion("Ellie frame_run", 12));
         }
     }
+
     public class BulletAssets{
-        public final Animation bulletAnimation;
+        public final Animation<AtlasRegion> bulletAnimation;
         public final TextureRegion bulletTexture;
         public BulletAssets(TextureAtlas atlas) {
             Array<AtlasRegion> bulletFrames = new Array<AtlasRegion>();
             for(int i = 1; i<=3; i++)
                 bulletFrames.add(atlas.findRegion("shot-"+i));
-            bulletAnimation = new Animation(0.05f, bulletFrames, PlayMode.LOOP);
+            bulletAnimation = new Animation<AtlasRegion>(0.05f, bulletFrames, PlayMode.LOOP);
 
             bulletTexture = atlas.findRegion("shot-1");
         }

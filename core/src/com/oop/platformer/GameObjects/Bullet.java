@@ -1,8 +1,6 @@
 package com.oop.platformer.GameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 //import com.badlogic.gdx.physics.box2d.World;
 import com.oop.platformer.GameClass;
@@ -23,14 +21,14 @@ public class Bullet extends Sprite {
         stateTimer = 0;
 
         setBounds(position.x,position.y,10 / GameClass.PPM,5 / GameClass.PPM);
-        setRegion((TextureRegion) Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(stateTimer,true));
+        setRegion(Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(stateTimer,true));
     }
 
     public void update (float delta) {
         stateTimer+=delta;
 
         setPosition(this.getX() + delta*velocity.x, this.getY());
-        setRegion((TextureRegion) Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(stateTimer,true));
+        setRegion(Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(stateTimer,true));
 
     }
 
