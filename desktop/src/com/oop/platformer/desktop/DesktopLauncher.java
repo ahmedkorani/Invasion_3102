@@ -21,6 +21,7 @@ public class DesktopLauncher {
 //		config.foregroundFPS = 60;
 //		config.resizable = false;
 //		config.fullscreen = true;
+
 		new LwjglApplication(new GameClass(), config);
 	}
 }

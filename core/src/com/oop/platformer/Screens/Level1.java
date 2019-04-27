@@ -1,5 +1,6 @@
 package com.oop.platformer.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -21,6 +22,7 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
 import com.oop.platformer.GameObjects.DroneEnemy;
+import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
@@ -55,6 +57,8 @@ public class Level1 implements Screen {
 
     private Array<Bullet> bullets;
 
+    private Enemy enemy;
+
     public Level1(GameClass gameClass){
 
         this.gameClass = gameClass;
@@ -77,7 +81,7 @@ public class Level1 implements Screen {
 
         renderFloor();
         //enemies Initialization
-        droneEnemyArrayList = new ArrayList<DroneEnemy>();
+//        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
         levelManager = new LevelManager(this, player, droneEnemyArrayList, hud);
@@ -88,8 +92,14 @@ public class Level1 implements Screen {
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
         player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
-        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
+//        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
+
+
+        Array<Vector2> path = new Array<Vector2>();
+        path.add(new Vector2(200, 300));
+        path.add(new Vector2(200, 100));
+        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
     }
 
     private void renderFloor(){
@@ -159,17 +169,19 @@ public class Level1 implements Screen {
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
         */
-        world.step(1/100f, 60, 2);
+        world.step(1/60f, 60, 2);
         player.update(deltaTime);
         //droneEnemy Update
-        for (DroneEnemy droneEnemy : droneEnemyArrayList){
-            droneEnemy.update();
-        }
+//        for (DroneEnemy droneEnemy : droneEnemyArrayList){
+//            droneEnemy.update();
+//        }
 
         //Bullet update
         for (Bullet bullet: bullets) {
             bullet.update(deltaTime);
         }
+
+        enemy.update(deltaTime);
 
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
@@ -198,12 +210,17 @@ public class Level1 implements Screen {
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();
         player.draw(gameClass.batch);
-        droneEnemyArrayList.get(0).draw(gameClass.batch);
+
+//        droneEnemyArrayList.get(0).draw(gameClass.batch);
+
         for (Bullet bullet: bullets) {
             bullet.draw(gameClass.batch);
 //            bullet.getOriginX();
 //            System.out.println("Bullet rendered");
         }
+
+        enemy.draw(gameClass.batch);
+
         gameClass.batch.end();
 
         //Draw Hud
