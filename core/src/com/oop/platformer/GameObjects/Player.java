@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.Screens.Level1;
 import com.oop.platformer.util.Assets;
@@ -14,7 +15,7 @@ public class Player extends GameObjects {
 
 
     public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting}
-
+    private int jumpCounter = 0;
     private State currentState;
     private State previousState;
     private float stateTimer;
@@ -123,6 +124,28 @@ public class Player extends GameObjects {
             return State.Shooting;
         else
             return State.Standing;
+    }
+
+    public void handleInput(float deltaTime) {
+
+        float verticalSpeed = body.getLinearVelocity().y;
+
+        if (verticalSpeed == 0)
+            jumpCounter = 0;
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2){
+            body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
+            jumpCounter++;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            body.setLinearVelocity(-1.5f,body.getLinearVelocity().y);
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            body.setLinearVelocity(1.5f,body.getLinearVelocity().y);
+        }
+        else{
+            body.setLinearVelocity(0,body.getLinearVelocity().y);
+        }
     }
 
     public void hitPlayer() {

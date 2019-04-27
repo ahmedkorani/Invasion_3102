@@ -61,8 +61,8 @@ public class Enemy extends GameObjects {
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
 
         Vector2 A = path.get(0), B = path.get(1);
-        System.out.println(body.getPosition().y + "A: " + A.y);
-        System.out.println(body.getPosition().y + "B: " + B.y);
+//        System.out.println(body.getPosition().y + "A: " + A.y);
+//        System.out.println(body.getPosition().y + "B: " + B.y);
         if(body.getPosition().y >= A.y*0.01f)
             direction = -1;
         if(body.getPosition().y <= B.y*0.01f)

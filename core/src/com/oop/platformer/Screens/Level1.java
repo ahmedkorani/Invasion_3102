@@ -1,6 +1,5 @@
 package com.oop.platformer.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -21,14 +20,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
-import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
 
-import java.util.ArrayList;
 
 
 public class Level1 implements Screen {
@@ -52,8 +49,6 @@ public class Level1 implements Screen {
     private LevelManager levelManager;
 
     private Player player;
-
-    private ArrayList<DroneEnemy> droneEnemyArrayList;
 
     private Array<Bullet> bullets;
 
@@ -84,7 +79,7 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(this, player, droneEnemyArrayList, hud);
+        levelManager = new LevelManager(this, player, hud);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
@@ -104,7 +99,7 @@ public class Level1 implements Screen {
 
     private void renderFloor(){
         floorDebugger = new Box2DDebugRenderer();
-        
+
         //defines what the body consists of
         BodyDef floorBodyDef = new BodyDef();
 
@@ -112,7 +107,7 @@ public class Level1 implements Screen {
 
         //to add bodies to the world
         FixtureDef floorFixtureDef = new FixtureDef();
-        
+
         Body floor;
 
         //Create Floor Objects which's in the 4th layer
@@ -134,37 +129,10 @@ public class Level1 implements Screen {
         }
     }
 
-    //User Input handling function
-    private void handleInput(){
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            if(player.getState() != Player.State.Jumping && player.getState() != Player.State.Falling)
-                player.body.applyLinearImpulse(new Vector2(0, 4f), player.body.getWorldCenter(), true);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.body.getLinearVelocity().x <= 2)
-            player.body.applyLinearImpulse(new Vector2(0.1f,0), player.body.getWorldCenter(),true);
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.body.getLinearVelocity().x >= -2)
-            player.body.applyLinearImpulse(new Vector2(-0.1f,0), player.body.getWorldCenter(),true);
-
-        //Shooting control
-        if(Gdx.input.isKeyPressed(Input.Keys.F)) {
-            bullets.add(levelManager.spawnBullet());
-        }
-        //screen controls
-        if (Gdx.input.isKeyPressed(Input.Keys.F3))
-            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.graphics.setWindowedMode((GameClass.V_WIDTH * 2), (GameClass.V_HEIGHT * 2));
-
-
-    }
-
     //update the game state
     private void update(float deltaTime){
         //System.out.printf("%f\n", gameCam.position.x);
-        handleInput();
+        levelManager.handlePlayerInput(deltaTime);
         /*
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
