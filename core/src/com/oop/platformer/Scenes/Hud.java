@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -27,7 +28,7 @@ public class Hud implements  Disposable{
 
     public  Hud(SpriteBatch spriteBatch){
 
-        lives = 3;
+        lives = Constants.LIVES;
         score = 0;
 
         viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());

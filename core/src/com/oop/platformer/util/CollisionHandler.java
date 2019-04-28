@@ -1,6 +1,7 @@
 package com.oop.platformer.util;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.oop.platformer.GameObjects.Bullet;
 import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
@@ -17,12 +18,23 @@ public class CollisionHandler implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-
+//        System.out.println("collision occurred");
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
 
         if(fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy){
             levelManager.playerIsHit();
+//            levelManager.enemyIsHit((DroneEnemy) fb.getUserData());
+        }
+
+        if(fa.getUserData() instanceof Enemy && fb.getUserData() instanceof Bullet){
+            System.out.println("bullet");
+//            levelManager.playerIsHit();
+//            levelManager.enemyIsHit((DroneEnemy) fb.getUserData());
+        }
+        else{
+            levelManager.destroyBullet(fb);
+//            levelManager.playerIsHit();
 //            levelManager.enemyIsHit((DroneEnemy) fb.getUserData());
         }
 

@@ -28,7 +28,7 @@ public class Player extends GameObjects {
     public Player(World world, Vector2 position) {
         super(world, position);
 
-        lives = 3;
+        lives = Constants.LIVES;
         score = 0;
 
         currentState = State.Standing;

@@ -78,7 +78,7 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(this, player,enemy, hud, world);
+        levelManager = new LevelManager(this, player,enemy, hud, world,bullets);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
@@ -157,6 +157,61 @@ public class Level1 implements Screen {
         }
 
         enemy.update(deltaTime);
+
+        //NOTE ****** DON'T DELETE THIS CAMERA CODE
+
+//        /////CAMERA////////////////////////
+//        // These values likely need to be scaled according to your world coordinates.
+//// The left boundary of the map (x)
+//        float mapLeft = 0;
+//// The right boundary of the map (x + width)
+//        float mapRight = 0 + gamePort.getWorldWidth();
+//// The bottom boundary of the map (y)
+//        float mapBottom = 0;
+//// The top boundary of the map (y + height)
+//        float mapTop = 0 + gamePort.getWorldHeight();
+//// The camera dimensions, halved
+//        float cameraHalfWidth = gameCam.viewportWidth * .5f;
+//        float cameraHalfHeight = gameCam.viewportHeight * .5f;
+//
+//// Move camera after player as normal
+//
+//        float cameraLeft = gameCam.position.x - cameraHalfWidth;
+//        float cameraRight = gameCam.position.x + cameraHalfWidth;
+//        float cameraBottom = gameCam.position.y - cameraHalfHeight;
+//        float cameraTop = gameCam.position.y + cameraHalfHeight;
+//
+//// Horizontal axis
+//        if(gamePort.getWorldWidth() < gameCam.viewportWidth)
+//        {
+//            gameCam.position.x = mapRight / 2;
+//        }
+//        else if(cameraLeft <= mapLeft)
+//        {
+//            gameCam.position.x = mapLeft + cameraHalfWidth;
+//        }
+//        else if(cameraRight >= mapRight)
+//        {
+//            gameCam.position.x = mapRight - cameraHalfWidth;
+//        }
+//
+//// Vertical axis
+//        if(gamePort.getWorldHeight() < gameCam.viewportHeight)
+//        {
+//            gameCam.position.y = mapTop / 2;
+//        }
+//        else if(cameraBottom <= mapBottom)
+//        {
+//            gameCam.position.y = mapBottom + cameraHalfHeight;
+//        }
+//        else if(cameraTop >= mapTop)
+//        {
+//            gameCam.position.y = mapTop - cameraHalfHeight;
+//        }
+//
+//        ///////////CAMERA/////////////////////
+
+        //NOTE ****** DON'T DELETE THIS CAMERA CODE
 
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();

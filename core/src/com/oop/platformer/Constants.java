@@ -8,6 +8,8 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
+    public static final int LIVES = 100;
+
     //Bullet atlas path
     public static final String BULLET_TEXTURE_ATLAS = "warped city files/Bullet.atlas";
 
@@ -22,7 +24,7 @@ public class Constants {
     //Enemy atlas name
     public static final String ENEMY = "enemy";
     //Bullets Constants
-    public static final String BULLET = "bullet";
+    public static final String BULLET = "Bullets/bullet1.png";
     public static final float FIRE_RATE = 0.4f;
 
 }
