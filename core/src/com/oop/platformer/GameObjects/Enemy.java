@@ -21,13 +21,14 @@ public class Enemy extends GameObjects {
     private TextureRegion droneEnemy;
 
     private boolean destroyed;
-    public boolean setToDestroyed;
+    public boolean isSetToDestroy;
+    private int healthPoints = 3;
 
     public Enemy(World world, Vector2 position, Array<Vector2> path) {
         super(world, position);
 
         destroyed = false;
-        setToDestroyed = false;
+        isSetToDestroy = false;
 
         this.path = new Path(path.size);
         for (Vector2 p : path) {
@@ -68,7 +69,7 @@ public class Enemy extends GameObjects {
 
     public void update(float delta) {
 
-        if (setToDestroyed && !destroyed) {
+        if (isSetToDestroy && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
         } else if (!destroyed){
@@ -105,6 +106,14 @@ public class Enemy extends GameObjects {
     public void draw(Batch batch) {
         if(!destroyed)
             super.draw(batch);
+    }
+
+    public void setToDestroy() {
+        //if the enemy has health points left it's not destroyed and hp is decreased
+        if (healthPoints == 0)
+            isSetToDestroy = true;
+        else
+            healthPoints--;
     }
     //    public Array<Vector2> getPath() {
 //        return path;

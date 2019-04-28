@@ -9,18 +9,18 @@ import com.oop.platformer.util.Assets;
 
 public class Bullet extends Sprite {
 
-    private Vector2 position;
+    private Vector2 spritePosition;
     private Vector2 velocity;
     private World world;
     private Body body;
 
     private boolean destroyed;
-    private boolean setToDestroy;
+    private boolean isSetToDestroy;
     private float destroyTimer;
 
     public Bullet(World world, Vector2 position, boolean playerIsRight) {
         this.world = world;
-        this.position = position;
+        this.spritePosition = position;
 
         if (playerIsRight) {
             if (Assets.instance.bulletAssets.bulletTexture.isFlipX())
@@ -38,14 +38,14 @@ public class Bullet extends Sprite {
         setRegion(Assets.instance.bulletAssets.bulletTexture);
 
         destroyed = false;
-        setToDestroy = false;
+        isSetToDestroy = false;
         destroyTimer = 0;
     }
 
     private void define() {
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(position);
+        bodyDef.position.set(spritePosition);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         body = world.createBody(bodyDef);
@@ -61,9 +61,10 @@ public class Bullet extends Sprite {
     public void update(float deltaTime) {
         destroyTimer += deltaTime;
 
-        if ((destroyTimer >= 1 || setToDestroy) && !destroyed) {
+        if ((destroyTimer >= 1 || isSetToDestroy) && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
+            System.out.println("Bullet Destroyed");
         } else if (!destroyed) {
             body.setLinearVelocity(velocity);
 
@@ -79,4 +80,11 @@ public class Bullet extends Sprite {
             super.draw(batch);
     }
 
+    public void setToDestroy(){
+        isSetToDestroy = true;
+    }
+
+    public float getPosition() {
+        return body.getPosition().x;
+    }
 }

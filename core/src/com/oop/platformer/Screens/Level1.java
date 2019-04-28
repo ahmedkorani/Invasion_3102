@@ -78,7 +78,7 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(this, player,enemy, hud, world,bullets);
+        levelManager = new LevelManager(this, player, enemy, hud, world, bullets, gameCam);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
@@ -132,14 +132,13 @@ public class Level1 implements Screen {
 
     //update the game state
     private void update(float deltaTime){
-
 //        for(Bullet bullet : bullets){
 //            if(Intersector.overlaps(enemy, bullet)){
 //
 //            }
 //        }
         //System.out.printf("%f\n", gameCam.position.x);
-        levelManager.handlePlayerInput(deltaTime);
+        levelManager.update(deltaTime);
         /*
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
