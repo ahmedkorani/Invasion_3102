@@ -25,8 +25,8 @@ public class Player extends GameObjects {
     //player Score
     private int score;
 
-    public Player(World world, Vector2 position, Level1 level1Screen) {
-        super(world, position, level1Screen);
+    public Player(World world, Vector2 position) {
+        super(world, position);
 
         lives = 3;
         score = 0;

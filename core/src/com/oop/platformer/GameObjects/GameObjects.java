@@ -11,12 +11,10 @@ public abstract class GameObjects extends Sprite{
     public World world;
     public Body body;
     public Vector2 position;
-    public Level1 level1Screen;
 
-    public GameObjects(World world, Vector2 position, Level1 level1Screen){
+    public GameObjects(World world, Vector2 position){
         this.world = world;
         this.position = position;
-        this.level1Screen = level1Screen;
         define();
     }
 

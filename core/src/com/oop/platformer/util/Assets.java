@@ -64,7 +64,7 @@ public class Assets implements Disposable {
             for(int i = 0; i <= 3; i++)
                 shootFrames.add(atlas.findRegion("Ellie frame_shoot",i));
 
-            shootAnimation = new Animation<AtlasRegion>(0.05f, shootFrames, PlayMode.LOOP);
+            shootAnimation = new Animation<AtlasRegion>(0.1f, shootFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> fallingFrames = new Array<AtlasRegion>();
             for(int i = 0; i <= 7; i++) {

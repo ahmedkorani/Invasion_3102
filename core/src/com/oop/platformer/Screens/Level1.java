@@ -1,7 +1,6 @@
 package com.oop.platformer.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
+import com.oop.platformer.GameObjects.BulletTest;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
@@ -50,7 +50,7 @@ public class Level1 implements Screen {
 
     private Player player;
 
-    private Array<Bullet> bullets;
+    public Array<Bullet> bullets;
 
     private Enemy enemy;
 
@@ -79,14 +79,14 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(this, player, hud);
+        levelManager = new LevelManager(this, player,enemy, hud, world);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM),this); //!!!!!!!!!Reset this to 90
+        player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
 
@@ -96,7 +96,7 @@ public class Level1 implements Screen {
         path.add(new Vector2(200/GameClass.PPM, 50/GameClass.PPM));
         path.add(new Vector2(250/GameClass.PPM, 50/GameClass.PPM));
 //        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
-        enemy = new Enemy(world, path.get(0), this, path);
+        enemy = new Enemy(world, path.get(0), path);
     }
 
     private void renderFloor(){
@@ -181,12 +181,8 @@ public class Level1 implements Screen {
         gameClass.batch.begin();
         player.draw(gameClass.batch);
 
-//        droneEnemyArrayList.get(0).draw(gameClass.batch);
-
         for (Bullet bullet: bullets) {
             bullet.draw(gameClass.batch);
-//            bullet.getOriginX();
-//            System.out.println("Bullet rendered");
         }
 
         enemy.draw(gameClass.batch);

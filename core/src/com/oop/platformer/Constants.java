@@ -29,4 +29,6 @@ public class Constants {
     //Enemy atlas name
     public static final String ENEMY = "enemy";
 
+    public static final String BULLET = "bullet";
+
 }

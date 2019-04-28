@@ -7,21 +7,25 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
-import com.oop.platformer.Screens.Level1;
 
-public class DroneEnemy extends GameObjects {
+public class BulletTest extends GameObjects {
 
-    private boolean top = false;
+    private Vector2 velocity;
 
-    public DroneEnemy(World world, Vector2 position) {
+    private TextureRegion bulletRegion;
+
+    public BulletTest(World world, Vector2 position, Vector2 velocity) {
         super(world, position);
+
+        this.velocity = velocity;
+
         TextureAtlas atlas = new TextureAtlas(Constants.GIGAGAL_TEXTURE_ATLAS);
-        TextureRegion droneEnemy = new TextureRegion(atlas.findRegion(Constants.ENEMY));
-        setBounds(0,0,35 / GameClass.PPM,50 / GameClass.PPM);
-        setRegion(droneEnemy);
+        bulletRegion = new TextureRegion(atlas.findRegion(Constants.BULLET));
+
+        setBounds(position.x,position.y,10 / GameClass.PPM,5 / GameClass.PPM);
+        setRegion(bulletRegion);
     }
 
     @Override
@@ -29,32 +33,21 @@ public class DroneEnemy extends GameObjects {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
 
         body = world.createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(25 / GameClass.PPM);
+        shape.setRadius(5 / GameClass.PPM);
 
         fixtureDef.shape = shape;
         body.createFixture(fixtureDef).setUserData(this);
     }
 
-
-    public void update() {
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-
-        if (body.getPosition().y >= 2.8f) {
-            top = true;
-        }
-
-        if (body.getLinearVelocity().y == 0) {
-            top = false;
-        }
-
-        if (!top) {
-            body.applyForceToCenter(0f, 8.5f, true);
-        }
+    public void update(float deltaTime) {
+        setPosition(this.getX() + deltaTime*velocity.x, this.getY());
+        setRegion(bulletRegion);
+        body.setLinearVelocity(velocity);
     }
 }
