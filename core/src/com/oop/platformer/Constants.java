@@ -2,13 +2,6 @@ package com.oop.platformer;
 
 public class Constants {
 
-//    xsp = gsp*cos(angle);
-//    ysp = gsp*-sin(angle);
-
-    public static final float acceleration = 0.046875f;
-    public static final float declaration = 0.5f;
-    public static final float topSpeed = 6f;
-
     //GigaGal Atlas path
     public static final String GIGAGAL_TEXTURE_ATLAS = "GigaGal/gigagal.pack.atlas";
 
@@ -28,7 +21,8 @@ public class Constants {
 
     //Enemy atlas name
     public static final String ENEMY = "enemy";
-
+    //Bullets Constants
     public static final String BULLET = "bullet";
+    public static final float FIRE_RATE = 0.4f;
 
 }

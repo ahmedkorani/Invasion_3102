@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.*;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.Screens.Level1;
 
+import static com.oop.platformer.Constants.FIRE_RATE;
 
 public class LevelManager {
 
@@ -21,8 +21,7 @@ public class LevelManager {
     //Game hud
     private Hud hud;
 
-    private static final float FIRE_RATE = 0.5f;
-    private float lastShot = 0;
+    private float shootTimer;
 
     public LevelManager(Level1 level1Screen, Player player, Enemy enemy, Hud hud, World world){
         this.level1Screen = level1Screen;
@@ -30,24 +29,17 @@ public class LevelManager {
         this.enemy = enemy;
         this.hud = hud;
         this.world = world;
+        shootTimer = 0;
     }
 
     // returns a bullet to be added to bullets arraylist in level1 screen
+    //NOTE*** +0.06f to adjust the position of the bullet exit to the barrel
     public Bullet spawnBullet(){
         if (player.isRunningRight()){
-            return new Bullet(level1Screen, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(3f,0));
+            return new Bullet(new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y + 0.06f), new Vector2(3f,0));
         }
         else{
-            return new Bullet(level1Screen, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(-3f,0));
-        }
-    }
-
-    public BulletTest spawnBulletTesting(){
-        if (player.isRunningRight()){
-            return new BulletTest(world, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(3f,0));
-        }
-        else{
-            return new BulletTest(world, new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y), new Vector2(-3f,0));
+            return new Bullet(new Vector2(player.body.getPosition().x + 2/GameClass.PPM, player.body.getPosition().y + 0.06f), new Vector2(-3f,0));
         }
     }
 
@@ -61,28 +53,16 @@ public class LevelManager {
     }
 
     public void handlePlayerInput(float deltaTime) {
+        shootTimer += deltaTime;
         player.handleInput(deltaTime);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.X)){
             enemy.setToDestroyed = true;
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.F)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.F) && shootTimer >= FIRE_RATE) {
             level1Screen.bullets.add(spawnBullet());
-//            System.out.println(System.currentTimeMillis() - lastShot);
-//            if (System.currentTimeMillis() - lastShot >= FIRE_RATE) {
-//                level1Screen.bullets.add(spawnBullet());
-//                lastShot = System.currentTimeMillis();
-//            }
+            shootTimer = 0;
         }
-    }
-
-    public void movePlayerUp() {
-    }
-
-    public void movePlayerRight() {
-    }
-
-    public void movePlayerLeft() {
     }
 }

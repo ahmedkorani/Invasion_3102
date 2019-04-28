@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
-import com.oop.platformer.GameObjects.BulletTest;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
@@ -133,6 +132,12 @@ public class Level1 implements Screen {
 
     //update the game state
     private void update(float deltaTime){
+
+//        for(Bullet bullet : bullets){
+//            if(Intersector.overlaps(enemy, bullet)){
+//
+//            }
+//        }
         //System.out.printf("%f\n", gameCam.position.x);
         levelManager.handlePlayerInput(deltaTime);
         /*

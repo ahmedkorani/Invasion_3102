@@ -78,15 +78,16 @@ public class Assets implements Disposable {
     }
 
     public class BulletAssets{
-        public final Animation<AtlasRegion> bulletAnimation;
+//        public final Animation<AtlasRegion> bulletAnimation;
         public final TextureRegion bulletTexture;
         public BulletAssets(TextureAtlas atlas) {
-            Array<AtlasRegion> bulletFrames = new Array<AtlasRegion>();
-            for(int i = 1; i<=3; i++)
-                bulletFrames.add(atlas.findRegion("shot-"+i));
-            bulletAnimation = new Animation<AtlasRegion>(0.05f, bulletFrames, PlayMode.LOOP);
-
-            bulletTexture = atlas.findRegion("shot-1");
+            bulletTexture = new TextureRegion(new Texture("Bullets/bullet1.png"));
+//            Array<AtlasRegion> bulletFrames = new Array<AtlasRegion>();
+//            for(int i = 1; i<=3; i++)
+//                bulletFrames.add(atlas.findRegion("shot-"+i));
+//            bulletAnimation = new Animation<AtlasRegion>(0.05f, bulletFrames, PlayMode.LOOP);
+//
+//            bulletTexture = atlas.findRegion("shot-1");
         }
     }
 
