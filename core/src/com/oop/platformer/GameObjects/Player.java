@@ -133,6 +133,8 @@ public class Player extends GameObjects {
         if (verticalSpeed == 0)
             jumpCounter = 0;
 
+        if (jumpCounter == 0 && verticalSpeed < 0)
+            jumpCounter = 2;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2){
             body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
