@@ -24,13 +24,16 @@ public class CollisionHandler implements ContactListener {
 
         if(fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy){
             levelManager.playerIsHit();
+            System.out.println("Player was hit by an Enemy");
         }
 
         if(fa.getUserData() instanceof Enemy && fb.getUserData() instanceof Bullet){
             levelManager.bulletHitEnemy(fa,fb);
+            System.out.println("Enemy was hit by a bullet");
         }
-        else{
+        else if (fb.getUserData() instanceof Bullet){
             levelManager.bulletHitWall(fb);
+            System.out.println("Bullet was destroyed by a wall");
         }
 
     }

@@ -1,6 +1,8 @@
 package com.oop.platformer.util;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -19,6 +21,7 @@ public class Assets implements Disposable {
     public  FeministAssets feministAssets;
     public MainMenuAssets mainMenuAssets;
     public BulletAssets bulletAssets;
+    public Audio audio;
 
 
     public void init(AssetManager assetManager)
@@ -30,6 +33,7 @@ public class Assets implements Disposable {
         feministAssets = new FeministAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
         mainMenuAssets = new MainMenuAssets();
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
+        audio = new Audio(assetManager);
     }
 
     @Override
@@ -99,6 +103,33 @@ public class Assets implements Disposable {
         public MainMenuAssets() {
             background = new Texture(Constants.BACKGROUND);
             skinAtlas = new TextureAtlas(Constants.SKIN_ATLAS);
+        }
+    }
+
+    public class Audio{
+
+        public final Music mainThemeMusic;
+        public final Sound gunShotSound;
+        public final Sound enemyDestroyed;
+        public final Sound enemyHit;
+//        public final Sound enemyHit;
+
+        public Audio(AssetManager assetManager) {
+            assetManager.load(Constants.MUSIC, Music.class);
+            assetManager.load(Constants.GUN_SHOT, Sound.class);
+            assetManager.load(Constants.ENEMY_DESTROYED, Sound.class);
+            assetManager.load(Constants.ENEMY_HIT,Sound.class);
+            assetManager.load(Constants.ENEMY_HIT,Sound.class);
+            assetManager.finishLoading();
+
+            //Music loop to play forever
+            mainThemeMusic = assetManager.get(Constants.MUSIC);
+            mainThemeMusic.setLooping(true);
+
+            gunShotSound = assetManager.get(Constants.GUN_SHOT);
+            enemyDestroyed = assetManager.get(Constants.ENEMY_DESTROYED);
+            enemyHit = assetManager.get(Constants.ENEMY_HIT);
+//            enemyHit = assetManager.get(Constants.ENEMY_HIT);
         }
     }
 }

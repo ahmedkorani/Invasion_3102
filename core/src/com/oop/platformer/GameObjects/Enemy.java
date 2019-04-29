@@ -10,6 +10,7 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 
 import com.badlogic.gdx.utils.Array;
+import com.oop.platformer.util.Assets;
 
 public class Enemy extends GameObjects {
 
@@ -72,6 +73,7 @@ public class Enemy extends GameObjects {
         if (isSetToDestroy && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
+            Assets.instance.audio.enemyDestroyed.play();
         } else if (!destroyed){
 
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
@@ -112,8 +114,11 @@ public class Enemy extends GameObjects {
         //if the enemy has health points left it's not destroyed and hp is decreased
         if (healthPoints == 0)
             isSetToDestroy = true;
-        else
+        else{
             healthPoints--;
+            Assets.instance.audio.enemyHit.play();
+        }
+
     }
     //    public Array<Vector2> getPath() {
 //        return path;

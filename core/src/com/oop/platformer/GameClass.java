@@ -24,6 +24,7 @@ public class GameClass extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
+		Assets.instance.audio.mainThemeMusic.play();
 		//The Play Screen
 		setScreen(new Level1(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 	}

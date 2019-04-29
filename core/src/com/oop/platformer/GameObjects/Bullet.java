@@ -64,7 +64,6 @@ public class Bullet extends Sprite {
         if ((destroyTimer >= 1 || isSetToDestroy) && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
-            System.out.println("Bullet Destroyed");
         } else if (!destroyed) {
             body.setLinearVelocity(velocity);
 

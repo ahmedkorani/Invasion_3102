@@ -47,6 +47,7 @@ public class LevelManager {
     // returns a bullet to be added to bullets ArrayList in level1 screen
     //NOTE*** +0.06f to adjust the position of the bullet exit to the barrel
     public Bullet spawnBullet(){
+        Assets.instance.audio.gunShotSound.play();
         if (player.isRunningRight()){
             return new Bullet(world, new Vector2(player.body.getPosition().x + 2/GameClass.PPM + 0.20f, player.body.getPosition().y + 0.08f),
                     true);
@@ -55,6 +56,7 @@ public class LevelManager {
             return new Bullet(world, new Vector2(player.body.getPosition().x + 2/GameClass.PPM - 0.20f, player.body.getPosition().y + 0.08f),
                     false);
         }
+
     }
 
     public void playerIsHit(){
