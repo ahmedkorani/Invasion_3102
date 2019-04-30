@@ -29,7 +29,7 @@ public class Hud implements  Disposable{
     public  Hud(SpriteBatch spriteBatch){
 
         lives = Constants.LIVES;
-        score = 0;
+        score = Constants.SCORE;
 
         viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, spriteBatch);
@@ -56,13 +56,13 @@ public class Hud implements  Disposable{
     }
 
     //Decrease Player lives on hitting enemies
-    public void setPlayerLives(int playerLives) {
+    public void setLives(int playerLives) {
         lives = playerLives;
         lbl_lives.setText("Lives: " + lives.toString());
     }
 
     //To increase player score upon doing achievements
-    public void increasePlayerScore(int playerScore){
+    public void setScore(int playerScore){
         score = playerScore;
         lbl_score.setText("Score: " + score.toString());
     }

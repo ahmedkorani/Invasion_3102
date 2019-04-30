@@ -2,6 +2,8 @@
 package com.oop.platformer;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -20,6 +22,8 @@ public class GameClass extends Game {
 
 	public SpriteBatch batch;
 
+	private boolean musicPause;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -32,10 +36,28 @@ public class GameClass extends Game {
 	@Override
 	public void render () {
 		super.render();
+		checkMusicControl();
 	}
 
 	@Override
 	public void dispose () {
 		batch.dispose();
+	}
+
+	private void checkMusicControl(){
+		if(!Assets.instance.audio.mainThemeMusic.isPlaying()){
+			musicPause = true;
+		}
+		else
+			musicPause = false;
+
+		if(Gdx.input.isKeyJustPressed(Input.Keys.M) && !musicPause)
+			musicPause = true;
+		else if(Gdx.input.isKeyJustPressed(Input.Keys.M) && musicPause)
+			musicPause = false;
+		if(!musicPause)
+			Assets.instance.audio.mainThemeMusic.play();
+		else
+			Assets.instance.audio.mainThemeMusic.pause();
 	}
 }

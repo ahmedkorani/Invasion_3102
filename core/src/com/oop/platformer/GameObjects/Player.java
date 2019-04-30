@@ -8,13 +8,12 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
-import com.oop.platformer.Screens.Level1;
 import com.oop.platformer.util.Assets;
 
 public class Player extends GameObjects {
 
 
-    public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting}
+    public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting, Dead}
     private int jumpCounter = 0;
     private State currentState;
     private State previousState;
@@ -24,12 +23,20 @@ public class Player extends GameObjects {
     private int lives;
     //player Score
     private int score;
+    //player dead or not
+    private boolean dead;
+    public boolean shooting;
+
+    private Vector2 respawnPosition;
 
     public Player(World world, Vector2 position) {
         super(world, position);
 
+        respawnPosition = this.position;
         lives = Constants.LIVES;
-        score = 0;
+        score = Constants.SCORE;
+        dead = false;
+        shooting = false;
 
         currentState = State.Standing;
         previousState = State.Standing;
@@ -49,6 +56,7 @@ public class Player extends GameObjects {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         body = world.createBody(bodyDef);
+
 
         FixtureDef fixtureDef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -87,6 +95,9 @@ public class Player extends GameObjects {
             case Falling:
                 region = Assets.instance.feministAssets.fallingAnimation.getKeyFrame(stateTimer, true);
                 break;
+            case Dead:
+                region = Assets.instance.feministAssets.deathAnimation.getKeyFrame(stateTimer, false);
+                break;
             case Standing:
             default:
                 region = Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true);
@@ -111,7 +122,7 @@ public class Player extends GameObjects {
         return region;
     }
 
-    public State getState() {
+    private State getState() {
         if (body.getLinearVelocity().y < 0 || (body.getLinearVelocity().y < 0 && previousState == State.Jumping))
             return State.Falling;
         else if (body.getLinearVelocity().y > 0 && Gdx.input.isKeyPressed(Input.Keys.F))
@@ -120,8 +131,10 @@ public class Player extends GameObjects {
             return State.Running;
         else if (body.getLinearVelocity().y > 0)
             return State.Jumping;
-        else if (Gdx.input.isKeyPressed(Input.Keys.F))
+        else if (shooting)
             return State.Shooting;
+        else if (dead)
+            return State.Dead;
         else
             return State.Standing;
     }
@@ -152,14 +165,18 @@ public class Player extends GameObjects {
     }
 
     public void hitPlayer() {
-        System.out.println("player is hit");
-        lives--;
-
-    }
-
-
-    private void pushPlayerAway() {
-
+        if(lives == 0){
+            //TODO show Death Screen
+            System.out.println("you ran out of lives DEAD :( ");
+            dead = true;
+        }
+        else{
+            System.out.println("player is hit");
+//            body.setLinearVelocity(0f,3f);
+//            body.applyLinearImpulse(new Vector2(0f, 4f), body.getWorldCenter(), true);
+            Assets.instance.audio.playerHit.play();
+            lives--;
+        }
     }
 
     //Returns lives remaining for the player
@@ -172,7 +189,15 @@ public class Player extends GameObjects {
         return score;
     }
 
-    private void respawnPlayer() {
+    public boolean isDead(){return dead;}
+
+    public void increaseScore() {score += 100;}
+
+    //TODO respawn player if lives--
+    public void respawnPlayer(){
+        body.setTransform(respawnPosition, 0);
+        if(!isRunningRight())
+            runningRight = true;
     }
 
     public boolean isRunningRight() {

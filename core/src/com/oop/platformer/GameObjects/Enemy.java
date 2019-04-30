@@ -110,13 +110,16 @@ public class Enemy extends GameObjects {
             super.draw(batch);
     }
 
-    public void setToDestroy() {
+    public boolean setToDestroy() {
         //if the enemy has health points left it's not destroyed and hp is decreased
-        if (healthPoints == 0)
+        if (healthPoints == 0){
             isSetToDestroy = true;
+            return true;
+        }
         else{
             healthPoints--;
             Assets.instance.audio.enemyHit.play();
+            return false;
         }
 
     }
