@@ -23,12 +23,15 @@ public class GameClass extends Game {
 	public SpriteBatch batch;
 
 	private boolean musicPause;
+	private boolean gameOver;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
 		Assets.instance.audio.mainThemeMusic.play();
+		musicPause = false;
+		gameOver = false;
 		//The Play Screen
 		setScreen(new Level1(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 	}
@@ -36,7 +39,8 @@ public class GameClass extends Game {
 	@Override
 	public void render () {
 		super.render();
-		checkMusicControl();
+		if(!gameOver)
+			checkMusicControl();
 	}
 
 	@Override

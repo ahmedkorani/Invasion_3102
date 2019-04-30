@@ -46,6 +46,8 @@ public class LevelManager {
         } else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();
+        hud.setLives(player.getLives());
+        hud.setScore(player.getScore());
     }
 
     // returns a bullet to be added to bullets ArrayList in level1 screen
@@ -64,12 +66,6 @@ public class LevelManager {
 
     public void playerIsHit() {
         player.hitPlayer();
-        hud.setLives(player.getLives());
-        if (player.isDead()) {
-            if (Assets.instance.audio.mainThemeMusic.isPlaying())
-                Assets.instance.audio.mainThemeMusic.stop();
-            Assets.instance.audio.playerDied.play();
-        }
     }
 
     private void handlePlayerInput(float deltaTime) {
@@ -97,10 +93,6 @@ public class LevelManager {
         }
     }
 
-    private void checkPlayerPosition() {
-        if (player.body.getPosition().y < -5f)
-            System.out.println("player out of bounds");
-    }
 
     public void bulletHitWall(Fixture fixture) {
         for (Bullet bullet : bullets) {
@@ -117,7 +109,6 @@ public class LevelManager {
 
         if (this.enemy.setToDestroy()) {
             player.increaseScore();
-            hud.setScore(player.getScore());
         }
     }
 

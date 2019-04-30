@@ -14,6 +14,7 @@ public class Player extends GameObjects {
 
 
     public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting, Dead}
+
     private int jumpCounter = 0;
     private State currentState;
     private State previousState;
@@ -28,11 +29,19 @@ public class Player extends GameObjects {
     public boolean shooting;
 
     private Vector2 respawnPosition;
+    private float currentTime;
+    private float previousTime;
+    private float xRespawn,yRespawn;
 
     public Player(World world, Vector2 position) {
         super(world, position);
 
         respawnPosition = this.position;
+        xRespawn = this.position.x;
+        yRespawn = this.position.y;
+        currentTime = 0;
+        previousTime = 0;
+
         lives = Constants.LIVES;
         score = Constants.SCORE;
         dead = false;
@@ -69,15 +78,24 @@ public class Player extends GameObjects {
     }
 
     public void update(float deltaTime) {
-
+        checkPlayerPosition();
         this.position = body.getPosition();
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
+
+        //To Save a check point every 5 seconds of game play
+        currentTime += deltaTime;
+        if (currentTime - previousTime >= 5 && position.y >= 0 && currentState != State.Jumping && currentState != State.Falling) {
+            respawnPosition = this.position;
+            previousTime = currentTime;
+            System.out.println(respawnPosition);
+            xRespawn = respawnPosition.x;
+            yRespawn = respawnPosition.y;
+        }
     }
 
     private TextureRegion getFrame(float deltaTime) {
         currentState = getState();
-
 
         TextureRegion region;
 
@@ -149,33 +167,41 @@ public class Player extends GameObjects {
         if (jumpCounter == 0 && verticalSpeed < 0)
             jumpCounter = 2;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2) {
             body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
             jumpCounter++;
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            body.setLinearVelocity(-1.5f,body.getLinearVelocity().y);
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            body.setLinearVelocity(1.5f,body.getLinearVelocity().y);
-        }
-        else{
-            body.setLinearVelocity(0,body.getLinearVelocity().y);
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            body.setLinearVelocity(-1.5f, body.getLinearVelocity().y);
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            body.setLinearVelocity(1.5f, body.getLinearVelocity().y);
+        } else {
+            body.setLinearVelocity(0, body.getLinearVelocity().y);
         }
     }
 
     public void hitPlayer() {
-        if(lives == 0){
+        if (lives == 0) {
             //TODO show Death Screen
             System.out.println("you ran out of lives DEAD :( ");
             dead = true;
-        }
-        else{
+        } else {
             System.out.println("player is hit");
-//            body.setLinearVelocity(0f,3f);
-//            body.applyLinearImpulse(new Vector2(0f, 4f), body.getWorldCenter(), true);
             Assets.instance.audio.playerHit.play();
             lives--;
+        }
+
+        if (isDead()) {
+            if (Assets.instance.audio.mainThemeMusic.isPlaying())
+                Assets.instance.audio.mainThemeMusic.stop();
+            Assets.instance.audio.playerDied.play();
+        }
+    }
+
+    private void checkPlayerPosition() {
+        if (!dead && this.position.y < -5f) {
+            hitPlayer();
+            if(!dead)
+                respawnPlayer();
         }
     }
 
@@ -189,14 +215,17 @@ public class Player extends GameObjects {
         return score;
     }
 
-    public boolean isDead(){return dead;}
+    public boolean isDead() {
+        return dead;
+    }
 
-    public void increaseScore() {score += 100;}
+    public void increaseScore() {
+        score += 100;
+    }
 
-    //TODO respawn player if lives--
-    public void respawnPlayer(){
-        body.setTransform(respawnPosition, 0);
-        if(!isRunningRight())
+    public void respawnPlayer() {
+        body.setTransform(new Vector2(xRespawn,yRespawn), 0);
+        if (!isRunningRight())
             runningRight = true;
     }
 
