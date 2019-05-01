@@ -5,6 +5,10 @@ import com.badlogic.gdx.Screen;
 public class GameOverScreen implements Screen {
 
 
+    public GameOverScreen(boolean playerState) {
+
+    }
+
     @Override
     public void show() {
 

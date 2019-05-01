@@ -42,12 +42,10 @@ public class IntroScreen implements Screen {
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
     private BitmapFont font;
 
-//    Label introLbl;
-
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
         GameClass.musicPause = true;
-        Assets.instance.audio.introMusic.play();
+//        Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
@@ -59,7 +57,7 @@ public class IntroScreen implements Screen {
         //Declaring font and some of it's properties
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 54;
+        fontParameter.size = 48;
         fontParameter.borderWidth = 3;
         fontParameter.borderColor = Color.PINK;
         fontParameter.color = Color.CYAN;

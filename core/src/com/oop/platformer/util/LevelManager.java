@@ -28,9 +28,8 @@ public class LevelManager {
     private Hud hud;
     private OrthographicCamera gameCam;
 
+    private boolean playerState;
     private boolean isDeathSoundPlayed = false;
-
-
     private float shootTimer;
 
     public LevelManager(GameClass gameClass, Level1 level1Screen, Player player, Enemy enemy, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
@@ -43,6 +42,7 @@ public class LevelManager {
         this.bullets = bullets;
         this.gameCam = gameCam;
         shootTimer = 0;
+        playerState = true;
     }
 
     public void update(float deltaTime) {
@@ -54,10 +54,15 @@ public class LevelManager {
             }
             if(player.endLevel()){
                 System.out.println("Level is finished");
+                playerState = !player.isDead();
                 gameOver();
             }
 
-        } else
+        }
+//        else if(player.won){
+//
+//        }
+        else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();
         hud.setLives(player.getLives());
@@ -127,6 +132,6 @@ public class LevelManager {
     }
 
     public void gameOver() {
-        gameClass.gameOver();
+        gameClass.gameOver(playerState);
     }
 }

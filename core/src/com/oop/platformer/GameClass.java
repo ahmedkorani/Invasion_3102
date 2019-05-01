@@ -42,7 +42,7 @@ public class GameClass extends Game {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
 		Assets.instance.audio.mainThemeMusic.stop();
-		musicPause = false;
+		musicPause = true;
 		gameOver = false;
 		//The Play Screen
 		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
@@ -60,16 +60,6 @@ public class GameClass extends Game {
 	}
 
 	private void checkMusicControl(){
-//		if(!Assets.instance.audio.mainThemeMusic.isPlaying()){
-//			musicPause = true;
-//		}
-//		else
-//			musicPause = false;
-//
-//		if(Gdx.input.isKeyJustPressed(Input.Keys.M) && !musicPause)
-//			musicPause = true;
-//		else if(Gdx.input.isKeyJustPressed(Input.Keys.M) && musicPause)
-//			musicPause = false;
 		if(!musicPause)
 			Assets.instance.audio.mainThemeMusic.play();
 		else
@@ -82,12 +72,11 @@ public class GameClass extends Game {
 
 	public void endIntro() {
 		Assets.instance.audio.introMusic.stop();
-		musicPause = false;
 		setScreen(new Level1(this));
 	}
 
-	public void gameOver(){
-		setScreen(new GameOverScreen());
+	public void gameOver(boolean playerState){
+		setScreen(new GameOverScreen(playerState));
 	}
 
 

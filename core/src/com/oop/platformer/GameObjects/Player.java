@@ -34,6 +34,7 @@ public class Player extends GameObjects {
     private float xRespawn,yRespawn;
 
     private float deathTime;
+    private float winTime;
 
     public Player(World world, Vector2 position) {
         super(world, position);
