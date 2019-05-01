@@ -21,7 +21,7 @@ public class Enemy extends GameObjects {
 
     private TextureRegion droneEnemy;
 
-    private boolean destroyed;
+    public boolean destroyed;
     public boolean isSetToDestroy;
     private int healthPoints = 3;
 

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
@@ -61,6 +60,10 @@ public class StartScreen implements Screen {
     }
 
     private void handleInput(){
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.M))
+            GameClass.musicPause = !GameClass.musicPause;
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
             gameClass.beginIntro();
     }

@@ -28,7 +28,6 @@ public class LevelManager {
     private Hud hud;
     private OrthographicCamera gameCam;
 
-    private boolean playerState;
     private boolean isDeathSoundPlayed = false;
     private float shootTimer;
 
@@ -42,10 +41,11 @@ public class LevelManager {
         this.bullets = bullets;
         this.gameCam = gameCam;
         shootTimer = 0;
-        playerState = true;
+        GameClass.musicPause = false;
     }
 
     public void update(float deltaTime) {
+
         if (player.isDead()) {
             GameClass.musicPause = true;
             if(!isDeathSoundPlayed){
@@ -53,15 +53,14 @@ public class LevelManager {
                 isDeathSoundPlayed = true;
             }
             if(player.endLevel()){
-                System.out.println("Level is finished");
-                playerState = !player.isDead();
-                gameOver();
+                System.out.println("Level is lost");
+                gameOver(false);
             }
-
         }
-//        else if(player.won){
-//
-//        }
+        else if(player.getWin()){
+            System.out.println("Level is won");
+            gameOver(true);
+        }
         else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();
@@ -131,7 +130,7 @@ public class LevelManager {
         }
     }
 
-    public void gameOver() {
-        gameClass.gameOver(playerState);
+    public void gameOver(boolean winOrLose) {
+        gameClass.gameOver(winOrLose);
     }
 }

@@ -25,7 +25,8 @@ public class Player extends GameObjects {
     //player Score
     private int score;
     //player dead or not
-    private boolean dead;
+    public boolean win;
+    public boolean dead;
     public boolean shooting;
 
     private Vector2 respawnPosition;
@@ -82,17 +83,20 @@ public class Player extends GameObjects {
     }
 
     public void update(float deltaTime) {
+        currentTime += deltaTime;
+
+        if(win)
+            winTime = currentTime;
+
         checkPlayerPosition();
         this.position = body.getPosition();
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
 
         //To Save a check point every 5 seconds of game play
-        currentTime += deltaTime;
         if (currentTime - previousTime >= 5 && position.y >= 0 && currentState != State.Jumping && currentState != State.Falling) {
             respawnPosition = this.position;
             previousTime = currentTime;
-            System.out.println(respawnPosition);
             xRespawn = respawnPosition.x;
             yRespawn = respawnPosition.y;
         }
@@ -234,6 +238,14 @@ public class Player extends GameObjects {
 
     public boolean endLevel() {
         return dead && currentTime - deathTime >= 5;
+    }
+
+    public boolean getWin(){
+        if(currentTime - winTime >= 5 && win){
+            return true;
+        }
+        else
+            return false;
     }
 
 }

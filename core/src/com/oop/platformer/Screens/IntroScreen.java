@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
@@ -45,7 +44,7 @@ public class IntroScreen implements Screen {
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
         GameClass.musicPause = true;
-//        Assets.instance.audio.introMusic.play();
+        Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
@@ -151,6 +150,7 @@ public class IntroScreen implements Screen {
 
     private void checkIntroEnd(){
         if(currentLine == 7 && !introEndingSoundEffect){
+            Assets.instance.audio.introMusic.stop();
             Assets.instance.audio.introLastSound.play();
             introEndingSoundEffect = true;
         }

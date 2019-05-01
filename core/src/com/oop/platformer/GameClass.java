@@ -42,7 +42,7 @@ public class GameClass extends Game {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
 		Assets.instance.audio.mainThemeMusic.stop();
-		musicPause = true;
+		musicPause = false;
 		gameOver = false;
 		//The Play Screen
 		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
