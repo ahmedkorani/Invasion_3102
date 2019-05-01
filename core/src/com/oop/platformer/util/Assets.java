@@ -121,6 +121,8 @@ public class Assets implements Disposable {
     public class Audio {
 
         public final Music mainThemeMusic;
+        public final Music introMusic;
+        public final Sound introLastSound;
         public final Sound gunShotSound;
         public final Sound enemyDestroyed;
         public final Sound enemyHit;
@@ -130,6 +132,8 @@ public class Assets implements Disposable {
 
         public Audio(AssetManager assetManager) {
             assetManager.load(Constants.MUSIC, Music.class);
+            assetManager.load(Constants.INTRO_MUSIC, Music.class);
+            assetManager.load(Constants.IntroFinalSoundEffect, Sound.class);
             assetManager.load(Constants.GUN_SHOT, Sound.class);
             assetManager.load(Constants.ENEMY_DESTROYED, Sound.class);
             assetManager.load(Constants.ENEMY_HIT, Sound.class);
@@ -141,6 +145,8 @@ public class Assets implements Disposable {
             //Music loop to play forever
             mainThemeMusic = assetManager.get(Constants.MUSIC);
             mainThemeMusic.setLooping(true);
+            introMusic = assetManager.get(Constants.INTRO_MUSIC);
+            introLastSound = assetManager.get(Constants.IntroFinalSoundEffect);
 
             gunShotSound = assetManager.get(Constants.GUN_SHOT);
             enemyDestroyed = assetManager.get(Constants.ENEMY_DESTROYED);

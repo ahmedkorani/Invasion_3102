@@ -157,6 +157,7 @@ public class Level1 implements Screen {
         }
 
         enemy.update(deltaTime);
+        System.out.println(enemy.position.y);
 
         //NOTE ****** DON'T DELETE THIS CAMERA CODE
 

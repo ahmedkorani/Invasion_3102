@@ -81,6 +81,8 @@ public class GameClass extends Game {
 	}
 
 	public void endIntro() {
+		Assets.instance.audio.introMusic.stop();
+		musicPause = false;
 		setScreen(new Level1(this));
 	}
 

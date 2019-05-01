@@ -34,7 +34,9 @@ public class Constants {
     public static final float FIRE_RATE = 0.4f;
 
     //Audio Constants
-    public static final String MUSIC = "Audio/Music/platformerMusic.ogg";
+    public static final String MUSIC = "Audio/Music/Perturbator - I Am The Program.ogg";
+    public static final String INTRO_MUSIC = "IntroScreen/IntroMusic.ogg";
+    public static final String IntroFinalSoundEffect = "IntroScreen/introLastFrame.wav";
     public static final String GUN_SHOT = "Audio/Sounds/bullet_normal.wav";
     public static final String ENEMY_DESTROYED = "Audio/Sounds/enemyDestroyed.wav";
     public static final String ENEMY_HIT = "Audio/Sounds/enemy_hit.wav";

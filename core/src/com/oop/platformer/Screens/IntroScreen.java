@@ -31,6 +31,7 @@ public class IntroScreen implements Screen {
     private int currentLine;
     private String currentStoryLine;
     private ArrayList<String> storyLines;
+    private boolean introEndingSoundEffect;
 
     private float currentTime;
     private float previousTime;
@@ -44,8 +45,9 @@ public class IntroScreen implements Screen {
 //    Label introLbl;
 
     public IntroScreen(GameClass gameClass) {
-
         this.gameClass = gameClass;
+        GameClass.musicPause = true;
+        Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
@@ -71,6 +73,7 @@ public class IntroScreen implements Screen {
         previousTime = 0;
         end = false;
         currentFrame = FrameState.FirstFrame;
+        introEndingSoundEffect = false;
     }
 
     private ArrayList<String> getStory() {
@@ -139,7 +142,7 @@ public class IntroScreen implements Screen {
     private String getCurrentLine(float deltaTime) {
         currentTime += deltaTime;
 
-        if(currentTime - previousTime >= 3){
+        if(currentTime - previousTime >= 5){
             previousTime = currentTime;
             currentLine++;
             currentStoryLine = storyLines.get(currentLine);
@@ -149,7 +152,12 @@ public class IntroScreen implements Screen {
     }
 
     private void checkIntroEnd(){
-        if(currentLine == 7 && currentTime - previousTime >= 2)
+        if(currentLine == 7 && !introEndingSoundEffect){
+            Assets.instance.audio.introLastSound.play();
+            introEndingSoundEffect = true;
+        }
+
+        if(currentLine == 7 && currentTime - previousTime >= 3)
             end = true;
     }
 
