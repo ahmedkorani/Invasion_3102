@@ -14,8 +14,6 @@ import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
 
-import java.util.ArrayList;
-
 public class Assets implements Disposable {
 
     public static final Assets instance = new Assets();
@@ -106,13 +104,15 @@ public class Assets implements Disposable {
 
     public class MainMenuAssets {
 
-        //Texture for the background image
-        public final Texture background;
-        public final TextureAtlas skinAtlas;
+        //Intro Assets
+        public Texture FirstFrame;
+        public Texture SecondFrame;
+        public Texture ThirdFrame;
 
         public MainMenuAssets() {
-            background = new Texture(Constants.BACKGROUND);
-            skinAtlas = new TextureAtlas(Constants.SKIN_ATLAS);
+            FirstFrame = new Texture(Constants.FIRST_FRAME);
+            SecondFrame = new Texture(Constants.SECOND_FRAME);
+            ThirdFrame = new Texture(Constants.THIRD_FRAME);
         }
     }
 

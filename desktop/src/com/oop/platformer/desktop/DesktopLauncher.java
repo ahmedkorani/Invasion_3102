@@ -9,9 +9,9 @@ import java.awt.*;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-
-		config.width = 940;
-		config.height = 710;
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		config.width = (int)screenSize.getWidth();
+		config.height = (int)screenSize.getHeight();
 
 // 		java - get screen size using the Toolkit class
 //		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,6 +22,6 @@ public class DesktopLauncher {
 //		config.resizable = false;
 //		config.fullscreen = true;
 
-		new LwjglApplication(new GameClass(), config);
+		new LwjglApplication(new GameClass((float)config.width, (float)config.height), config);
 	}
 }

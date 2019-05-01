@@ -2,6 +2,13 @@ package com.oop.platformer;
 
 public class Constants {
 
+    //Intro PATH
+    public static final String FIRST_FRAME = "IntroScreen/FirstFrame.png";
+    public static final String SECOND_FRAME = "IntroScreen/SecondFrame.png";
+    public static final String THIRD_FRAME = "IntroScreen/ThirdFrame.png";
+    public static final String STORY_FILE = "IntroScreen/IntroStory.txt";
+    public static final String RETRO_FONT = "IntroScreen/SFAlienEncounters.ttf";
+
     //GigaGal Atlas path
     public static final String GIGAGAL_TEXTURE_ATLAS = "GigaGal/gigagal.pack.atlas";
 
@@ -20,7 +27,7 @@ public class Constants {
     //Main Menu Buttons and Background
     public static final String SKIN_ATLAS = "MainMenuAssets/glassy-ui.atlas";
     public static final String SKIN_JSON = "MainMenuAssets/glassy-ui.json";
-    public static final String BACKGROUND = "MainMenuAssets/cyberpunk-street.png";
+    public static final String BACKGROUND = "IntroScreen/IntroScreen.png";
 
     //Enemy atlas name
     public static final String ENEMY = "enemy";

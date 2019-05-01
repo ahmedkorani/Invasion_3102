@@ -189,12 +189,6 @@ public class Player extends GameObjects {
             Assets.instance.audio.playerHit.play();
             lives--;
         }
-
-        if (isDead()) {
-            if (Assets.instance.audio.mainThemeMusic.isPlaying())
-                Assets.instance.audio.mainThemeMusic.stop();
-            Assets.instance.audio.playerDied.play();
-        }
     }
 
     private void checkPlayerPosition() {

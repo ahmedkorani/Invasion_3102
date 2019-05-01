@@ -42,6 +42,7 @@ public class LevelManager {
 
     public void update(float deltaTime) {
         if (player.isDead()) {
+            GameClass.musicPause = true;
             gameOver();
         } else
             handlePlayerInput(deltaTime);
@@ -79,9 +80,9 @@ public class LevelManager {
         } else if (!Gdx.input.isKeyPressed(Input.Keys.F))
             player.shooting = false;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            System.out.println("reset position");
-            player.respawnPlayer();
+        //Music Control
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
+            GameClass.musicPause = !GameClass.musicPause;
         }
     }
 
