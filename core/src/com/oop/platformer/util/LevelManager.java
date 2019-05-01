@@ -16,6 +16,8 @@ import static com.oop.platformer.Constants.FIRE_RATE;
 
 public class LevelManager {
 
+    GameClass gameClass;
+
     private Level1 level1Screen;
     private World world;
     //Game Objects
@@ -26,10 +28,13 @@ public class LevelManager {
     private Hud hud;
     private OrthographicCamera gameCam;
 
+    private boolean isDeathSoundPlayed = false;
+
 
     private float shootTimer;
 
-    public LevelManager(Level1 level1Screen, Player player, Enemy enemy, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
+    public LevelManager(GameClass gameClass, Level1 level1Screen, Player player, Enemy enemy, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
+        this.gameClass = gameClass;
         this.level1Screen = level1Screen;
         this.player = player;
         this.enemy = enemy;
@@ -43,7 +48,15 @@ public class LevelManager {
     public void update(float deltaTime) {
         if (player.isDead()) {
             GameClass.musicPause = true;
-            gameOver();
+            if(!isDeathSoundPlayed){
+                Assets.instance.audio.playerDied.play();
+                isDeathSoundPlayed = true;
+            }
+            if(player.endLevel()){
+                System.out.println("Level is finished");
+                gameOver();
+            }
+
         } else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();
@@ -114,5 +127,6 @@ public class LevelManager {
     }
 
     public void gameOver() {
+        gameClass.gameOver();
     }
 }

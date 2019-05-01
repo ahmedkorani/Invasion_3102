@@ -108,11 +108,13 @@ public class Assets implements Disposable {
         public Texture FirstFrame;
         public Texture SecondFrame;
         public Texture ThirdFrame;
+        public Texture mainBackground;
 
         public MainMenuAssets() {
             FirstFrame = new Texture(Constants.FIRST_FRAME);
             SecondFrame = new Texture(Constants.SECOND_FRAME);
             ThirdFrame = new Texture(Constants.THIRD_FRAME);
+            mainBackground = new Texture(Constants.BACKGROUND);
         }
     }
 

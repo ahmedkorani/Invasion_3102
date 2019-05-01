@@ -7,8 +7,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.oop.platformer.Screens.GameOverScreen;
 import com.oop.platformer.Screens.IntroScreen;
 import com.oop.platformer.Screens.Level1;
+import com.oop.platformer.Screens.StartScreen;
 import com.oop.platformer.util.Assets;
 
 public class GameClass extends Game {
@@ -43,7 +45,7 @@ public class GameClass extends Game {
 		musicPause = false;
 		gameOver = false;
 		//The Play Screen
-		setScreen(new IntroScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 	}
 
 	@Override
@@ -74,11 +76,17 @@ public class GameClass extends Game {
 			Assets.instance.audio.mainThemeMusic.pause();
 	}
 
+	public void beginIntro() {
+		setScreen(new IntroScreen(this));
+	}
+
 	public void endIntro() {
 		setScreen(new Level1(this));
 	}
 
 	public void gameOver(){
-
+		setScreen(new GameOverScreen());
 	}
+
+
 }

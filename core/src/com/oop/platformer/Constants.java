@@ -25,9 +25,7 @@ public class Constants {
     public static final String MAP = "Map/level1.tmx";
 
     //Main Menu Buttons and Background
-    public static final String SKIN_ATLAS = "MainMenuAssets/glassy-ui.atlas";
-    public static final String SKIN_JSON = "MainMenuAssets/glassy-ui.json";
-    public static final String BACKGROUND = "IntroScreen/IntroScreen.png";
+    public static final String BACKGROUND = "StartScreen.png";
 
     //Enemy atlas name
     public static final String ENEMY = "enemy";

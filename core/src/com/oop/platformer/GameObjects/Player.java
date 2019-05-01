@@ -33,6 +33,8 @@ public class Player extends GameObjects {
     private float previousTime;
     private float xRespawn,yRespawn;
 
+    private float deathTime;
+
     public Player(World world, Vector2 position) {
         super(world, position);
 
@@ -41,6 +43,7 @@ public class Player extends GameObjects {
         yRespawn = this.position.y;
         currentTime = 0;
         previousTime = 0;
+        deathTime = 0;
 
         lives = Constants.LIVES;
         score = Constants.SCORE;
@@ -184,6 +187,7 @@ public class Player extends GameObjects {
             //TODO show Death Screen
             System.out.println("you ran out of lives DEAD :( ");
             dead = true;
+            deathTime = currentTime;
         } else {
             System.out.println("player is hit");
             Assets.instance.audio.playerHit.play();
@@ -226,4 +230,9 @@ public class Player extends GameObjects {
     public boolean isRunningRight() {
         return runningRight;
     }
+
+    public boolean endLevel() {
+        return dead && currentTime - deathTime >= 5;
+    }
+
 }

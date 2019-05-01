@@ -79,7 +79,7 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(this, player, enemy, hud, world, bullets, gameCam);
+        levelManager = new LevelManager(gameClass,this, player, enemy, hud, world, bullets, gameCam);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }

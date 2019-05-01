@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
@@ -35,7 +36,7 @@ public class IntroScreen implements Screen {
     private float previousTime;
 
     private GameClass gameClass;
-
+    private Viewport viewport;
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
     private BitmapFont font;
@@ -47,7 +48,7 @@ public class IntroScreen implements Screen {
         this.gameClass = gameClass;
 
         OrthographicCamera camera = new OrthographicCamera();
-        Viewport viewport = new FitViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
+        viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
         viewport.apply();
 
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
@@ -69,6 +70,7 @@ public class IntroScreen implements Screen {
         currentTime = 0;
         previousTime = 0;
         end = false;
+        currentFrame = FrameState.FirstFrame;
     }
 
     private ArrayList<String> getStory() {
@@ -176,7 +178,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width,height);
     }
 
     @Override
