@@ -29,7 +29,7 @@ public class DroneEnemy extends Enemy{
 
     @Override
     public void define() {
-        super.define();
+//        super.define();
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         bodyDef.position.set(spritePosition);
