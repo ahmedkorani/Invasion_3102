@@ -15,7 +15,7 @@ public class Enemy extends GameObjects {
     private Path path;
     private TextureRegion droneEnemy;
 
-    private boolean destroyed;
+    public boolean destroyed;
     public boolean isSetToDestroy;
     private int healthPoints = 3;
     private float stateTime;
@@ -73,11 +73,36 @@ public class Enemy extends GameObjects {
             stateTime+=delta;
             setRegion(Assets.instance.droneEnemyAssets.idleAnimation.getKeyFrame(stateTime, true));
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+<<<<<<< HEAD
 
             if (path.UpdatePath(body.getPosition())) {
 
                 body.setLinearVelocity(path.GetVelocity().x, path.GetVelocity().y);
                 System.out.println(delta + ": " + body.getLinearVelocity());
+=======
+            if (first == 1) {
+                body.setLinearVelocity(this.path.GetVelocity().x * 2, this.path.GetVelocity().y * 2);
+                first = 0;
+            }
+
+        /*
+        Vector2 A = path.get(0), B = path.get(1);
+//        System.out.println(body.getPosition().y + "A: " + A.y);
+//        System.out.println(body.getPosition().y + "B: " + B.y);
+        if(body.getPosition().y >= A.y*0.01f)
+            direction = -1;
+        if(body.getPosition().y <= B.y*0.01f)
+            direction = 1;
+        body.setLinearVelocity((A.x-B.x)*0.01f/(0.02f) *delta, (A.y-B.y)*0.01f/(0.02f)*delta*direction);
+        */
+//            System.out.println("body pos:" + body.getPosition());
+//            System.out.println("curr pos:" + path.points.get(path.currentPointIndex));
+//            System.out.println("next pos:" + path.points.get(path.nextPointIndex));
+
+
+            if (path.UpdatePath(body.getPosition())) {
+                body.setLinearVelocity(path.GetVelocity().x * 2, path.GetVelocity().y * 2);
+>>>>>>> 48dd9c4fe700dbd495cd99e8115933673b400e44
             }
         }
 

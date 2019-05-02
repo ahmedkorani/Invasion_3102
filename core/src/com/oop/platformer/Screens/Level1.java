@@ -86,15 +86,15 @@ public class Level1 implements Screen {
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
+        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
 
 
         Array<Vector2> path = new Array<Vector2>();
-        path.add(new Vector2(200/GameClass.PPM, 300/GameClass.PPM));
-        path.add(new Vector2(200/GameClass.PPM, 50/GameClass.PPM));
-        path.add(new Vector2(250/GameClass.PPM, 50/GameClass.PPM));
+        path.add(new Vector2(600/GameClass.PPM, 300/GameClass.PPM));
+        path.add(new Vector2(600/GameClass.PPM, 50/GameClass.PPM));
+        path.add(new Vector2(650/GameClass.PPM, 50/GameClass.PPM));
 //        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
         enemy = new Enemy(world, path.get(0), path);
     }
@@ -157,7 +157,10 @@ public class Level1 implements Screen {
         }
 
         enemy.update(deltaTime);
+<<<<<<< HEAD
 //        System.out.println(enemy.position.y);
+=======
+>>>>>>> 48dd9c4fe700dbd495cd99e8115933673b400e44
 
         //NOTE ****** DON'T DELETE THIS CAMERA CODE
 

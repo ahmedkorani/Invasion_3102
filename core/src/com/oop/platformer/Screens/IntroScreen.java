@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
@@ -24,6 +23,7 @@ import java.util.Scanner;
 public class IntroScreen implements Screen {
 
     private boolean end;
+    private boolean mainThemeMusicPlayState;
 
     private enum FrameState {FirstFrame, SecondFrame, ThirdFrame}
 
@@ -44,8 +44,9 @@ public class IntroScreen implements Screen {
 
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
-        GameClass.musicPause = true;
-//        Assets.instance.audio.introMusic.play();
+        mainThemeMusicPlayState = GameClass.pauseMusic;
+        GameClass.pauseMusic = true;
+        Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
@@ -151,12 +152,16 @@ public class IntroScreen implements Screen {
 
     private void checkIntroEnd(){
         if(currentLine == 7 && !introEndingSoundEffect){
+            Assets.instance.audio.introMusic.stop();
             Assets.instance.audio.introLastSound.play();
             introEndingSoundEffect = true;
         }
 
-        if(currentLine == 7 && currentTime - previousTime >= 3)
+        if(currentLine == 7 && currentTime - previousTime >= 3){
+            GameClass.pauseMusic = mainThemeMusicPlayState;
             end = true;
+        }
+
     }
 
     @Override
@@ -169,8 +174,11 @@ public class IntroScreen implements Screen {
 
         checkIntroEnd();
 
-        if (end)
+        if (end){
+            GameClass.pauseMusic = mainThemeMusicPlayState;
             gameClass.endIntro();
+        }
+
 
         if(!end)
             updateGameFrames(delta);
@@ -178,8 +186,6 @@ public class IntroScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
             end = true;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.M))
-            GameClass.musicPause = !GameClass.musicPause;
     }
 
     @Override
