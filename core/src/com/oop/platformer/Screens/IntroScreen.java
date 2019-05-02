@@ -23,6 +23,7 @@ import java.util.Scanner;
 public class IntroScreen implements Screen {
 
     private boolean end;
+    private boolean mainThemeMusicPlayState;
 
     private enum FrameState {FirstFrame, SecondFrame, ThirdFrame}
 
@@ -43,6 +44,7 @@ public class IntroScreen implements Screen {
 
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
+        mainThemeMusicPlayState = GameClass.pauseMusic;
         GameClass.pauseMusic = true;
         Assets.instance.audio.introMusic.play();
 
@@ -155,8 +157,11 @@ public class IntroScreen implements Screen {
             introEndingSoundEffect = true;
         }
 
-        if(currentLine == 7 && currentTime - previousTime >= 3)
+        if(currentLine == 7 && currentTime - previousTime >= 3){
+            GameClass.pauseMusic = mainThemeMusicPlayState;
             end = true;
+        }
+
     }
 
     @Override
@@ -169,8 +174,11 @@ public class IntroScreen implements Screen {
 
         checkIntroEnd();
 
-        if (end)
+        if (end){
+            GameClass.pauseMusic = mainThemeMusicPlayState;
             gameClass.endIntro();
+        }
+
 
         if(!end)
             updateGameFrames(delta);
