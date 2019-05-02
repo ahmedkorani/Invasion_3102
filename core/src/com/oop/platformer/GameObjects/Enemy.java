@@ -78,7 +78,7 @@ public class Enemy extends GameObjects {
 
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
             if (first == 1) {
-                body.setLinearVelocity(this.path.GetVelocity().x * delta, this.path.GetVelocity().y * delta);
+                body.setLinearVelocity(this.path.GetVelocity().x * 2, this.path.GetVelocity().y * 2);
                 first = 0;
             }
 
@@ -98,7 +98,7 @@ public class Enemy extends GameObjects {
 
 
             if (path.UpdatePath(body.getPosition())) {
-                body.setLinearVelocity(path.GetVelocity().x * delta, path.GetVelocity().y * delta);
+                body.setLinearVelocity(path.GetVelocity().x * 2, path.GetVelocity().y * 2);
             }
         }
 

@@ -86,7 +86,7 @@ public class Level1 implements Screen {
 
     private void addObjectsToTheWorld(){
         //Adds player to the world in position (30,90)
-        player = new Player(world, new Vector2(30 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
+        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
 
@@ -235,7 +235,7 @@ public class Level1 implements Screen {
         //render our game map
         renderer.render();
 
-        floorDebugger.render(world, gameCam.combined); //remove this line to remove green debugging lines on objects
+//        floorDebugger.render(world, gameCam.combined); //remove this line to remove green debugging lines on objects
 
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();

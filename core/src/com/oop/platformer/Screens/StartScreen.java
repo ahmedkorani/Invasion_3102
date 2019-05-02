@@ -62,7 +62,7 @@ public class StartScreen implements Screen {
     private void handleInput(){
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.M))
-            GameClass.musicPause = !GameClass.musicPause;
+            GameClass.pauseMusic = !GameClass.pauseMusic;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
             gameClass.beginIntro();

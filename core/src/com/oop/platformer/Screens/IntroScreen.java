@@ -43,7 +43,7 @@ public class IntroScreen implements Screen {
 
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
-        GameClass.musicPause = true;
+        GameClass.pauseMusic = true;
         Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
@@ -178,8 +178,6 @@ public class IntroScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
             end = true;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.M))
-            GameClass.musicPause = !GameClass.musicPause;
     }
 
     @Override

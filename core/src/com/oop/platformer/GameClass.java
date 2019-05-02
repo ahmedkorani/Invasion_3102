@@ -2,8 +2,6 @@
 package com.oop.platformer;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -27,7 +25,7 @@ public class GameClass extends Game {
 
 	public SpriteBatch batch;
 
-	public static boolean musicPause;
+	public static boolean pauseMusic;
 	private boolean gameOver;
 
 	public GameClass(){}
@@ -41,11 +39,10 @@ public class GameClass extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		Assets.instance.init(new AssetManager());
-		Assets.instance.audio.mainThemeMusic.stop();
-		musicPause = false;
+		pauseMusic = true;
 		gameOver = false;
 		//The Play Screen
-		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+		setScreen(new Level1(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 	}
 
 	@Override
@@ -60,7 +57,7 @@ public class GameClass extends Game {
 	}
 
 	private void checkMusicControl(){
-		if(!musicPause)
+		if(!pauseMusic)
 			Assets.instance.audio.mainThemeMusic.play();
 		else
 			Assets.instance.audio.mainThemeMusic.pause();
