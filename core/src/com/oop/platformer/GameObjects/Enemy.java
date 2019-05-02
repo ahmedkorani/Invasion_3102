@@ -33,9 +33,7 @@ public abstract class Enemy extends GameObject {
     public abstract void updateSprite();
     public abstract void setHealthPoints();
 
-    @Override
-    public void define() {
-    };
+
     @Override
     public void update(float delta) {
 
@@ -52,13 +50,11 @@ public abstract class Enemy extends GameObject {
             }
         }
     }
-
     @Override
     public void draw (Batch batch){
             if (!destroyed)
                 super.draw(batch);
     }
-
     public boolean setToDestroy () {
             //if the enemy has health points left it's not destroyed and hp is decreased
         if (healthPoints == 0) {

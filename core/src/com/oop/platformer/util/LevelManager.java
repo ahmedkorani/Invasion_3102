@@ -22,7 +22,8 @@ public class LevelManager {
     private World world;
     //Game Objects
     private Player player;
-    private Enemy enemy;
+//    private Enemy enemy;
+    private Array<Enemy> enemies;
     private Array<Bullet> bullets;
     //Game hud
     private Hud hud;
@@ -31,11 +32,11 @@ public class LevelManager {
     private boolean isDeathSoundPlayed = false;
     private float shootTimer;
 
-    public LevelManager(GameClass gameClass, Level1 level1Screen, Player player, Enemy enemy, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
+    public LevelManager(GameClass gameClass, Level1 level1Screen, Player player, Array<Enemy> enemies, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
         this.gameClass = gameClass;
         this.level1Screen = level1Screen;
         this.player = player;
-        this.enemy = enemy;
+        this.enemies = enemies;
         this.hud = hud;
         this.world = world;
         this.bullets = bullets;
@@ -123,10 +124,19 @@ public class LevelManager {
             if (bullet.equals(bulletFixture.getUserData()))
                 bullet.setToDestroy();
         }
-
-        if (this.enemy.setToDestroy()) {
-            player.increaseScore();
+        for(Enemy enemy : enemies)
+        {
+            if(enemy.equals(enemyFixture.getUserData()))
+            {
+                if(enemy.setToDestroy())
+                    player.increaseScore();
+            }
         }
+
+
+//        if (this.enemy.setToDestroy()) {
+//            player.increaseScore();
+//        }
     }
 
     public void gameOver(boolean winOrLose) {

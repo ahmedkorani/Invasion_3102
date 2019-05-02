@@ -77,7 +77,11 @@ public class Player extends GameObject {
 
         shape.setRadius(13 / GameClass.PPM);
         fixtureDef.shape = shape;
+<<<<<<< HEAD
         fixtureDef.friction = 0f;
+=======
+        fixtureDef.friction = 0;
+>>>>>>> a2d4eb79760fde3252e7a21995005daf2c8c348e
         body.createFixture(fixtureDef).setUserData(this);
     }
 

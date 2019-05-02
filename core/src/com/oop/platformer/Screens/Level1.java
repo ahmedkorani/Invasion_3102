@@ -13,16 +13,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
-import com.oop.platformer.GameObjects.Bullet;
-import com.oop.platformer.GameObjects.DroneEnemy;
-import com.oop.platformer.GameObjects.Enemy;
-import com.oop.platformer.GameObjects.Player;
+import com.oop.platformer.GameObjects.*;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
@@ -52,8 +48,7 @@ public class Level1 implements Screen {
     private Player player;
 
     public Array<Bullet> bullets;
-
-    private DroneEnemy enemy;
+    public Array<Enemy> enemies;
 
 
     public Level1(GameClass gameClass){
@@ -81,7 +76,7 @@ public class Level1 implements Screen {
 //        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(gameClass,this, player, enemy, hud, world, bullets, gameCam);
+        levelManager = new LevelManager(gameClass,this, player, enemies, hud, world, bullets, gameCam);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
@@ -91,14 +86,26 @@ public class Level1 implements Screen {
         player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
+        enemies = new Array<Enemy>();
 
 
         Array<Vector2> path = new Array<Vector2>();
-        path.add(new Vector2(600/GameClass.PPM, 50/GameClass.PPM));
-        path.add(new Vector2(100/GameClass.PPM, 50/GameClass.PPM));
+        Array<Vector2> path2 = new Array<Vector2>();
+
+        path.add(new Vector2(700/GameClass.PPM, 200/GameClass.PPM));
+        path.add(new Vector2(300/GameClass.PPM, 200/GameClass.PPM));
+
+        path2.add(new Vector2(900/GameClass.PPM, 200/GameClass.PPM));
+        path2.add(new Vector2(800/GameClass.PPM, 200/GameClass.PPM));
+
+
 //        path.add(new Vector2(650/GameClass.PPM, 50/GameClass.PPM));
-//        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
-        enemy = new DroneEnemy(world, path.get(0), path);
+//        droneEnemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
+
+        enemies.add(new DroneEnemy(world, path.get(0), path));
+//        droneEnemy = new DroneEnemy(world, path.get(0), path);
+        enemies.add(new TurretEnemy(world, path2.get(0), path2));
+//        turretEnemy = new TurretEnemy(world, path2.get(0), path2);
     }
 
     private void renderFloor(){
@@ -136,7 +143,7 @@ public class Level1 implements Screen {
     //update the game state
     private void update(float deltaTime){
 //        for(Bullet bullet : bullets){
-//            if(Intersector.overlaps(enemy, bullet)){
+//            if(Intersector.overlaps(droneEnemy, bullet)){
 //
 //            }
 //        }
@@ -158,9 +165,12 @@ public class Level1 implements Screen {
             bullet.update(deltaTime);
         }
 
-        enemy.update(deltaTime);
+        for(Enemy enemy : enemies)
+            enemy.update(deltaTime);
+//        droneEnemy.update(deltaTime);
+//        turretEnemy.update(deltaTime);
 
-//        System.out.println(enemy.spritePosition.y);
+//        System.out.println(droneEnemy.spritePosition.y);
 
         //NOTE ****** DON'T DELETE THIS CAMERA CODE
 
@@ -251,7 +261,10 @@ public class Level1 implements Screen {
             bullet.draw(gameClass.batch);
         }
 
-        enemy.draw(gameClass.batch);
+        for(Enemy enemy: enemies)
+            enemy.draw(gameClass.batch);
+//        droneEnemy.draw(gameClass.batch);
+//        turretEnemy.draw(gameClass.batch);
 
         gameClass.batch.end();
 
