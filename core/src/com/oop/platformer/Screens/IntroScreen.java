@@ -38,9 +38,6 @@ public class IntroScreen implements Screen {
 
     private GameClass gameClass;
     private Viewport viewport;
-    private FreeTypeFontGenerator fontGenerator;
-    private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
-    private BitmapFont font;
 
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
@@ -54,16 +51,6 @@ public class IntroScreen implements Screen {
 
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
-
-        //Declaring font and some of it's properties
-        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
-        fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 48;
-        fontParameter.borderWidth = 3;
-        fontParameter.borderColor = Color.PINK;
-        fontParameter.color = Color.CYAN;
-        //Assigning the font generator to the bitmap font
-        font = fontGenerator.generateFont(fontParameter);
 
         storyLines = getStory();
         currentLine = 0;
@@ -132,7 +119,7 @@ public class IntroScreen implements Screen {
         gameClass.batch.begin();
 
         gameClass.batch.draw(getCurrentBackground(), 0, 0, GameClass.screenWidth, GameClass.screenHeight);
-        font.draw(gameClass.batch, getCurrentLine(deltaTime), 50, 200);
+        Assets.instance.customFont.font.draw(gameClass.batch, getCurrentLine(deltaTime), 50, 200);
 
         //End drawing
         gameClass.batch.end();

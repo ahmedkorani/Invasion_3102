@@ -1,20 +1,23 @@
 package com.oop.platformer.util;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
 
-import javax.xml.soap.Text;
 
 public class Assets implements Disposable {
 
@@ -27,6 +30,7 @@ public class Assets implements Disposable {
     public TurretEnemyAssets turretEnemyAssets;
 
     public Audio audio;
+    public CustomFont customFont;
 
 
     public void init(AssetManager assetManager) {
@@ -41,11 +45,31 @@ public class Assets implements Disposable {
         turretEnemyAssets = new TurretEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
 
         audio = new Audio(assetManager);
+        customFont = new CustomFont();
     }
 
     @Override
     public void dispose() {
         assetManager.dispose();
+    }
+
+    public class CustomFont{
+
+        public final FreeTypeFontGenerator fontGenerator;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
+        public final BitmapFont font;
+
+        public CustomFont(){
+            //Declaring font and some of it's properties
+            fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
+            fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            fontParameter.size = 54;
+            fontParameter.borderWidth = 3;
+            fontParameter.borderColor = Color.PINK;
+            fontParameter.color = Color.CYAN;
+            //Assigning the font generator to the bitmap font
+            font = fontGenerator.generateFont(fontParameter);
+        }
     }
 
     public class FeministAssets {

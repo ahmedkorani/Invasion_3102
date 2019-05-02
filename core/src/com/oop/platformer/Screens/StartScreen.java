@@ -20,10 +20,6 @@ public class StartScreen implements Screen {
 
     private Viewport viewport;
 
-    private FreeTypeFontGenerator fontGenerator;
-    private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
-    private BitmapFont font;
-
     public StartScreen(GameClass gameClass) {
 
         this.gameClass = gameClass;
@@ -35,15 +31,7 @@ public class StartScreen implements Screen {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
 
-        //Declaring font and some of it's properties
-        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
-        fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 54;
-        fontParameter.borderWidth = 3;
-        fontParameter.borderColor = Color.PINK;
-        fontParameter.color = Color.CYAN;
-        //Assigning the font generator to the bitmap font
-        font = fontGenerator.generateFont(fontParameter);
+
 
     }
 
@@ -53,7 +41,7 @@ public class StartScreen implements Screen {
         gameClass.batch.begin();
 
         gameClass.batch.draw(Assets.instance.mainMenuAssets.mainBackground, 0, 0, GameClass.screenWidth, GameClass.screenHeight);
-        font.draw(gameClass.batch, "PRESS ENTER",viewport.getWorldWidth()/4 + 270 , viewport.getWorldHeight()/4);
+        Assets.instance.customFont.font.draw(gameClass.batch, "PRESS ENTER",viewport.getWorldWidth()/4 + 270 , viewport.getWorldHeight()/4);
 
         //End drawing
         gameClass.batch.end();
