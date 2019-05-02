@@ -70,7 +70,6 @@ public class Bullet extends Sprite {
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
             setRegion(Assets.instance.bulletAssets.bulletTexture);
         }
-
     }
 
     @Override

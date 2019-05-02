@@ -13,8 +13,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
-import com.oop.platformer.GameObjects.DroneEnemy;
-import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class Assets implements Disposable {
 

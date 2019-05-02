@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
+import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
@@ -52,7 +53,8 @@ public class Level1 implements Screen {
 
     public Array<Bullet> bullets;
 
-    private Enemy enemy;
+    private DroneEnemy enemy;
+
 
     public Level1(GameClass gameClass){
 
@@ -85,7 +87,7 @@ public class Level1 implements Screen {
     }
 
     private void addObjectsToTheWorld(){
-        //Adds player to the world in position (30,90)
+        //Adds player to the world in spritePosition (30,90)
         player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
@@ -96,7 +98,7 @@ public class Level1 implements Screen {
         path.add(new Vector2(100/GameClass.PPM, 50/GameClass.PPM));
 //        path.add(new Vector2(650/GameClass.PPM, 50/GameClass.PPM));
 //        enemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
-        enemy = new Enemy(world, path.get(0), path);
+        enemy = new DroneEnemy(world, path.get(0), path);
     }
 
     private void renderFloor(){
@@ -138,7 +140,7 @@ public class Level1 implements Screen {
 //
 //            }
 //        }
-        //System.out.printf("%f\n", gameCam.position.x);
+        //System.out.printf("%f\n", gameCam.spritePosition.x);
         levelManager.update(deltaTime);
         /*
         set timeStamp and velocity 
@@ -158,7 +160,7 @@ public class Level1 implements Screen {
 
         enemy.update(deltaTime);
 
-//        System.out.println(enemy.position.y);
+//        System.out.println(enemy.spritePosition.y);
 
         //NOTE ****** DON'T DELETE THIS CAMERA CODE
 
@@ -178,37 +180,37 @@ public class Level1 implements Screen {
 //
 //// Move camera after player as normal
 //
-//        float cameraLeft = gameCam.position.x - cameraHalfWidth;
-//        float cameraRight = gameCam.position.x + cameraHalfWidth;
-//        float cameraBottom = gameCam.position.y - cameraHalfHeight;
-//        float cameraTop = gameCam.position.y + cameraHalfHeight;
+//        float cameraLeft = gameCam.spritePosition.x - cameraHalfWidth;
+//        float cameraRight = gameCam.spritePosition.x + cameraHalfWidth;
+//        float cameraBottom = gameCam.spritePosition.y - cameraHalfHeight;
+//        float cameraTop = gameCam.spritePosition.y + cameraHalfHeight;
 //
 //// Horizontal axis
 //        if(gamePort.getWorldWidth() < gameCam.viewportWidth)
 //        {
-//            gameCam.position.x = mapRight / 2;
+//            gameCam.spritePosition.x = mapRight / 2;
 //        }
 //        else if(cameraLeft <= mapLeft)
 //        {
-//            gameCam.position.x = mapLeft + cameraHalfWidth;
+//            gameCam.spritePosition.x = mapLeft + cameraHalfWidth;
 //        }
 //        else if(cameraRight >= mapRight)
 //        {
-//            gameCam.position.x = mapRight - cameraHalfWidth;
+//            gameCam.spritePosition.x = mapRight - cameraHalfWidth;
 //        }
 //
 //// Vertical axis
 //        if(gamePort.getWorldHeight() < gameCam.viewportHeight)
 //        {
-//            gameCam.position.y = mapTop / 2;
+//            gameCam.spritePosition.y = mapTop / 2;
 //        }
 //        else if(cameraBottom <= mapBottom)
 //        {
-//            gameCam.position.y = mapBottom + cameraHalfHeight;
+//            gameCam.spritePosition.y = mapBottom + cameraHalfHeight;
 //        }
 //        else if(cameraTop >= mapTop)
 //        {
-//            gameCam.position.y = mapTop - cameraHalfHeight;
+//            gameCam.spritePosition.y = mapTop - cameraHalfHeight;
 //        }
 //
 //        ///////////CAMERA/////////////////////

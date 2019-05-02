@@ -10,7 +10,7 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
-public class Player extends GameObjects {
+public class Player extends GameObject {
 
 
     public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting, Dead}
@@ -40,9 +40,9 @@ public class Player extends GameObjects {
     public Player(World world, Vector2 position) {
         super(world, position);
 
-        respawnPosition = this.position;
-        xRespawn = this.position.x;
-        yRespawn = this.position.y;
+        respawnPosition = this.spritePosition;
+        xRespawn = this.spritePosition.x;
+        yRespawn = this.spritePosition.y;
         currentTime = 0;
         previousTime = 0;
         deathTime = 0;
@@ -66,7 +66,7 @@ public class Player extends GameObjects {
     public void define() {
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(position);
+        bodyDef.position.set(spritePosition);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         body = world.createBody(bodyDef);
@@ -76,9 +76,7 @@ public class Player extends GameObjects {
         CircleShape shape = new CircleShape();
 
         shape.setRadius(13 / GameClass.PPM);
-
         fixtureDef.shape = shape;
-
         body.createFixture(fixtureDef).setUserData(this);
     }
 
@@ -89,13 +87,13 @@ public class Player extends GameObjects {
             winTime = currentTime;
 
         checkPlayerPosition();
-        this.position = body.getPosition();
+        this.spritePosition = body.getPosition();
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
 
         //To Save a check point every 5 seconds of game play
-        if (currentTime - previousTime >= 5 && position.y >= 0 && currentState != State.Jumping && currentState != State.Falling) {
-            respawnPosition = this.position;
+        if (currentTime - previousTime >= 5 && spritePosition.y >= 0 && currentState != State.Jumping && currentState != State.Falling) {
+            respawnPosition = this.spritePosition;
             previousTime = currentTime;
             xRespawn = respawnPosition.x;
             yRespawn = respawnPosition.y;
@@ -201,7 +199,7 @@ public class Player extends GameObjects {
     }
 
     private void checkPlayerPosition() {
-        if (!dead && this.position.y < -5f) {
+        if (!dead && this.spritePosition.y < -5f) {
             hitPlayer();
             if(!dead)
                 respawnPlayer();

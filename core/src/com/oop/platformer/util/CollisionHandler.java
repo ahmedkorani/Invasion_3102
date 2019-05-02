@@ -2,7 +2,6 @@ package com.oop.platformer.util;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.oop.platformer.GameObjects.Bullet;
-import com.oop.platformer.GameObjects.DroneEnemy;
 import com.oop.platformer.GameObjects.Enemy;
 import com.oop.platformer.GameObjects.Player;
 
