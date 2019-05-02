@@ -14,6 +14,8 @@ import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
 
+import javax.xml.soap.Text;
+
 public class Assets implements Disposable {
 
     public static final Assets instance = new Assets();
@@ -22,6 +24,8 @@ public class Assets implements Disposable {
     public MainMenuAssets mainMenuAssets;
     public BulletAssets bulletAssets;
     public DroneEnemyAssets droneEnemyAssets;
+    public TurretEnemyAssets turretEnemyAssets;
+
     public Audio audio;
 
 
@@ -34,6 +38,8 @@ public class Assets implements Disposable {
         mainMenuAssets = new MainMenuAssets();
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
         droneEnemyAssets = new DroneEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
+        turretEnemyAssets = new TurretEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
+
         audio = new Audio(assetManager);
     }
 
@@ -96,6 +102,16 @@ public class Assets implements Disposable {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
             for(int i = 1; i<=4; i++)
                 animation.add(atlas.findRegion("drone-"+i));
+            idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
+        }
+    }
+    public class TurretEnemyAssets {
+        public final Animation<AtlasRegion> idleAnimation;
+        public TurretEnemyAssets(TextureAtlas atlas)
+        {
+            Array<AtlasRegion> animation = new Array<AtlasRegion>();
+            for(int i = 1; i<=6; i++)
+                animation.add(atlas.findRegion("turret-"+i));
             idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
         }
     }
