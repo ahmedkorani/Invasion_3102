@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
+import com.oop.platformer.GameObjects.DroneEnemy;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class Assets implements Disposable {
 
@@ -21,6 +23,7 @@ public class Assets implements Disposable {
     public FeministAssets feministAssets;
     public MainMenuAssets mainMenuAssets;
     public BulletAssets bulletAssets;
+    public DroneEnemyAssets droneEnemyAssets;
     public Audio audio;
 
 
@@ -32,6 +35,7 @@ public class Assets implements Disposable {
         feministAssets = new FeministAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
         mainMenuAssets = new MainMenuAssets();
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
+        droneEnemyAssets = new DroneEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
         audio = new Audio(assetManager);
     }
 
@@ -84,6 +88,17 @@ public class Assets implements Disposable {
             deathAnimation = new Animation<AtlasRegion>(0.1f, deathFrames, PlayMode.NORMAL);
 
             jumpingAnimation = new TextureRegion(atlas.findRegion("Ellie frame_run", 12));
+        }
+    }
+
+    public class DroneEnemyAssets {
+        public final Animation<AtlasRegion> idleAnimation;
+        public DroneEnemyAssets(TextureAtlas atlas)
+        {
+            Array<AtlasRegion> animation = new Array<AtlasRegion>();
+            for(int i = 1; i<=4; i++)
+                animation.add(atlas.findRegion("drone-"+i));
+            idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
         }
     }
 

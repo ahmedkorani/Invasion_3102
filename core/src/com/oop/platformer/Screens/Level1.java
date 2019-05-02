@@ -157,7 +157,7 @@ public class Level1 implements Screen {
         }
 
         enemy.update(deltaTime);
-        System.out.println(enemy.position.y);
+//        System.out.println(enemy.position.y);
 
         //NOTE ****** DON'T DELETE THIS CAMERA CODE
 
@@ -227,7 +227,9 @@ public class Level1 implements Screen {
     @Override
     public void render(float delta) {
         //separate our update logic from render
-        update(delta);
+//        if(delta >= 0.01f) //experimental
+            update(delta);
+
 
         //Clear the game screen with Black
         Gdx.gl.glClearColor(.1f, .12f, .16f, 1);

@@ -20,6 +20,7 @@ public class Constants {
 
     //Bullet atlas path
     public static final String BULLET_TEXTURE_ATLAS = "warped city files/Bullet.atlas";
+    public static final String ENEMY_TEXTURE_ATLAS = "Enemy/Enemy.atlas";
 
     //Level 1 Map Path
     public static final String MAP = "Map/level1.tmx";

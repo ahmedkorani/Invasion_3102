@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="33" nextobjectid="34">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
+  <image source="../warped city files/ENVIRONMENT/tileset.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="385" name="banners" tilewidth="35" tileheight="92" tilecount="15" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="35" height="92" source="../warped city files/ENVIRONMENT/props/banner-big/banner-big-1.png"/>
+  </tile>
+  <tile id="1">
+   <image width="35" height="92" source="../warped city files/ENVIRONMENT/props/banner-big/banner-big-2.png"/>
+  </tile>
+  <tile id="2">
+   <image width="35" height="92" source="../warped city files/ENVIRONMENT/props/banner-big/banner-big-3.png"/>
+  </tile>
+  <tile id="3">
+   <image width="35" height="92" source="../warped city files/ENVIRONMENT/props/banner-big/banner-big-4.png"/>
+  </tile>
+  <tile id="4">
+   <image width="27" height="78" source="../warped city files/ENVIRONMENT/props/banner-coke/banner-coke-3.png"/>
+  </tile>
+  <tile id="5">
+   <image width="27" height="78" source="../warped city files/ENVIRONMENT/props/banner-coke/banner-coke-1.png"/>
+  </tile>
+  <tile id="6">
+   <image width="27" height="78" source="../warped city files/ENVIRONMENT/props/banner-coke/banner-coke-2.png"/>
+  </tile>
+  <tile id="7">
+   <image width="19" height="48" source="../warped city files/ENVIRONMENT/props/banner-neon/banner-neon-1.png"/>
+  </tile>
+  <tile id="8">
+   <image width="19" height="48" source="../warped city files/ENVIRONMENT/props/banner-neon/banner-neon-2.png"/>
+  </tile>
+  <tile id="9">
+   <image width="19" height="48" source="../warped city files/ENVIRONMENT/props/banner-neon/banner-neon-3.png"/>
+  </tile>
+  <tile id="10">
+   <image width="19" height="48" source="../warped city files/ENVIRONMENT/props/banner-neon/banner-neon-4.png"/>
+  </tile>
+  <tile id="11">
+   <image width="19" height="76" source="../warped city files/ENVIRONMENT/props/banner-side/banner-side-4.png"/>
+  </tile>
+  <tile id="12">
+   <image width="19" height="76" source="../warped city files/ENVIRONMENT/props/banner-side/banner-side-1.png"/>
+  </tile>
+  <tile id="13">
+   <image width="19" height="76" source="../warped city files/ENVIRONMENT/props/banner-side/banner-side-2.png"/>
+  </tile>
+  <tile id="14">
+   <image width="19" height="76" source="../warped city files/ENVIRONMENT/props/banner-side/banner-side-3.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="400" name="Background" tilewidth="493" tileheight="240" tilecount="6" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="128" height="47" source="../warped city files/ENVIRONMENT/background/bg-color.png"/>
+  </tile>
+  <tile id="1">
+   <image width="144" height="124" source="../warped city files/ENVIRONMENT/background/buildings-bg.png"/>
+  </tile>
+  <tile id="2">
+   <image width="493" height="209" source="../warped city files/ENVIRONMENT/background/near-buildings-bg.png"/>
+  </tile>
+  <tile id="3">
+   <image width="128" height="240" source="../warped city files/ENVIRONMENT/background/skyline-a.png"/>
+  </tile>
+  <tile id="4">
+   <image width="128" height="240" source="../warped city files/ENVIRONMENT/background/skyline-b.png"/>
+  </tile>
+  <tile id="5">
+   <image width="16" height="16" source="../warped city files/ENVIRONMENT/background/sky.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="406" name="skyline-a" tilewidth="16" tileheight="16" tilecount="120" columns="8">
+  <image source="../warped city files/ENVIRONMENT/background/skyline-a.png" width="128" height="240"/>
+ </tileset>
+ <tileset firstgid="526" name="near-buildings-bg" tilewidth="16" tileheight="16" tilecount="390" columns="30">
+  <image source="../warped city files/ENVIRONMENT/background/near-buildings-bg.png" width="493" height="209"/>
+ </tileset>
+ <tileset firstgid="916" name="buildings-bg" tilewidth="16" tileheight="16" tilecount="63" columns="9">
+  <image source="../warped city files/ENVIRONMENT/background/buildings-bg.png" width="144" height="124"/>
+ </tileset>
+ <tileset firstgid="979" name="sky" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../warped city files/ENVIRONMENT/background/sky.png" width="16" height="16"/>
+ </tileset>
+ <layer id="30" name="bg" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzt1NVSA0EQRuHJ4vb6wd3dCZ4EC+7uTnCXhCDnIXa3l6IvvqtTNTUXf7XfZ0wu8pCPAhSiCMXwaxfpJShFGcpRgUpUoVq7WK9BLepQjwY0ognN2sV6C1rRhnZ0oBNd6NYu1nsQQC/60I8BDGJIu1gfRhAhhDGCUYxhXLtYn0AEk5jCNGYwizntYn0eC1jEEpaxglWsaRfr69jAJrawjR3sYk+7WN/HAQ5xhGOc4BRn2sX6OS4QxSWucI0b3GoX63e4xwMe8YRnvOBVu1h/wzs+EEMcn0jgS7tY/8YPjGWMDxaSkIwUS7tU99peMvlTFrKRg1SkIR0Z1v/pXtqLkxuw8203tuqlvTi5ATvfdmOrXrpjTm7Azrfd2KreMb1jesf0jv31O/YLB6FnJQ==
+  </data>
+ </layer>
+ <layer id="32" name="near buildings" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztksWOxEAMRCP5/2/LzMzMzAw/tO/Sl9G2bKeVyRxc0ju5uhzHrqpQKBQKhUKhUCgUCoWaVZ9UVT8MwCAMwTCMwKjo9THx5XX6uzVHU32b0jjfOwGTMAXTMAOzMCd6fV58eZ3+nLz/Ode3zr4sb0o8Fi3gW4QlWIYVWIU1WBe9viG+vOTX5vLuN9e3zp1Y3pR4LNrEtwXbsAO7sAf7cCB6/VB8ecmvzeW9h1xfb471tko8Fh3hO4YTOIUzOIcLuBS9fiW+vOTX5vLeQ66vN8d6WyUei67x3cAt3ME9PMAjPIlefxZfXvJrc3nvIdfXm2O9rRKPRS/4XuEN3uEDPuELvkWv/4gvL/m1ubz3kOvrzbHeVonntwexzu69h7p391+O5U2Jp+0dNLVTi9r4lrb/T+wl9hJ76X3qqJv9rTl/kJPNIw==
+  </data>
+ </layer>
+ <layer id="31" name="big buildings" width="102" height="21" opacity="0.7">
+  <data encoding="base64" compression="zlib">
+   eJzt0EXMHVUYBuDL/0MhWJEKgRoaXCoEahRKkLoQqBtS10BdkboQ3NkALRrc2eAWHIpsaHECtMW7KTwNs5qcOclMpqzmTZ6c3NyT837z1WpVqlSpUqVKlSpVqlSpUmV7GtXVao1pQlMO4EAOohnNaUFLWtXt2N50ypwj1vd/fG/etNbdhra042RO4VTa04GOdKJziXOGetMpc45Y347+3qHeGcZwRjCSUVyYvN/N2Z0e9KQXfehLP/pzHudzAQMYyCAGM6TAnFkzhXrTKXOOWF+sJ7Sz3jn757g/l3nMZwELWZS8M8Y5lnGMZwKTmMwUpjKNS7mM6cxgJrOYXWAfWTOFetMpc45YX6wntLOJOftvdv8WbuU2bucO7kzeWexcwlKWsZyVrGI1a7iaa7iW67ieG7iRmwrsI2umUG86Zc4R64v1hHa2Imf/U+4/zTM8y3M8zwvJO3c57+Ye1rKO+7ifB3iQh3iYR3iUx3icJ3iywD6yZgr1plPmHLG+WE9oZ/fm7P/Y/U9Yz6d8xud8kbzzovMlXuYVXuV13uBN3uJt3uFd3uN9PuBDPiqwj6yZQr3plDlHrC/WE9rZazn7f3P/d/7gT/7ib7Ym73zp3MBGvuJrvuU7vucHfuQnfuYXNrGZLfxaYB9ZM4V60ylzjlhfrCe0s29y9u9bX6vtx/40ojFNaFr/3//bvPfP9jf93ok6dmYXGrAru7E7e7Ane7E3DdmnPv8+smYK9aZT5hyxvlhPaGf1OftPcP9ETqI1bWhLu+SdZs7mtKAlrTiEQzmMwzmCIzmKozmGYzmO4wvsI2umUG86Zc4R64v1hHZ2cM7+nu73ojd96Es/+ifvtHd2oCOd6EwXTucMunImZ3E253Au3ehOjwL7yJop1JtOmXPE+mI9oZ2dlrN/vPsTmMgkJjOFqck7A5wDGcRghjCM4YxgJKO4iIu5hNGMYSzjCuwja6ZQbzplzhHri/WEdjY0Z/8y95ezgpWsYjVrknemO2cwk1nMZi7zmM8CFnI5V3AlV7GYJSwtsI+smUK96ZQ5R6wv1hPa2Rz+BWm7S+s=
+  </data>
+ </layer>
+ <layer id="29" name="Tile Layer 1" width="102" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztl9+LTGEYx5/9A7S48SN0og2t/NiQaEIUJiSaEIUy7rblP+DKhUttEZuVa0VzgfZacYX/YBXhD5g7yvfZc57mO8++7zkzs2YnzXnq05z37L7zPu/ze0RKKaWUUkoppZRSShmkrBwpZhVYPTJoTYdLvoHv4AV4BmbBc7AVbAPbQTIg3YZZfoM/YA68AW/BO3AYHAFHZXj9Mkr1IvTZz1qykfgEPoMv4CK4BC6DA//+2P9GJiStJeBuHZ8V8JLeJX06l/3yA/wEv8AUuA3ugHM5+x/3QadOe95ySFXSWjLn/GLv+hWzD6UzO8Ry9XXke4vyn/GyHmyQNFY2gbEM7n/Jkm7duWi+WA82vzxBiX8KZkBezC5F1C/ToCnttuDnvJj4GHm/GWyRdluqbdfAD2vBOjCO9Y7AXvXLXrAP7JfUFgr3v8TtGe0gtnqZO1UX68Fqi5osz0ykftG8VL+wLfhZY2I+wtfI+4PgkLTbUm27C/feDfaAY1gfD+iktjgNzoCzktpC4f6XRPbF5sux7I4cF/qO4y/0nROyOEZ4JupnHTO/sC34WfXd2SXmF7al2vYE7HESnCrwy01J68YtMJnB/S8J7FMbxubLSnZHjgt9xzYP2bgqi2OEZyJfx/LqdTc9k/3CtuDnXmLiPLgg7bZU217D2dfBDXAF66uBvRz3qOWCWi4zmT5GEthXzf42nfVoHxMrRtrjQt+xzUO9IhQjPBN5Pax+N+kOnLfjBWsT6/t5Pu5lRrd8qeeQly8W9w1ZiJtZj7eH7aun/7/w6WPCx4Wu2eb+O0edDWIzDNvG4rFJd/B5m7c2Ub+E/Mp1OGSDIjH9fI3nnsn58oDuxvNYQ1rzWJFOWsfYL3yW9RevD69jdczPhqyH5tgjaf1esHhskh4+b/PWJuqXkF+5Dt/vMldYPx8b3DPz8sXqfkNa8xjrlAT2WR0ze/BZul/rWF6sxuqY7/tej1fS+r3A+RLK20rB2oT7C/uN63AvM7rp52ODe6bmy72AzzXure43pDWPsU6h2PZ1jM+qBe7oYzUUf6yL9X2vxwdp/V4I5QtTK1ibmF80lthvXIeTgA2KxPTzNZ57ZixfNO6t7jck3BtCseLrGJ81Gbijn/Fidcz3fa/HvKS/F1QsHvWs99k+rpWVgrXJXzsvQ3A=
+  </data>
+ </layer>
+ <objectgroup id="5" name="Floor">
+  <object id="14" x="0" y="176" width="176" height="16"/>
+  <object id="15" x="160" y="208" width="192" height="16"/>
+  <object id="16" x="355" y="175" width="176" height="16"/>
+  <object id="18" x="592" y="160" width="160" height="16"/>
+  <object id="22" x="800" y="192" width="304" height="16"/>
+  <object id="26" x="1136" y="256" width="176" height="16"/>
+  <object id="27" x="1344" y="224" width="256" height="16"/>
+  <object id="29" x="1136" y="128" width="176" height="16"/>
+  <object id="32" x="5" y="95" width="161" height="15"/>
+  <object id="33" x="22" y="251" width="125" height="20"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,117 @@
+Enemy.png
+size: 1593, 155
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+drone-1
+  rotate: false
+  xy: 1, 1
+  size: 36, 49
+  orig: 36, 49
+  offset: 0, 0
+  index: -1
+drone-2
+  rotate: false
+  xy: 39, 1
+  size: 31, 49
+  orig: 31, 49
+  offset: 0, 0
+  index: -1
+drone-3
+  rotate: false
+  xy: 72, 1
+  size: 33, 50
+  orig: 33, 50
+  offset: 0, 0
+  index: -1
+drone-4
+  rotate: false
+  xy: 107, 1
+  size: 31, 49
+  orig: 31, 49
+  offset: 0, 0
+  index: -1
+RobotHitL
+  rotate: false
+  xy: 140, 1
+  size: 256, 153
+  orig: 256, 153
+  offset: 0, 0
+  index: -1
+RobotHitR
+  rotate: false
+  xy: 398, 1
+  size: 256, 153
+  orig: 256, 153
+  offset: 0, 0
+  index: -1
+RobotL
+  rotate: false
+  xy: 656, 1
+  size: 256, 153
+  orig: 256, 153
+  offset: 0, 0
+  index: -1
+RobotR
+  rotate: false
+  xy: 914, 1
+  size: 256, 153
+  orig: 256, 153
+  offset: 0, 0
+  index: -1
+turret-1
+  rotate: false
+  xy: 1172, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+turret-2
+  rotate: false
+  xy: 1199, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+turret-3
+  rotate: false
+  xy: 1226, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+turret-4
+  rotate: false
+  xy: 1253, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+turret-5
+  rotate: false
+  xy: 1280, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+turret-6
+  rotate: false
+  xy: 1307, 1
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+v-police
+  rotate: false
+  xy: 1334, 1
+  size: 163, 60
+  orig: 163, 60
+  offset: 0, 0
+  index: -1
+v-yellow
+  rotate: false
+  xy: 1499, 1
+  size: 93, 60
+  orig: 93, 60
+  offset: 0, 0
+  index: -1

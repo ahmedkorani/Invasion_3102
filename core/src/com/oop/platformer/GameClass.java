@@ -45,7 +45,8 @@ public class GameClass extends Game {
 		musicPause = true;
 		gameOver = false;
 		//The Play Screen
-		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+//		setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+		setScreen(new Level1(this));
 	}
 
 	@Override
