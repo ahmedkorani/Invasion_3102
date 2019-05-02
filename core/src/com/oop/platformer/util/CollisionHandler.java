@@ -30,6 +30,10 @@ public class CollisionHandler implements ContactListener {
             levelManager.bulletHitEnemy(fa,fb);
             System.out.println("Enemy was hit by a bullet");
         }
+        else if (fa.getUserData() instanceof Bullet && fb.getUserData() instanceof Enemy){
+            levelManager.bulletHitEnemy(fb,fa);
+            System.out.println("Enemy was hit by a bullet");
+        }
         else if (fb.getUserData() instanceof Bullet){
             levelManager.bulletHitWall(fb);
             System.out.println("Bullet was destroyed by a wall");
