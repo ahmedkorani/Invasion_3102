@@ -1,6 +1,7 @@
 package com.oop.platformer.GameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -29,7 +30,7 @@ public class Enemy extends GameObjects {
 
         this.path = new Path(path.size);
         for (Vector2 p : path) {
-            this.path.AddPoint(p, 1f);
+            this.path.AddPoint(p, 15f);
         }
         this.path.Reset();
 
@@ -37,7 +38,7 @@ public class Enemy extends GameObjects {
         droneEnemy = new TextureRegion(atlas.findRegion(Constants.ENEMY));
         setBounds(0, 0, 35 / GameClass.PPM, 50 / GameClass.PPM);
         setRegion(droneEnemy);
-        setRegion(Assets.instance.droneEnemyAssets.idleAnimation.getKeyFrame(stateTime,true));
+        setRegion(Assets.instance.droneEnemyAssets.idleAnimation.getKeyFrame(stateTime, true));
     }
 
     @Override
@@ -50,7 +51,7 @@ public class Enemy extends GameObjects {
         body = world.createBody(bodyDef);
 
         PolygonShape bodyShape = new PolygonShape();
-        bodyShape.setAsBox(35 / (2f) / GameClass.PPM, 50 / (2f) / GameClass.PPM); //Set As Box takes half width and half height as arguments
+        bodyShape.setAsBox(35 / (2f) / GameClass.PPM, 50 / (2f) / GameClass.PPM);
         FixtureDef fixtureDef = new FixtureDef();
 
 
@@ -69,64 +70,35 @@ public class Enemy extends GameObjects {
             world.destroyBody(body);
             destroyed = true;
             Assets.instance.audio.enemyDestroyed.play();
-        } else if (!destroyed){
-            stateTime+=delta;
+        } else if (!destroyed) {
+            stateTime += delta;
             setRegion(Assets.instance.droneEnemyAssets.idleAnimation.getKeyFrame(stateTime, true));
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-<<<<<<< HEAD
 
             if (path.UpdatePath(body.getPosition())) {
-
-                body.setLinearVelocity(path.GetVelocity().x, path.GetVelocity().y);
-                System.out.println(delta + ": " + body.getLinearVelocity());
-=======
-            if (first == 1) {
-                body.setLinearVelocity(this.path.GetVelocity().x * 2, this.path.GetVelocity().y * 2);
-                first = 0;
-            }
-
-        /*
-        Vector2 A = path.get(0), B = path.get(1);
-//        System.out.println(body.getPosition().y + "A: " + A.y);
-//        System.out.println(body.getPosition().y + "B: " + B.y);
-        if(body.getPosition().y >= A.y*0.01f)
-            direction = -1;
-        if(body.getPosition().y <= B.y*0.01f)
-            direction = 1;
-        body.setLinearVelocity((A.x-B.x)*0.01f/(0.02f) *delta, (A.y-B.y)*0.01f/(0.02f)*delta*direction);
-        */
-//            System.out.println("body pos:" + body.getPosition());
-//            System.out.println("curr pos:" + path.points.get(path.currentPointIndex));
-//            System.out.println("next pos:" + path.points.get(path.nextPointIndex));
-
-
-            if (path.UpdatePath(body.getPosition())) {
-                body.setLinearVelocity(path.GetVelocity().x * 2, path.GetVelocity().y * 2);
->>>>>>> 48dd9c4fe700dbd495cd99e8115933673b400e44
+                    body.setLinearVelocity(path.GetVelocity().x, path.GetVelocity().y);
             }
         }
-
     }
 
     @Override
-    public void draw(Batch batch) {
-        if(!destroyed)
-            super.draw(batch);
+    public void draw (Batch batch){
+            if (!destroyed)
+                super.draw(batch);
     }
 
-    public boolean setToDestroy() {
-        //if the enemy has health points left it's not destroyed and hp is decreased
-        if (healthPoints == 0){
-            isSetToDestroy = true;
-            return true;
-        }
-        else{
-            healthPoints--;
-            Assets.instance.audio.enemyHit.play();
-            return false;
-        }
+        public boolean setToDestroy () {
+            //if the enemy has health points left it's not destroyed and hp is decreased
+            if (healthPoints == 0) {
+                isSetToDestroy = true;
+                return true;
+            } else {
+                healthPoints--;
+                Assets.instance.audio.enemyHit.play();
+                return false;
+            }
 
-    }
+        }
 
     public class Path {
 
@@ -182,7 +154,7 @@ public class Enemy extends GameObjects {
         }
 
         int GetNextPoint() {
-            return  (currentPointIndex + 1)%countPoints;
+            return (currentPointIndex + 1) % countPoints;
 
         }
 
@@ -193,8 +165,7 @@ public class Enemy extends GameObjects {
             float dy = nextPosition.y - currentPosition.y;
             float time = durations.get(nextPointIndex);
 
-            velocity.set(dx / time , dy / time);
-
+            velocity.set(dx / time, dy / time);
         }
 
         Vector2 GetVelocity() {
@@ -203,6 +174,9 @@ public class Enemy extends GameObjects {
 
 
     }
+
+
 }
+
 
 
