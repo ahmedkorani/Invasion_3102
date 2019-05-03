@@ -58,6 +58,8 @@ public class Player extends GameObject {
         runningRight = true;
 
         setBounds(0, 0, 32 / GameClass.PPM, 32 / GameClass.PPM);
+
+
         setRegion(Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true));
     }
 
@@ -78,9 +80,9 @@ public class Player extends GameObject {
         shape.setRadius(13 / GameClass.PPM);
         fixtureDef.shape = shape;
 
-        fixtureDef.friction = 0f;
+//        fixtureDef.friction = 0f;
 
-        fixtureDef.friction = 0;
+
 
         body.createFixture(fixtureDef).setUserData(this);
     }
@@ -182,9 +184,9 @@ public class Player extends GameObject {
             body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
             jumpCounter++;
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            body.setLinearVelocity(-1.5f, body.getLinearVelocity().y);
+            body.setLinearVelocity(-1.8f, body.getLinearVelocity().y);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            body.setLinearVelocity(1.5f, body.getLinearVelocity().y);
+            body.setLinearVelocity(1.8f, body.getLinearVelocity().y);
         } else {
             body.setLinearVelocity(0, body.getLinearVelocity().y);
         }

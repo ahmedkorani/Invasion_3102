@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 
 public class Assets implements Disposable {
@@ -28,6 +29,8 @@ public class Assets implements Disposable {
     public BulletAssets bulletAssets;
     public DroneEnemyAssets droneEnemyAssets;
     public TurretEnemyAssets turretEnemyAssets;
+    public BossEnemyAssets bossEnemyAssets;
+
 
     public Audio audio;
     public CustomFont customFont;
@@ -43,6 +46,7 @@ public class Assets implements Disposable {
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
         droneEnemyAssets = new DroneEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
         turretEnemyAssets = new TurretEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
+        bossEnemyAssets = new BossEnemyAssets(new TextureAtlas(Constants.BOSS_TEXTURE_ATLAS));
 
         audio = new Audio(assetManager);
         customFont = new CustomFont();
@@ -91,7 +95,7 @@ public class Assets implements Disposable {
             for (int i = 0; i <= 13; i++)
                 runFrames.add(atlas.findRegion("Ellie frame_run", i));
 
-            runAnimation = new Animation<AtlasRegion>(0.1f, runFrames, PlayMode.LOOP);
+            runAnimation = new Animation<AtlasRegion>(0.07f, runFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> shootFrames = new Array<AtlasRegion>();
             for (int i = 0; i <= 3; i++)
@@ -126,6 +130,18 @@ public class Assets implements Disposable {
                 animation.add(atlas.findRegion("drone-" + i));
             idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
         }
+    }
+
+    public class BossEnemyAssets {
+        public final Animation<AtlasRegion> flyingAnimation;
+
+        public BossEnemyAssets(TextureAtlas atlas) {
+            Array<AtlasRegion> animation = new Array<AtlasRegion>();
+            for (int i = 1; i <= 7; i++)
+                animation.add(atlas.findRegion("Boss-" + i));
+            flyingAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
+        }
+
     }
 
     public class TurretEnemyAssets {
