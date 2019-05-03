@@ -3,6 +3,7 @@ package com.oop.platformer.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,10 +13,8 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collections;
 
 public class IntroScreen implements Screen {
 
@@ -60,21 +59,16 @@ public class IntroScreen implements Screen {
     }
 
     private ArrayList<String> getStory() {
-        File storyFile = new File(Constants.STORY_FILE);
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(storyFile);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-            System.exit(3102);
-        }
-        ArrayList<String> storyList = new ArrayList<String>();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            storyList.add(line);
-        }
-        scanner.close();
-        return storyList;
+        //Read the file
+        FileHandle fileHandle = Gdx.files.internal(Constants.STORY_FILE);
+        //Reading the file text and passing it to a string
+        String story = fileHandle.readString();
+        //splitting the lines to string array
+        String[] splittedLines = story.split("\n");
+        ArrayList<String> storyLines = new ArrayList<String>();
+        //copying array of strings to the ArrayList to return it at the end
+        Collections.addAll(storyLines, splittedLines);
+        return storyLines;
     }
 
     private Texture getCurrentBackground() {
