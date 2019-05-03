@@ -15,12 +15,13 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
-    public static final int LIVES = 3;
+    public static final int LIVES = 100;
     public static final int SCORE = 0;
 
     //Bullet atlas path
     public static final String BULLET_TEXTURE_ATLAS = "warped city files/Bullet.atlas";
     public static final String ENEMY_TEXTURE_ATLAS = "Enemy/Enemy.atlas";
+    public static final String BOSS_TEXTURE_ATLAS = "Enemy/Boss.atlas";
 
     //Level 1 Map Path
     public static final String MAP = "Map/level1.tmx";

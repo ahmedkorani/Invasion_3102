@@ -7,6 +7,8 @@ import com.oop.platformer.GameClass;
 import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.util.Assets;
 
+import java.util.Random;
+
 public abstract class Enemy extends GameObject {
 
     public Path path;
@@ -15,15 +17,17 @@ public abstract class Enemy extends GameObject {
     public int healthPoints;
     public float stateTime;
 
-    public Enemy(World world, Vector2 spritePosition, Array<Vector2> path) {
+    public Enemy(World world, Vector2 spritePosition, Array<Vector2> path, float[] durations) {
         super(world, spritePosition);
 
         destroyed = false;
         isSetToDestroy = false;
         stateTime = 0;
         this.path = new Path(path.size);
-        for (Vector2 p : path)
-            this.path.AddPoint(p, 15f);
+        for(int i =0; i<path.size; i++)
+            this.path.AddPoint(path.get(i), durations[i]);
+//        for (Vector2 p : path)
+//            this.path.AddPoint(p, durations.get());
         this.path.Reset();
         initSprite();
         setHealthPoints();

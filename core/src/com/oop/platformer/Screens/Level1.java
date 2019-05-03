@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -85,12 +86,12 @@ public class Level1 implements Screen {
         bullets = new Array<Bullet>();
         enemies = new Array<Enemy>();
 
-
+/*
         Array<Vector2> path = new Array<Vector2>();
         Array<Vector2> path2 = new Array<Vector2>();
 
-        path.add(new Vector2(700 / GameClass.PPM, 200 / GameClass.PPM));
-        path.add(new Vector2(300 / GameClass.PPM, 200 / GameClass.PPM));
+        path.add(new Vector2(416 / GameClass.PPM, (336-64) / GameClass.PPM));
+        path.add(new Vector2(528 / GameClass.PPM, (336-64) / GameClass.PPM));
 
         path2.add(new Vector2(900 / GameClass.PPM, 200 / GameClass.PPM));
         path2.add(new Vector2(800 / GameClass.PPM, 200 / GameClass.PPM));
@@ -103,6 +104,9 @@ public class Level1 implements Screen {
 //        droneEnemy = new DroneEnemy(world, path.get(0), path);
         enemies.add(new TurretEnemy(world, path2.get(0), path2));
 //        turretEnemy = new TurretEnemy(world, path2.get(0), path2);
+
+ */
+        addEnemeies();
     }
 
     private void renderFloor() {
@@ -119,9 +123,11 @@ public class Level1 implements Screen {
         Body floor;
 
         //Create Floor Objects which's in the 4th layer
+
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             //Shaped as rectangles in the map objects
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
 
             floorBodyDef.type = BodyDef.BodyType.StaticBody;
 
@@ -135,6 +141,67 @@ public class Level1 implements Screen {
             floorFixtureDef.shape = floorShape;
             floor.createFixture(floorFixtureDef).setUserData("Floor");
         }
+    }
+
+    private void addEnemeies()
+    {
+
+        for(int i = 0; i<map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).size; i+=2)
+        {
+            Array<Vector2> path = new Array<Vector2>();
+            float[] durations = new float[2];
+            MapObject object = map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).get(i);
+
+            RectangleMapObject rect = (RectangleMapObject) object;
+
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+            object = map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            rect = (RectangleMapObject) object;
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+
+            durations[0] = durations[1] = 3 / path.get(0).dst2(path.get(1));
+            enemies.add(new TurretEnemy(world, path.get(0), path, durations));
+
+        }
+
+        for(int i = 0; i<map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).size; i+=4)
+        {
+            Array<Vector2> path = new Array<Vector2>();
+            float[] durations = new float[4];
+
+            MapObject object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i);
+            RectangleMapObject rect = (RectangleMapObject) object;
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            rect = (RectangleMapObject) object;
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+2);
+            rect = (RectangleMapObject) object;
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+3);
+            rect = (RectangleMapObject) object;
+            path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+
+            durations[0] = durations[1] = durations[2] = durations[3] = 2 / path.get(0).dst2(path.get(1));
+            enemies.add(new DroneEnemy(world, path.get(0), path, durations));
+
+        }
+
+        Array<Vector2> enemyPath = new Array<Vector2>();
+        float[] enemyDurations;
+        for(int i = 0; i<6; i++)
+        {
+            MapObject object = map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class).get(i);
+            RectangleMapObject rect = (RectangleMapObject) object;
+            enemyPath.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
+//            enemyDurations[i] = 2;
+        }
+        enemyDurations = new float[]{0.4f, 0.5f, 0.8f, 1f, 2f, 0.4f};
+        enemies.add(new BossEnemy(world, enemyPath.get(0), enemyPath, enemyDurations));
+
     }
 
     //update the game state

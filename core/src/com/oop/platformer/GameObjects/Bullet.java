@@ -61,7 +61,7 @@ public class Bullet extends Sprite {
     public void update(float deltaTime) {
         destroyTimer += deltaTime;
 
-        if ((destroyTimer >= 1 || isSetToDestroy) && !destroyed) {
+        if ((destroyTimer >= 1.5f || isSetToDestroy) && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
         } else if (!destroyed) {

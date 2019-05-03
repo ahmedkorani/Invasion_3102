@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="90" nextobjectid="91">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="94" nextobjectid="173">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
   <image source="../warped city files/ENVIRONMENT/tileset.png" width="384" height="256"/>
  </tileset>
@@ -105,34 +105,106 @@
   </data>
  </layer>
  <objectgroup id="5" name="Floor">
-  <object id="14" x="384.364" y="176" width="160.878" height="15.2727"/>
-  <object id="15" x="538.833" y="211" width="194.542" height="15.125"/>
-  <object id="16" x="731.31" y="176.553" width="176.458" height="14.3333"/>
-  <object id="18" x="971.091" y="159.455" width="160" height="16"/>
-  <object id="22" x="1189.08" y="191.25" width="286.333" height="16"/>
+  <object id="14" x="384.364" y="176" width="162.041" height="15.2727"/>
+  <object id="15" x="538.678" y="211" width="192.914" height="6.05249"/>
+  <object id="16" x="731.465" y="176.088" width="176.303" height="14.7986"/>
+  <object id="18" x="971.556" y="159.92" width="159.922" height="15.5347"/>
+  <object id="22" x="1188.54" y="191.87" width="286.023" height="14.3716"/>
   <object id="26" x="1525.92" y="256.25" width="155.583" height="16"/>
-  <object id="27" x="1723.5" y="224.25" width="255.75" height="16"/>
-  <object id="29" x="1524.75" y="127.25" width="157.417" height="16"/>
-  <object id="32" x="383.818" y="96.4545" width="161.091" height="13.5455"/>
+  <object id="27" x="1723.34" y="223.94" width="256.06" height="16.3102"/>
+  <object id="29" x="1524.28" y="128.025" width="158.348" height="15.2246"/>
+  <object id="32" x="384.051" y="95.9892" width="162.409" height="14.0108"/>
   <object id="33" x="395.25" y="256.083" width="128.333" height="15.6667"/>
   <object id="65" x="376.542" y="-5.65625" width="7.45833" height="342.99"/>
   <object id="67" x="384.01" y="-5.66667" width="182.99" height="5.65104"/>
-  <object id="72" x="2011.66" y="160.318" width="160.455" height="16"/>
-  <object id="73" x="2218.84" y="176.614" width="144.273" height="16"/>
-  <object id="74" x="2203.86" y="96.2955" width="160.273" height="16"/>
-  <object id="75" x="2219.86" y="255.886" width="127.909" height="16"/>
-  <object id="76" x="2395.25" y="224.023" width="160.273" height="16"/>
-  <object id="77" x="2588.4" y="176.25" width="165.394" height="16"/>
-  <object id="78" x="2602.82" y="255.818" width="128.818" height="16"/>
-  <object id="79" x="2748.07" y="212.682" width="191.545" height="24.3409"/>
-  <object id="80" x="2939.39" y="176.606" width="176.485" height="14.7273"/>
-  <object id="81" x="3157.41" y="127.958" width="284.121" height="16"/>
+  <object id="72" x="2011.66" y="160.085" width="159.99" height="16.0775"/>
+  <object id="73" x="2219.38" y="175.994" width="144.195" height="14.139"/>
+  <object id="74" x="2203.47" y="96.0629" width="160.195" height="16.0775"/>
+  <object id="75" x="2219.47" y="255.886" width="128.064" height="16"/>
+  <object id="76" x="2395.64" y="224.023" width="159.885" height="16"/>
+  <object id="77" x="2587.62" y="176.095" width="166.945" height="14.2165"/>
+  <object id="78" x="2601.42" y="255.896" width="130.214" height="14.2941"/>
+  <object id="79" x="2747.53" y="210.976" width="192.088" height="6.11834"/>
+  <object id="80" x="2939.55" y="175.908" width="176.02" height="15.4252"/>
+  <object id="81" x="3156.48" y="128.036" width="286.06" height="14.2165"/>
   <object id="82" x="3515.21" y="175.939" width="176.485" height="14.7273"/>
   <object id="83" x="3979.61" y="256" width="575.454" height="16"/>
   <object id="84" x="3756.09" y="255.303" width="127.735" height="14.7273"/>
   <object id="85" x="3755.13" y="176.386" width="144.485" height="14.7273"/>
-  <object id="86" x="3739.8" y="96.6363" width="160.402" height="14.7273"/>
+  <object id="86" x="3739.41" y="96.0935" width="160.79" height="15.2701"/>
   <object id="88" x="4555.5" y="0.5" width="12.5" height="335.833"/>
   <object id="89" x="4339" y="0.833333" width="229.5" height="6"/>
+ </objectgroup>
+ <layer id="90" name="Enemy positions" width="310" height="21" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt2UsOhCAUBEDj/S/obWY9Rp2MgtBQtTc2mtf4WRZoZ1tbJ4BcifOTmBmYg36C8VzNdcrMp+QsacY1Q21vzdWd8/w65kn2hD5JyAi8RycAV/YdkdgZpTMnXgOgvbPu0ClAD2bsorQ1p+WFO2p+t/9Xwsx51/2Wnh8AemFPBZjLCL0/whoAgPEdPbP0/hzjvwwAAAAA8JRvfwBQjn21T+4LNXwAmGEiOQ==
+  </data>
+ </layer>
+ <objectgroup id="91" name="2-points-enemy">
+  <object id="91" x="418.776" y="46.1107" width="16.4914" height="16.7304"/>
+  <object id="92" x="494.807" y="47.4767" width="16.0134" height="16.2524"/>
+  <object id="93" x="526.85" y="143.686" width="16.9043" height="16.9043"/>
+  <object id="94" x="638.981" y="189.328" width="17.4677" height="19.1582"/>
+  <object id="95" x="926.354" y="99.7352" width="15.7773" height="16.3408"/>
+  <object id="96" x="929.171" y="242.858" width="18.0312" height="16.9043"/>
+  <object id="99" x="1552.38" y="223.7" width="15.2138" height="16.3408"/>
+  <object id="100" x="1630.7" y="224.827" width="16.3408" height="15.7773"/>
+  <object id="101" x="2272.5" y="48.4589" width="16.3408" height="17.4677"/>
+  <object id="102" x="2278.13" y="232.152" width="16.9043" height="17.4677"/>
+  <object id="103" x="2562.12" y="67.0536" width="15.7773" height="16.9043"/>
+  <object id="104" x="2566.63" y="259.762" width="16.9043" height="18.5947"/>
+  <object id="105" x="2708.63" y="226.517" width="17.4677" height="17.4677"/>
+  <object id="106" x="2608.89" y="126.219" width="18.0312" height="16.9043"/>
+  <object id="107" x="3039.95" y="143.123" width="17.4677" height="16.3408"/>
+  <object id="108" x="3180.82" y="268.214" width="16.9043" height="15.7773"/>
+  <object id="109" x="1323.89" y="159.182" width="16.3408" height="17.4677"/>
+  <object id="110" x="1381.36" y="106.779" width="16.3408" height="17.4677"/>
+  <object id="111" x="1485.04" y="85.93" width="16.3408" height="17.4677"/>
+  <object id="112" x="1580.27" y="45.3598" width="16.3408" height="17.4677"/>
+  <object id="113" x="1783.12" y="197.498" width="16.3408" height="17.4677"/>
+  <object id="114" x="1890.74" y="111.286" width="16.3408" height="17.4677"/>
+  <object id="115" x="1790.44" y="110.723" width="16.3408" height="17.4677"/>
+  <object id="116" x="1886.8" y="196.935" width="16.3408" height="17.4677"/>
+  <object id="117" x="2041.19" y="134.389" width="16.3408" height="17.4677"/>
+  <object id="118" x="2124.02" y="66.2084" width="16.3408" height="17.4677"/>
+  <object id="119" x="2016.4" y="59.4467" width="16.3408" height="17.4677"/>
+  <object id="120" x="2163.46" y="133.262" width="16.3408" height="17.4677"/>
+  <object id="121" x="2229.95" y="145.658" width="16.3408" height="17.4677"/>
+  <object id="122" x="2316.17" y="145.095" width="16.3408" height="17.4677"/>
+  <object id="123" x="2845.27" y="262.861" width="16.3408" height="17.4677"/>
+  <object id="124" x="2840.76" y="173.269" width="16.3408" height="17.4677"/>
+  <object id="125" x="2729.76" y="85.93" width="17.4677" height="17.4677"/>
+  <object id="126" x="2609.74" y="230.18" width="17.4677" height="17.4677"/>
+ </objectgroup>
+ <objectgroup color="#010000" id="92" name="4-points-enemy">
+  <object id="129" x="592.776" y="48.4589" width="14.6504" height="15.7773"/>
+  <object id="132" x="638.418" y="129.036" width="16.3408" height="16.9043"/>
+  <object id="133" x="774.779" y="145.94" width="17.4677" height="15.7773"/>
+  <object id="134" x="722.939" y="55.7841" width="20.8486" height="18.5947"/>
+  <object id="135" x="1011.44" y="135.798" width="18.5947" height="15.2138"/>
+  <object id="136" x="1067.79" y="47.8954" width="20.8486" height="19.1582"/>
+  <object id="138" x="1153.43" y="192.709" width="18.0312" height="22.539"/>
+  <object id="139" x="1200.2" y="36.6259" width="23.1025" height="21.4121"/>
+  <object id="143" x="1703.95" y="39.4433" width="20.8486" height="23.1025"/>
+  <object id="144" x="1801.43" y="18.5947" width="21.4121" height="20.2851"/>
+  <object id="145" x="1847.64" y="73.8153" width="22.539" height="23.666"/>
+  <object id="146" x="1929.34" y="25.9199" width="27.0468" height="22.539"/>
+  <object id="147" x="2457.32" y="14.0869" width="20.8486" height="20.2851"/>
+  <object id="148" x="2410.55" y="96.3543" width="18.0312" height="20.2851"/>
+  <object id="149" x="2512.54" y="165.098" width="19.7216" height="18.5947"/>
+  <object id="150" x="2428.02" y="278.92" width="18.0312" height="19.1582"/>
+  <object id="151" x="2881.05" y="78.8866" width="21.4121" height="19.7216"/>
+  <object id="152" x="2927.82" y="29.3007" width="23.1025" height="19.7216"/>
+  <object id="153" x="3019.67" y="85.6483" width="22.539" height="21.9755"/>
+  <object id="154" x="3105.88" y="32.6816" width="23.1025" height="21.9755"/>
+ </objectgroup>
+ <objectgroup color="#080a17" id="93" name="boss Enemy">
+  <object id="166" x="4520.95" y="196.312"/>
+  <object id="167" x="4451.94" y="96.3813"/>
+  <object id="168" x="4334.53" y="65.7145"/>
+  <object id="169" x="4210.11" y="68.3431"/>
+  <object id="170" x="4099.71" y="117.41"/>
+  <object id="171" x="4044.51" y="207.658"/>
+  <object id="172" x="4313.5" y="156.839"/>
  </objectgroup>
 </map>
