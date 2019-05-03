@@ -30,7 +30,9 @@ public abstract class Enemy extends GameObject {
     }
 
     public abstract void initSprite();
+
     public abstract void updateSprite();
+
     public abstract void setHealthPoints();
 
 
@@ -46,26 +48,29 @@ public abstract class Enemy extends GameObject {
             updateSprite();
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
             if (path.UpdatePath(body.getPosition())) {
-                    body.setLinearVelocity(path.GetVelocity().x, path.GetVelocity().y);
+                body.setLinearVelocity(path.GetVelocity().x, path.GetVelocity().y);
             }
         }
     }
+
     @Override
-    public void draw (Batch batch){
-            if (!destroyed)
-                super.draw(batch);
+    public void draw(Batch batch) {
+        if (!destroyed)
+            super.draw(batch);
     }
-    public boolean setToDestroy () {
-            //if the enemy has health points left it's not destroyed and hp is decreased
+
+    public boolean setToDestroy() {
+        //if the enemy has health points left it's not destroyed and hp is decreased
         if (healthPoints == 0) {
-                isSetToDestroy = true;
-                return true;
-            } else {
-                healthPoints--;
-                Assets.instance.audio.enemyHit.play();
-                return false;
-            }
+            isSetToDestroy = true;
+            return true;
+        } else {
+            healthPoints--;
+            Assets.instance.audio.enemyHit.play();
+            return false;
         }
+    }
+
     public class Path {
 
         Array<Vector2> points;

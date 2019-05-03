@@ -53,17 +53,15 @@ public class Assets implements Disposable {
         assetManager.dispose();
     }
 
-    public class CustomFont{
+    public class CustomFont {
 
-        public final FreeTypeFontGenerator fontGenerator;
-        public final FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
         public final BitmapFont font;
 
-        public CustomFont(){
+        public CustomFont() {
             //Declaring font and some of it's properties
-            fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
-            fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            fontParameter.size = 54;
+            FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
+            FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            fontParameter.size = 48;
             fontParameter.borderWidth = 3;
             fontParameter.borderColor = Color.PINK;
             fontParameter.color = Color.CYAN;
@@ -109,7 +107,7 @@ public class Assets implements Disposable {
             fallingAnimation = new Animation<AtlasRegion>(0.1f, fallingFrames, PlayMode.LOOP);
 
             Array<AtlasRegion> deathFrames = new Array<AtlasRegion>();
-            for (int i=0 ; i<=7 ; i++){
+            for (int i = 0; i <= 7; i++) {
                 deathFrames.add(atlas.findRegion("Ellie frame_death", i));
             }
 
@@ -121,21 +119,22 @@ public class Assets implements Disposable {
 
     public class DroneEnemyAssets {
         public final Animation<AtlasRegion> idleAnimation;
-        public DroneEnemyAssets(TextureAtlas atlas)
-        {
+
+        public DroneEnemyAssets(TextureAtlas atlas) {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
-            for(int i = 1; i<=4; i++)
-                animation.add(atlas.findRegion("drone-"+i));
+            for (int i = 1; i <= 4; i++)
+                animation.add(atlas.findRegion("drone-" + i));
             idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
         }
     }
+
     public class TurretEnemyAssets {
         public final Animation<AtlasRegion> idleAnimation;
-        public TurretEnemyAssets(TextureAtlas atlas)
-        {
+
+        public TurretEnemyAssets(TextureAtlas atlas) {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
-            for(int i = 1; i<=6; i++)
-                animation.add(atlas.findRegion("turret-"+i));
+            for (int i = 1; i <= 6; i++)
+                animation.add(atlas.findRegion("turret-" + i));
             idleAnimation = new Animation<AtlasRegion>(0.1f, animation, PlayMode.LOOP);
         }
     }

@@ -20,11 +20,12 @@ public class LevelManager {
 
     private Level1 level1Screen;
     private World world;
+
     //Game Objects
     private Player player;
-//    private Enemy enemy;
     private Array<Enemy> enemies;
     private Array<Bullet> bullets;
+
     //Game hud
     private Hud hud;
     private OrthographicCamera gameCam;
@@ -48,20 +49,18 @@ public class LevelManager {
 
         if (player.isDead()) {
             GameClass.pauseMusic = true;
-            if(!isDeathSoundPlayed){
+            if (!isDeathSoundPlayed) {
                 Assets.instance.audio.playerDied.play();
                 isDeathSoundPlayed = true;
             }
-            if(player.endLevel()){
+            if (player.endLevel()) {
                 System.out.println("Level is lost");
                 gameOver(false);
             }
-        }
-        else if(player.getWin()){
+        } else if (player.getWin()) {
             System.out.println("Level is won");
             gameOver(true);
-        }
-        else
+        } else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();
         hud.setLives(player.getLives());
@@ -98,7 +97,7 @@ public class LevelManager {
             player.shooting = false;
 
         //Music Control
-        if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             GameClass.pauseMusic = !GameClass.pauseMusic;
         }
     }
@@ -124,11 +123,9 @@ public class LevelManager {
             if (bullet.equals(bulletFixture.getUserData()))
                 bullet.setToDestroy();
         }
-        for(Enemy enemy : enemies)
-        {
-            if(enemy.equals(enemyFixture.getUserData()))
-            {
-                if(enemy.setToDestroy())
+        for (Enemy enemy : enemies) {
+            if (enemy.equals(enemyFixture.getUserData())) {
+                if (enemy.setToDestroy())
                     player.increaseScore();
             }
         }

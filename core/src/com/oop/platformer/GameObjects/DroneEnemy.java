@@ -6,11 +6,12 @@ import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
-public class DroneEnemy extends Enemy{
+public class DroneEnemy extends Enemy {
 
     public DroneEnemy(World world, Vector2 spritePosition, Array<Vector2> path) {
         super(world, spritePosition, path);
     }
+
     @Override
     public void initSprite() {
         setBounds(0, 0, 35 / GameClass.PPM, 50 / GameClass.PPM);

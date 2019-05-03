@@ -3,12 +3,9 @@ package com.oop.platformer.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
@@ -80,15 +77,14 @@ public class IntroScreen implements Screen {
         return storyList;
     }
 
-    private Texture getCurrentBackground(){
+    private Texture getCurrentBackground() {
         setCurrentFrame();
 
-        if(currentFrame.equals(FrameState.FirstFrame)){
+        if (currentFrame.equals(FrameState.FirstFrame)) {
             return Assets.instance.mainMenuAssets.FirstFrame;
-        }
-        else if(currentFrame.equals(FrameState.SecondFrame))
+        } else if (currentFrame.equals(FrameState.SecondFrame))
             return Assets.instance.mainMenuAssets.SecondFrame;
-        else if(currentFrame.equals(FrameState.ThirdFrame))
+        else if (currentFrame.equals(FrameState.ThirdFrame))
             return Assets.instance.mainMenuAssets.ThirdFrame;
         else
             return Assets.instance.mainMenuAssets.FirstFrame;
@@ -114,12 +110,13 @@ public class IntroScreen implements Screen {
         }
     }
 
-    private void updateGameFrames(float deltaTime){
+    private void updateGameFrames(float deltaTime) {
         //Begin drawing
         gameClass.batch.begin();
 
         gameClass.batch.draw(getCurrentBackground(), 0, 0, GameClass.screenWidth, GameClass.screenHeight);
         Assets.instance.customFont.font.draw(gameClass.batch, getCurrentLine(deltaTime), 50, 200);
+        Assets.instance.customFont.font.draw(gameClass.batch, "Space to Skip...", 1400, 1000);
 
         //End drawing
         gameClass.batch.end();
@@ -128,7 +125,7 @@ public class IntroScreen implements Screen {
     private String getCurrentLine(float deltaTime) {
         currentTime += deltaTime;
 
-        if(currentTime - previousTime >= 5){
+        if (currentTime - previousTime >= 5) {
             previousTime = currentTime;
             currentLine++;
             currentStoryLine = storyLines.get(currentLine);
@@ -137,14 +134,14 @@ public class IntroScreen implements Screen {
         return currentStoryLine;
     }
 
-    private void checkIntroEnd(){
-        if(currentLine == 7 && !introEndingSoundEffect){
+    private void checkIntroEnd() {
+        if (currentLine == 7 && !introEndingSoundEffect) {
             Assets.instance.audio.introMusic.stop();
             Assets.instance.audio.introLastSound.play();
             introEndingSoundEffect = true;
         }
 
-        if(currentLine == 7 && currentTime - previousTime >= 3){
+        if (currentLine == 7 && currentTime - previousTime >= 3) {
             GameClass.pauseMusic = mainThemeMusicPlayState;
             end = true;
         }
@@ -152,7 +149,8 @@ public class IntroScreen implements Screen {
     }
 
     @Override
-    public void show() { }
+    public void show() {
+    }
 
     @Override
     public void render(float delta) {
@@ -161,23 +159,23 @@ public class IntroScreen implements Screen {
 
         checkIntroEnd();
 
-        if (end){
+        if (end) {
             GameClass.pauseMusic = mainThemeMusicPlayState;
             gameClass.endIntro();
         }
 
 
-        if(!end)
+        if (!end)
             updateGameFrames(delta);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
             end = true;
 
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width,height);
+        viewport.update(width, height);
     }
 
     @Override

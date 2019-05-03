@@ -78,7 +78,7 @@ public class Bullet extends Sprite {
             super.draw(batch);
     }
 
-    public void setToDestroy(){
+    public void setToDestroy() {
         isSetToDestroy = true;
     }
 

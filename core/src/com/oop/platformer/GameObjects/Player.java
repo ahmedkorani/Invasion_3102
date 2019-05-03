@@ -32,7 +32,7 @@ public class Player extends GameObject {
     private Vector2 respawnPosition;
     private float currentTime;
     private float previousTime;
-    private float xRespawn,yRespawn;
+    private float xRespawn, yRespawn;
 
     private float deathTime;
     private float winTime;
@@ -88,7 +88,7 @@ public class Player extends GameObject {
     public void update(float deltaTime) {
         currentTime += deltaTime;
 
-        if(win)
+        if (win)
             winTime = currentTime;
 
         checkPlayerPosition();
@@ -206,7 +206,7 @@ public class Player extends GameObject {
     private void checkPlayerPosition() {
         if (!dead && this.spritePosition.y < -5f) {
             hitPlayer();
-            if(!dead)
+            if (!dead)
                 respawnPlayer();
         }
     }
@@ -230,7 +230,7 @@ public class Player extends GameObject {
     }
 
     public void respawnPlayer() {
-        body.setTransform(new Vector2(xRespawn,yRespawn), 0);
+        body.setTransform(new Vector2(xRespawn, yRespawn), 0);
         if (!isRunningRight())
             runningRight = true;
     }
@@ -243,11 +243,10 @@ public class Player extends GameObject {
         return dead && currentTime - deathTime >= 5;
     }
 
-    public boolean getWin(){
-        if(currentTime - winTime >= 5 && win){
+    public boolean getWin() {
+        if (currentTime - winTime >= 5 && win) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 

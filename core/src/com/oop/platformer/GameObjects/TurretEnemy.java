@@ -26,6 +26,7 @@ public class TurretEnemy extends Enemy {
     public void setHealthPoints() {
         healthPoints = 2;
     }
+
     @Override
     public void define() {
         BodyDef bodyDef = new BodyDef();

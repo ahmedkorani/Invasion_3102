@@ -24,7 +24,6 @@ import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
 
 
-
 public class Level1 implements Screen {
 
     private GameClass gameClass;
@@ -35,7 +34,7 @@ public class Level1 implements Screen {
 
     private TiledMap map;//reference for the map itself
 
-    private  Hud hud;
+    private Hud hud;
     private OrthogonalTiledMapRenderer renderer;
 
     private World world;
@@ -51,7 +50,7 @@ public class Level1 implements Screen {
     public Array<Enemy> enemies;
 
 
-    public Level1(GameClass gameClass){
+    public Level1(GameClass gameClass) {
 
         this.gameClass = gameClass;
         //setup camera and window
@@ -66,22 +65,20 @@ public class Level1 implements Screen {
         hud = new Hud(gameClass.batch);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / GameClass.PPM);
 
-        gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         //(0, -8) - Gravity on y equals -8
-        world = new World(new Vector2(0,-8), true);
+        world = new World(new Vector2(0, -8), true);
 
         renderFloor();
-        //enemies Initialization
-//        droneEnemyArrayList = new ArrayList<DroneEnemy>();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(gameClass,this, player, enemies, hud, world, bullets, gameCam);
+        levelManager = new LevelManager(gameClass, this, player, enemies, hud, world, bullets, gameCam);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }
 
-    private void addObjectsToTheWorld(){
+    private void addObjectsToTheWorld() {
         //Adds player to the world in spritePosition (30,90)
         player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
@@ -92,11 +89,11 @@ public class Level1 implements Screen {
         Array<Vector2> path = new Array<Vector2>();
         Array<Vector2> path2 = new Array<Vector2>();
 
-        path.add(new Vector2(700/GameClass.PPM, 200/GameClass.PPM));
-        path.add(new Vector2(300/GameClass.PPM, 200/GameClass.PPM));
+        path.add(new Vector2(700 / GameClass.PPM, 200 / GameClass.PPM));
+        path.add(new Vector2(300 / GameClass.PPM, 200 / GameClass.PPM));
 
-        path2.add(new Vector2(900/GameClass.PPM, 200/GameClass.PPM));
-        path2.add(new Vector2(800/GameClass.PPM, 200/GameClass.PPM));
+        path2.add(new Vector2(900 / GameClass.PPM, 200 / GameClass.PPM));
+        path2.add(new Vector2(800 / GameClass.PPM, 200 / GameClass.PPM));
 
 
 //        path.add(new Vector2(650/GameClass.PPM, 50/GameClass.PPM));
@@ -108,7 +105,7 @@ public class Level1 implements Screen {
 //        turretEnemy = new TurretEnemy(world, path2.get(0), path2);
     }
 
-    private void renderFloor(){
+    private void renderFloor() {
         floorDebugger = new Box2DDebugRenderer();
 
         //defines what the body consists of
@@ -122,7 +119,7 @@ public class Level1 implements Screen {
         Body floor;
 
         //Create Floor Objects which's in the 4th layer
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             //Shaped as rectangles in the map objects
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
@@ -141,91 +138,23 @@ public class Level1 implements Screen {
     }
 
     //update the game state
-    private void update(float deltaTime){
-//        for(Bullet bullet : bullets){
-//            if(Intersector.overlaps(droneEnemy, bullet)){
-//
-//            }
-//        }
-        //System.out.printf("%f\n", gameCam.spritePosition.x);
+    private void update(float deltaTime) {
+
         levelManager.update(deltaTime);
         /*
         set timeStamp and velocity 
         to avoid CPU & GPU speed differences
         */
-        world.step(1/60f, 60, 2);
+        world.step(1 / 60f, 60, 2);
         player.update(deltaTime);
-        //droneEnemy Update
-//        for (DroneEnemy droneEnemy : droneEnemyArrayList){
-//            droneEnemy.update();
-//        }
 
         //Bullet update
-        for (Bullet bullet: bullets) {
+        for (Bullet bullet : bullets) {
             bullet.update(deltaTime);
         }
 
-        for(Enemy enemy : enemies)
+        for (Enemy enemy : enemies)
             enemy.update(deltaTime);
-//        droneEnemy.update(deltaTime);
-//        turretEnemy.update(deltaTime);
-
-//        System.out.println(droneEnemy.spritePosition.y);
-
-        //NOTE ****** DON'T DELETE THIS CAMERA CODE
-
-//        /////CAMERA////////////////////////
-//        // These values likely need to be scaled according to your world coordinates.
-//// The left boundary of the map (x)
-//        float mapLeft = 0;
-//// The right boundary of the map (x + width)
-//        float mapRight = 0 + gamePort.getWorldWidth();
-//// The bottom boundary of the map (y)
-//        float mapBottom = 0;
-//// The top boundary of the map (y + height)
-//        float mapTop = 0 + gamePort.getWorldHeight();
-//// The camera dimensions, halved
-//        float cameraHalfWidth = gameCam.viewportWidth * .5f;
-//        float cameraHalfHeight = gameCam.viewportHeight * .5f;
-//
-//// Move camera after player as normal
-//
-//        float cameraLeft = gameCam.spritePosition.x - cameraHalfWidth;
-//        float cameraRight = gameCam.spritePosition.x + cameraHalfWidth;
-//        float cameraBottom = gameCam.spritePosition.y - cameraHalfHeight;
-//        float cameraTop = gameCam.spritePosition.y + cameraHalfHeight;
-//
-//// Horizontal axis
-//        if(gamePort.getWorldWidth() < gameCam.viewportWidth)
-//        {
-//            gameCam.spritePosition.x = mapRight / 2;
-//        }
-//        else if(cameraLeft <= mapLeft)
-//        {
-//            gameCam.spritePosition.x = mapLeft + cameraHalfWidth;
-//        }
-//        else if(cameraRight >= mapRight)
-//        {
-//            gameCam.spritePosition.x = mapRight - cameraHalfWidth;
-//        }
-//
-//// Vertical axis
-//        if(gamePort.getWorldHeight() < gameCam.viewportHeight)
-//        {
-//            gameCam.spritePosition.y = mapTop / 2;
-//        }
-//        else if(cameraBottom <= mapBottom)
-//        {
-//            gameCam.spritePosition.y = mapBottom + cameraHalfHeight;
-//        }
-//        else if(cameraTop >= mapTop)
-//        {
-//            gameCam.spritePosition.y = mapTop - cameraHalfHeight;
-//        }
-//
-//        ///////////CAMERA/////////////////////
-
-        //NOTE ****** DON'T DELETE THIS CAMERA CODE
 
         gameCam.position.x = player.body.getWorldCenter().x;
         gameCam.update();
@@ -241,7 +170,7 @@ public class Level1 implements Screen {
     public void render(float delta) {
         //separate our update logic from render
 //        if(delta >= 0.01f) //experimental
-            update(delta);
+        update(delta);
 
 
         //Clear the game screen with Black
@@ -255,16 +184,15 @@ public class Level1 implements Screen {
 
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();
+
         player.draw(gameClass.batch);
 
-        for (Bullet bullet: bullets) {
+        for (Bullet bullet : bullets) {
             bullet.draw(gameClass.batch);
         }
 
-        for(Enemy enemy: enemies)
+        for (Enemy enemy : enemies)
             enemy.draw(gameClass.batch);
-//        droneEnemy.draw(gameClass.batch);
-//        turretEnemy.draw(gameClass.batch);
 
         gameClass.batch.end();
 
@@ -275,7 +203,7 @@ public class Level1 implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        gamePort.update(width,height);
+        gamePort.update(width, height);
     }
 
     @Override

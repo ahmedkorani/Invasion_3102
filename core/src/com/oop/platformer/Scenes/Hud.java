@@ -3,7 +3,6 @@ package com.oop.platformer.Scenes;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -15,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Disposable;
 
 
-public class Hud implements  Disposable{
+public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
 
@@ -26,7 +25,7 @@ public class Hud implements  Disposable{
     private Label lbl_lives;
 
 
-    public  Hud(SpriteBatch spriteBatch){
+    public Hud(SpriteBatch spriteBatch) {
 
         lives = Constants.LIVES;
         score = Constants.SCORE;
@@ -62,7 +61,7 @@ public class Hud implements  Disposable{
     }
 
     //To increase player score upon doing achievements
-    public void setScore(int playerScore){
+    public void setScore(int playerScore) {
         score = playerScore;
         lbl_score.setText("Score: " + score.toString());
     }

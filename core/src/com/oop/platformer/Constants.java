@@ -28,8 +28,6 @@ public class Constants {
     //Main Menu Buttons and Background
     public static final String BACKGROUND = "StartScreen.png";
 
-    //Enemy atlas name
-    public static final String ENEMY = "enemy";
     //Bullets Constants
     public static final String BULLET = "Bullets/bullet1.png";
     public static final float FIRE_RATE = 0.4f;
