@@ -25,6 +25,7 @@ public class LevelManager {
     private Player player;
     private Array<Enemy> enemies;
     private Array<Bullet> bullets;
+    private Enemy bossEnemy;
 
     //Game hud
     private Hud hud;
@@ -43,6 +44,14 @@ public class LevelManager {
         this.bullets = bullets;
         this.gameCam = gameCam;
         shootTimer = 0;
+
+        //finding the boss enemy in the enemies array
+        for (Enemy enemy : enemies) {
+            if (enemy instanceof BossEnemy) {
+                this.bossEnemy = enemy;
+                break;
+            }
+        }
     }
 
     public void update(float deltaTime) {
@@ -53,13 +62,17 @@ public class LevelManager {
                 Assets.instance.audio.playerDied.play();
                 isDeathSoundPlayed = true;
             }
-            if (player.endLevel()) {
+            if (player.lostLevel()) {
                 System.out.println("Level is lost");
                 gameOver(false);
             }
-        } else if (player.getWin()) {
-            System.out.println("Level is won");
-            gameOver(true);
+        } else if (bossEnemy.destroyed) {
+            if (!player.win) {
+                player.setWin();
+            } else if (player.wonLevel()) {
+                System.out.println("you won");
+                gameOver(true);
+            }
         } else
             handlePlayerInput(deltaTime);
         checkBulletsPosition();

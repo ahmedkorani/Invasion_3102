@@ -241,15 +241,17 @@ public class Player extends GameObject {
         return runningRight;
     }
 
-    public boolean endLevel() {
-        return dead && currentTime - deathTime >= 5;
+    public boolean wonLevel(){
+        return win && currentTime - winTime >= 5;
     }
 
-    public boolean getWin() {
-        if (currentTime - winTime >= 5 && win) {
-            return true;
-        } else
-            return false;
+    public void setWin(){
+        win = true;
+        winTime = currentTime;
+    }
+
+    public boolean lostLevel() {
+        return dead && currentTime - deathTime >= 5;
     }
 
 }
