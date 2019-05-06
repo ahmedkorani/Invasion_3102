@@ -188,6 +188,7 @@ public class Assets implements Disposable {
 
     public class Audio {
 
+        public final Music startScreenMusic;
         public final Music mainThemeMusic;
         public final Music introMusic;
         public final Sound introLastSound;
@@ -197,8 +198,8 @@ public class Assets implements Disposable {
         public final Sound playerHit;
         public final Sound playerDied;
 
-
         public Audio(AssetManager assetManager) {
+            assetManager.load(Constants.STARTSCREENMUSIC, Music.class);
             assetManager.load(Constants.MUSIC, Music.class);
             assetManager.load(Constants.INTRO_MUSIC, Music.class);
             assetManager.load(Constants.IntroFinalSoundEffect, Sound.class);
@@ -213,6 +214,9 @@ public class Assets implements Disposable {
             //Music loop to play forever
             mainThemeMusic = assetManager.get(Constants.MUSIC);
             mainThemeMusic.setLooping(true);
+            startScreenMusic = assetManager.get(Constants.STARTSCREENMUSIC);
+            startScreenMusic.setLooping(true);
+
             introMusic = assetManager.get(Constants.INTRO_MUSIC);
             introLastSound = assetManager.get(Constants.IntroFinalSoundEffect);
 
