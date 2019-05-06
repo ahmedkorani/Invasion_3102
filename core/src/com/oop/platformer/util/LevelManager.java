@@ -57,7 +57,7 @@ public class LevelManager {
     public void update(float deltaTime) {
 
         if (player.isDead()) {
-            GameClass.pauseMusic = true;
+            GameClass.isMusicPaused = true;
             if (!isDeathSoundPlayed) {
                 Assets.instance.audio.playerDied.play();
                 isDeathSoundPlayed = true;
@@ -111,7 +111,7 @@ public class LevelManager {
 
         //Music Control
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-            GameClass.pauseMusic = !GameClass.pauseMusic;
+            GameClass.isMusicPaused = !GameClass.isMusicPaused;
         }
     }
 

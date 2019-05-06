@@ -18,6 +18,9 @@ A retro themed 2D action platformer with a synthwave theme made with Java and Li
 **Main Theme:** [I Am The Program (Mega Drive) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/CNR0XN5SEko) 
 - Copyright/License: Blood Music
 
+**Main Theme:** [Night Slasher II (Lueur Verte) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/D1bX49IuY2o)
+- Copyright/License: Blood Music
+
 **Gun Shot:** [Retro Gun Shot](https://freesound.org/people/josepharaoh99/sounds/363698/)
 - Copyright/License: Creative Commons Zero License
 
@@ -74,3 +77,6 @@ _____
   - Unspecified License.
   
 
+**Font(Logo):** [Lazer 84](https://ghwdownload.com/download-lazer-84-free-fonts-available/)
+
+  - Unspecified License.

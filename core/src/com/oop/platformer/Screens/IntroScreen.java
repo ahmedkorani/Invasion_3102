@@ -37,8 +37,8 @@ public class IntroScreen implements Screen {
 
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
-        mainThemeMusicPlayState = GameClass.pauseMusic;
-        GameClass.pauseMusic = true;
+        mainThemeMusicPlayState = GameClass.isMusicPaused;
+        GameClass.isMusicPaused = true;
         Assets.instance.audio.introMusic.play();
 
         OrthographicCamera camera = new OrthographicCamera();
@@ -136,7 +136,7 @@ public class IntroScreen implements Screen {
         }
 
         if (currentLine == 7 && currentTime - previousTime >= 3) {
-            GameClass.pauseMusic = mainThemeMusicPlayState;
+            GameClass.isMusicPaused = mainThemeMusicPlayState;
             end = true;
         }
 
@@ -154,8 +154,13 @@ public class IntroScreen implements Screen {
         checkIntroEnd();
 
         if (end) {
+<<<<<<< HEAD
             GameClass.pauseMusic = mainThemeMusicPlayState;
             gameClass.beginLevel();
+=======
+            GameClass.isMusicPaused = mainThemeMusicPlayState;
+            gameClass.endIntro();
+>>>>>>> b5c20268985221159680f0c5a5b975820384ecb3
         }
 
 

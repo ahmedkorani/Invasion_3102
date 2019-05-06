@@ -22,7 +22,7 @@ public class GameClass extends Game {
 
     public SpriteBatch batch;
 
-    public static boolean pauseMusic;
+    public static boolean isMusicPaused;
     private boolean gameOver;
 
     public GameClass() {
@@ -37,7 +37,7 @@ public class GameClass extends Game {
     public void create() {
         batch = new SpriteBatch();
         Assets.instance.init(new AssetManager());
-        pauseMusic = true;
+        isMusicPaused = false; //Change this to true if you want the music to be paused by default
         gameOver = false;
         //The Play Screen
         setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
@@ -56,14 +56,30 @@ public class GameClass extends Game {
     }
 
     private void checkMusicControl() {
-        if (!pauseMusic)
-            Assets.instance.audio.mainThemeMusic.play();
+        if (!isMusicPaused)
+        {
+            if (this.getScreen().toString().contains("StartScreen"))
+                Assets.instance.audio.startScreenMusic.play();
+
+            else if (this.getScreen().toString().contains("Level1"))
+                Assets.instance.audio.mainThemeMusic.play();
+        }
+
         else
-            Assets.instance.audio.mainThemeMusic.pause();
+        {
+            if (this.getScreen().toString().contains("StartScreen"))
+                Assets.instance.audio.startScreenMusic.pause();
+
+            else if (this.getScreen().toString().contains("Level1"))
+                Assets.instance.audio.mainThemeMusic.pause();
+
+        }
+
     }
 
     public void beginIntro() {
         setScreen(new IntroScreen(this));
+        Assets.instance.audio.startScreenMusic.stop();
     }
 
     public void beginLevel() {
