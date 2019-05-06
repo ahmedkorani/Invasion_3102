@@ -15,7 +15,7 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
-    public static final int LIVES = 100;
+    public static final int LIVES = 1;
     public static final int SCORE = 0;
 
     //Bullet atlas path

@@ -155,7 +155,7 @@ public class IntroScreen implements Screen {
 
         if (end) {
             GameClass.pauseMusic = mainThemeMusicPlayState;
-            gameClass.endIntro();
+            gameClass.beginLevel();
         }
 
 

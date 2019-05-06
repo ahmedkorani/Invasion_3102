@@ -31,10 +31,11 @@ public class StartScreen implements Screen {
         showCredits = false;
 
         OrthographicCamera camera = new OrthographicCamera();
-        viewport = new StretchViewport(GameClass.screenWidth, GameClass.screenHeight, camera);
+        viewport = new StretchViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, camera);
         viewport.apply();
 
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        camera.position.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2, 0);
+
         camera.update();
 
 

@@ -142,14 +142,9 @@ public class LevelManager {
                     player.increaseScore();
             }
         }
-
-
-//        if (this.enemy.setToDestroy()) {
-//            player.increaseScore();
-//        }
     }
 
-    public void gameOver(boolean winOrLose) {
-        gameClass.gameOver(winOrLose);
+    private void gameOver(boolean playerState) {
+        gameClass.beginOutro(playerState);
     }
 }
