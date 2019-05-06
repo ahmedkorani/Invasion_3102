@@ -28,13 +28,9 @@ import com.oop.platformer.util.LevelManager;
 public class Level1 implements Screen {
 
     private GameClass gameClass;
-
     private OrthographicCamera gameCam; //game camera instance to move with the player character
-
     private Viewport gamePort; //Manages a Camera and determines how world coordinates are mapped to and from the screen.
-
     private TiledMap map;//reference for the map itself
-
     private Hud hud;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -49,6 +45,34 @@ public class Level1 implements Screen {
 
     public Array<Bullet> bullets;
     public Array<Enemy> enemies;
+
+    public GameClass getGameClass() {
+        return gameClass;
+    }
+
+    public OrthographicCamera getGameCam() {
+        return gameCam;
+    }
+
+    public Hud getHud() {
+        return hud;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Array<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public Array<Enemy> getEnemies() {
+        return enemies;
+    }
 
 
     public Level1(GameClass gameClass) {
@@ -74,7 +98,8 @@ public class Level1 implements Screen {
         renderFloor();
 
         addObjectsToTheWorld();
-        levelManager = new LevelManager(gameClass, this, player, enemies, hud, world, bullets, gameCam);
+//        levelManager = new LevelManager(gameClass, this, player, enemies, hud, world, bullets, gameCam);
+        levelManager = new LevelManager(this);
         //Adding contact listener to listen for collisions between bodies, with level manager with our game Objects
         world.setContactListener(new CollisionHandler(levelManager));
     }

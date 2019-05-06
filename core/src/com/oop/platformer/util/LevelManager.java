@@ -18,7 +18,7 @@ public class LevelManager {
 
     GameClass gameClass;
 
-    private Level1 level1Screen;
+    private Level1 level;
     private World world;
 
     //Game Objects
@@ -34,15 +34,16 @@ public class LevelManager {
     private boolean isDeathSoundPlayed = false;
     private float shootTimer;
 
-    public LevelManager(GameClass gameClass, Level1 level1Screen, Player player, Array<Enemy> enemies, Hud hud, World world, Array<Bullet> bullets, OrthographicCamera gameCam) {
-        this.gameClass = gameClass;
-        this.level1Screen = level1Screen;
-        this.player = player;
-        this.enemies = enemies;
-        this.hud = hud;
-        this.world = world;
-        this.bullets = bullets;
-        this.gameCam = gameCam;
+    public LevelManager(Level1 level)
+    {
+        this.level = level;
+        this.gameClass = level.getGameClass();
+        this.world = level.getWorld();
+        this.player = level.getPlayer();
+        this.enemies = level.getEnemies();
+        this.bullets = level.getBullets();
+        this.hud = level.getHud();
+        this.gameCam = level.getGameCam();
         shootTimer = 0;
 
         //finding the boss enemy in the enemies array
@@ -52,6 +53,7 @@ public class LevelManager {
                 break;
             }
         }
+
     }
 
     public void update(float deltaTime) {
@@ -104,7 +106,7 @@ public class LevelManager {
 
         if (Gdx.input.isKeyPressed(Input.Keys.F) && shootTimer >= FIRE_RATE) {
             player.shooting = true;
-            level1Screen.bullets.add(spawnBullet());
+            level.bullets.add(spawnBullet());
             shootTimer = 0;
         } else if (!Gdx.input.isKeyPressed(Input.Keys.F))
             player.shooting = false;
