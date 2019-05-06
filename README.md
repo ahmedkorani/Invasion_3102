@@ -74,3 +74,6 @@ _____
   - Unspecified License.
   
 
+**Font(Logo):** [Lazer 84](https://ghwdownload.com/download-lazer-84-free-fonts-available/)
+
+  - Unspecified License.

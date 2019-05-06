@@ -43,7 +43,7 @@ public class GameClass extends Game {
         pauseMusic = true;
         gameOver = false;
         //The Play Screen
-        setScreen(new Level1(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+        setScreen(new StartScreen(this)); // To view the start screen change Level1 to StartScreen
 
     }
 
