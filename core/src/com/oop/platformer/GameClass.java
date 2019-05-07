@@ -60,7 +60,10 @@ public class GameClass extends Game {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.play();
 
-            else if(this.getScreen() instanceof  GameLevel)
+            if (this.getScreen().toString().contains("IntroScreen"))
+                Assets.instance.audio.introMusic.play();
+
+            else if (this.getScreen() instanceof GameLevel)
                 Assets.instance.audio.mainThemeMusic.play();
 
             else if (this.getScreen().toString().contains("OutroScreen")) {
@@ -74,8 +77,10 @@ public class GameClass extends Game {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.pause();
 
+            if (this.getScreen().toString().contains("IntroScreen"))
+                Assets.instance.audio.introMusic.pause();
 
-            else if(this.getScreen() instanceof GameLevel)
+            else if (this.getScreen() instanceof GameLevel)
                 Assets.instance.audio.mainThemeMusic.pause();
 
             else if (this.getScreen().toString().contains("OutroScreen")) {
@@ -84,7 +89,6 @@ public class GameClass extends Game {
                 else if (OutroScreen.playerLost)
                     Assets.instance.audio.loseMusic.pause();
             }
-
         }
 
     }
@@ -109,6 +113,7 @@ public class GameClass extends Game {
 
     //Ends the outro screen, returns the player to the start screen
     public void endOutro() {
+        Assets.instance.audio.mainThemeMusic.stop();
         setScreen(new StartScreen(this));
     }
 }

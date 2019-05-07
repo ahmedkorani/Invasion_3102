@@ -92,7 +92,6 @@ public class LevelManager {
 //    }
 
     private LevelManager() {
-
     }
 
     public void update(float deltaTime) {

@@ -1,6 +1,5 @@
 package com.oop.platformer.GameObjects;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -113,22 +112,15 @@ public class Player extends GameObject {
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
 
-
         if(currentCheckPointIndex+1 < playerCheckpoints.size)
         {
-        System.out.println(body.getPosition().x + ": " + playerCheckpoints.get(currentCheckPointIndex+1).x/GameClass.PPM);
             if(body.getPosition().x >= playerCheckpoints.get(currentCheckPointIndex+1).x/GameClass.PPM)
             {
-                System.out.println("XRespawn: " + xRespawn);
                 xRespawn = playerCheckpoints.get(currentCheckPointIndex+1).x/ GameClass.PPM;
                 yRespawn = playerCheckpoints.get(currentCheckPointIndex+1).y /GameClass.PPM;
                 currentCheckPointIndex++;
             }
         }
-
-
-
-
     }
 
     private TextureRegion getFrame(float deltaTime) {
@@ -179,6 +171,10 @@ public class Player extends GameObject {
     }
 
     private State getState() {
+        if (dead)
+            return State.Dead;
+        else if (win)
+            return State.Win;
         if (body.getLinearVelocity().y < 0 || (body.getLinearVelocity().y < 0 && previousState == State.Jumping))
             return State.Falling;
         else if (body.getLinearVelocity().y > 0 && Gdx.input.isKeyPressed(Input.Keys.F))
@@ -189,10 +185,6 @@ public class Player extends GameObject {
             return State.Jumping;
         else if (shooting)
             return State.Shooting;
-        else if (dead)
-            return State.Dead;
-        else if (win)
-            return State.Win;
         else
             return State.Standing;
     }
@@ -229,10 +221,10 @@ public class Player extends GameObject {
 
     public void hitPlayer() {
         if (lives == 0) {
-            //TODO show Death Screen
             System.out.println("you ran out of lives DEAD :( ");
             dead = true;
-            deathTime = currentTime;
+            if(deathTime == 0)
+                deathTime = currentTime;
             body.setLinearVelocity(0,0);
         } else {
             System.out.println("player is hit");
