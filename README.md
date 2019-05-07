@@ -18,7 +18,7 @@ A retro themed 2D action platformer with a synthwave theme made with Java and Li
 **Main Theme:** [I Am The Program (Mega Drive) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/CNR0XN5SEko) 
 - Copyright/License: Blood Music
 
-**Main Theme:** [Night Slasher II (Lueur Verte) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/D1bX49IuY2o)
+**Mtart Screen Theme:** [Night Slasher II (Lueur Verte) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/D1bX49IuY2o)
 - Copyright/License: Blood Music
 
 **Lose Music:** [The Price of Failure by Perturbator from "I Am The Night"](https://youtu.be/0Ry2pjYgiLU)
