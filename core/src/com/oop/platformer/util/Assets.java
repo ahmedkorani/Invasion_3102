@@ -38,9 +38,9 @@ public class Assets implements Disposable {
     public void init(AssetManager assetManager) {
         this.assetManager = assetManager;
 
-        playerAssets = new PlayerAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
+        playerAssets = new PlayerAssets(new TextureAtlas(Constants.PLAYER_TEXTURE_ATLAS));
         mainMenuAssets = new MainMenuAssets();
-        bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
+        bulletAssets = new BulletAssets();
         droneEnemyAssets = new DroneEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
         turretEnemyAssets = new TurretEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
         bossEnemyAssets = new BossEnemyAssets(new TextureAtlas(Constants.BOSS_TEXTURE_ATLAS));
@@ -58,7 +58,7 @@ public class Assets implements Disposable {
 
         public final BitmapFont font;
 
-        public CustomFont() {
+        CustomFont() {
             //Declaring font and some of it's properties
             FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.RETRO_FONT));
             FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -80,7 +80,7 @@ public class Assets implements Disposable {
 
         public final TextureRegion jumpingAnimation;
 
-        public PlayerAssets(TextureAtlas atlas) {
+        PlayerAssets(TextureAtlas atlas) {
             Array<AtlasRegion> idleFrames = new Array<AtlasRegion>();
 
             for (int i = 0; i <= 3; i++)
@@ -121,7 +121,7 @@ public class Assets implements Disposable {
     public class DroneEnemyAssets {
         public final Animation<AtlasRegion> idleAnimation;
 
-        public DroneEnemyAssets(TextureAtlas atlas) {
+        DroneEnemyAssets(TextureAtlas atlas) {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
             for (int i = 1; i <= 4; i++)
                 animation.add(atlas.findRegion("drone-" + i));
@@ -132,7 +132,7 @@ public class Assets implements Disposable {
     public class BossEnemyAssets {
         public final Animation<AtlasRegion> flyingAnimation;
 
-        public BossEnemyAssets(TextureAtlas atlas) {
+        BossEnemyAssets(TextureAtlas atlas) {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
             for (int i = 1; i <= 7; i++)
                 animation.add(atlas.findRegion("Boss-" + i));
@@ -144,7 +144,7 @@ public class Assets implements Disposable {
     public class TurretEnemyAssets {
         public final Animation<AtlasRegion> idleAnimation;
 
-        public TurretEnemyAssets(TextureAtlas atlas) {
+        TurretEnemyAssets(TextureAtlas atlas) {
             Array<AtlasRegion> animation = new Array<AtlasRegion>();
             for (int i = 1; i <= 6; i++)
                 animation.add(atlas.findRegion("turret-" + i));
@@ -156,14 +156,8 @@ public class Assets implements Disposable {
         //        public final Animation<AtlasRegion> bulletAnimation;
         public final TextureRegion bulletTexture;
 
-        public BulletAssets(TextureAtlas atlas) {
+        BulletAssets() {
             bulletTexture = new TextureRegion(new Texture(Constants.BULLET));
-//            Array<AtlasRegion> bulletFrames = new Array<AtlasRegion>();
-//            for(int i = 1; i<=3; i++)
-//                bulletFrames.add(atlas.findRegion("shot-"+i));
-//            bulletAnimation = new Animation<AtlasRegion>(0.05f, bulletFrames, PlayMode.LOOP);
-//
-//            bulletTexture = atlas.findRegion("shot-1");
         }
     }
 
@@ -175,7 +169,7 @@ public class Assets implements Disposable {
         public Texture ThirdFrame;
         public Texture mainBackground;
 
-        public MainMenuAssets() {
+        MainMenuAssets() {
             FirstFrame = new Texture(Constants.FIRST_FRAME);
             SecondFrame = new Texture(Constants.SECOND_FRAME);
             ThirdFrame = new Texture(Constants.THIRD_FRAME);
@@ -192,14 +186,14 @@ public class Assets implements Disposable {
         public final Music loseMusic;
 
         public final Sound introLastSound;
-        public final Sound gunShotSound;
+        final Sound gunShotSound;
         public final Sound enemyDestroyed;
         public final Sound enemyHit;
         public final Sound playerHit;
-        public final Sound playerDied;
-        public final Sound playerWon;
+        final Sound playerDied;
+        final Sound playerWon;
 
-        public Audio(AssetManager assetManager) {
+        Audio(AssetManager assetManager) {
             assetManager.load(Constants.START_SCREEN_MUSIC, Music.class);
             assetManager.load(Constants.MUSIC, Music.class);
             assetManager.load(Constants.INTRO_MUSIC, Music.class);

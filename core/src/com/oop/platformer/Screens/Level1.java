@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -24,7 +23,6 @@ import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
 
-import java.util.logging.Level;
 
 
 public class Level1 implements Screen {
@@ -40,12 +38,10 @@ public class Level1 implements Screen {
     // for rendering debugging
     private Box2DDebugRenderer floorDebugger;
 
-    private LevelManager levelManager;
-
     private Player player;
 
-    public Array<Bullet> bullets;
-    public Array<Enemy> enemies;
+    private Array<Bullet> bullets;
+    private Array<Enemy> enemies;
 
     public GameClass getGameClass() {
         return gameClass;

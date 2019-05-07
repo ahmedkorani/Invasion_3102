@@ -10,13 +10,12 @@ public class Constants {
     public static final String RETRO_FONT = "IntroScreen/SFAlienEncounters.ttf";
 
     //Rambo Texture Atlas path
-    public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
+    public static final String PLAYER_TEXTURE_ATLAS = "Player/player.atlas";
 
     public static final int LIVES = 500;
     public static final int SCORE = 0;
 
-    //Bullet atlas path
-    public static final String BULLET_TEXTURE_ATLAS = "warped city files/Bullet.atlas";
+    //Enemy Textures paths
     public static final String ENEMY_TEXTURE_ATLAS = "Enemy/Enemy.atlas";
     public static final String BOSS_TEXTURE_ATLAS = "Enemy/Boss.atlas";
 

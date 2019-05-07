@@ -13,7 +13,7 @@ import com.oop.platformer.util.Assets;
 public class Player extends GameObject {
 
 
-    public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting, Dead}
+    public enum State {Falling, Jumping, Standing, Running, Shooting, Jumping_Shooting, Dead, Win}
 
     private int jumpCounter = 0;
     private State currentState;
@@ -131,6 +131,7 @@ public class Player extends GameObject {
                 region = Assets.instance.playerAssets.deathAnimation.getKeyFrame(stateTimer, false);
                 break;
             case Standing:
+            case Win:
             default:
                 region = Assets.instance.playerAssets.idleAnimation.getKeyFrame(stateTimer, true);
                 break;
@@ -167,11 +168,13 @@ public class Player extends GameObject {
             return State.Shooting;
         else if (dead)
             return State.Dead;
+        else if (win)
+            return State.Win;
         else
             return State.Standing;
     }
 
-    public void handleInput(float deltaTime) {
+    public void handleInput() {
 
         float verticalSpeed = body.getLinearVelocity().y;
 
@@ -234,7 +237,7 @@ public class Player extends GameObject {
         score += 100;
     }
 
-    public void respawnPlayer() {
+    private void respawnPlayer() {
         body.setTransform(new Vector2(xRespawn, yRespawn), 0);
         if (!isRunningRight())
             runningRight = true;

@@ -138,11 +138,11 @@ public class LevelManager {
 
     private void handlePlayerInput(float deltaTime) {
         shootTimer += deltaTime;
-        player.handleInput(deltaTime);
+        player.handleInput();
 
         if (Gdx.input.isKeyPressed(Input.Keys.F) && shootTimer >= FIRE_RATE) {
             player.shooting = true;
-            level.bullets.add(spawnBullet());
+            level.getBullets().add(spawnBullet());
             shootTimer = 0;
         } else if (!Gdx.input.isKeyPressed(Input.Keys.F))
             player.shooting = false;

@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.Disposable;
 
 public class Hud implements Disposable {
     public Stage stage;
-    private Viewport viewport;
 
     private Integer score;
     private Integer lives;
@@ -30,7 +29,7 @@ public class Hud implements Disposable {
         lives = Constants.LIVES;
         score = Constants.SCORE;
 
-        viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
+        Viewport viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, spriteBatch);
 
         Table table = new Table();

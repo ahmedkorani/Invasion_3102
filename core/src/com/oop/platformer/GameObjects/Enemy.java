@@ -7,15 +7,13 @@ import com.oop.platformer.GameClass;
 import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.util.Assets;
 
-import java.util.Random;
-
 public abstract class Enemy extends GameObject {
 
-    public Path path;
+    private Path path;
     public boolean destroyed;
-    public boolean isSetToDestroy;
-    public int healthPoints;
-    public float stateTime;
+    private boolean isSetToDestroy;
+    int healthPoints;
+    float stateTime;
 
     public Enemy(World world, Vector2 spritePosition, Array<Vector2> path, float[] durations) {
         super(world, spritePosition);
