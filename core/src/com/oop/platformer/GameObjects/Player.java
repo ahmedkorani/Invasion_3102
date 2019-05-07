@@ -1,11 +1,13 @@
 package com.oop.platformer.GameObjects;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
@@ -29,22 +31,22 @@ public class Player extends GameObject {
     private boolean dead;
     public boolean shooting;
 
-    private Vector2 respawnPosition;
-    private float currentTime;
-    private float previousTime;
+    private Array<Vector2> playerCheckpoints;
+    private int currentCheckPointIndex = -1;
     private float xRespawn, yRespawn;
 
+    private float currentTime;
     private float deathTime;
     private float winTime;
 
-    public Player(World world, Vector2 position) {
+    public Player(World world, Vector2 position, Array<Vector2> playerCheckpoints) {
         super(world, position);
 
-        respawnPosition = this.spritePosition;
         xRespawn = this.spritePosition.x;
         yRespawn = this.spritePosition.y;
+        this.playerCheckpoints = playerCheckpoints;
         currentTime = 0;
-        previousTime = 0;
+
         deathTime = 0;
         winTime = 0;
 
@@ -80,11 +82,7 @@ public class Player extends GameObject {
 
         shape.setRadius(13 / GameClass.PPM);
         fixtureDef.shape = shape;
-
 //        fixtureDef.friction = 0f;
-
-
-
         body.createFixture(fixtureDef).setUserData(this);
     }
 
@@ -99,13 +97,22 @@ public class Player extends GameObject {
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(deltaTime));
 
-        //To Save a check point every 5 seconds of game play
-        if (currentTime - previousTime >= 5 && spritePosition.y >= 0 && currentState != State.Jumping && currentState != State.Falling) {
-            respawnPosition = this.spritePosition;
-            previousTime = currentTime;
-            xRespawn = respawnPosition.x;
-            yRespawn = respawnPosition.y;
+
+        if(currentCheckPointIndex+1 < playerCheckpoints.size)
+        {
+        System.out.println(body.getPosition().x + ": " + playerCheckpoints.get(currentCheckPointIndex+1).x/GameClass.PPM);
+            if(body.getPosition().x >= playerCheckpoints.get(currentCheckPointIndex+1).x/GameClass.PPM)
+            {
+                System.out.println("XRespawn: " + xRespawn);
+                xRespawn = playerCheckpoints.get(currentCheckPointIndex+1).x/ GameClass.PPM;
+                yRespawn = playerCheckpoints.get(currentCheckPointIndex+1).y /GameClass.PPM;
+                currentCheckPointIndex++;
+            }
         }
+
+
+
+
     }
 
     private TextureRegion getFrame(float deltaTime) {

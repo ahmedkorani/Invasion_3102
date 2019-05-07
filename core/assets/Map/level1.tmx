@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="96" nextobjectid="216">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="98" nextobjectid="244">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
   <image source="../warped city files/ENVIRONMENT/tileset.png" width="384" height="256"/>
  </tileset>
@@ -154,7 +154,7 @@
   <object id="104" x="2566.63" y="259.762" width="16.9043" height="18.5947"/>
   <object id="105" x="2708.63" y="226.517" width="17.4677" height="17.4677"/>
   <object id="106" x="2608.89" y="126.219" width="18.0312" height="16.9043"/>
-  <object id="107" x="3039.95" y="133.123" width="17.4677" height="16.3408"/>
+  <object id="107" x="3056.8" y="117.327" width="17.4677" height="16.3408"/>
   <object id="108" x="3180.82" y="268.214" width="16.9043" height="15.7773"/>
   <object id="109" x="1323.89" y="159.182" width="16.3408" height="17.4677"/>
   <object id="110" x="1381.36" y="106.779" width="16.3408" height="17.4677"/>
@@ -174,6 +174,10 @@
   <object id="124" x="2840.76" y="173.269" width="16.3408" height="17.4677"/>
   <object id="125" x="2729.76" y="85.93" width="17.4677" height="17.4677"/>
   <object id="126" x="2609.74" y="230.18" width="17.4677" height="17.4677"/>
+  <object id="236" x="3198.19" y="112.679"/>
+  <object id="237" x="3378.26" y="63.1845"/>
+  <object id="238" x="3606.78" y="305.392"/>
+  <object id="239" x="3600.46" y="108.467"/>
  </objectgroup>
  <objectgroup color="#010000" id="92" name="4-points-enemy">
   <object id="129" x="592.776" y="48.4589" width="14.6504" height="15.7773"/>
@@ -196,6 +200,10 @@
   <object id="152" x="2927.82" y="29.3007" width="23.1025" height="19.7216"/>
   <object id="153" x="3019.67" y="85.6483" width="22.539" height="21.9755"/>
   <object id="154" x="3105.88" y="32.6816" width="23.1025" height="21.9755"/>
+  <object id="240" x="3475.15" y="246.42"/>
+  <object id="241" x="3499.37" y="80.0337"/>
+  <object id="242" x="3675.23" y="46.3353"/>
+  <object id="243" x="3720.51" y="244.313"/>
  </objectgroup>
  <objectgroup id="95" name="boss Enemy">
   <object id="205" x="4509.23" y="87.5258"/>
@@ -209,5 +217,13 @@
   <object id="213" x="4229.6" y="172.725"/>
   <object id="214" x="4351.94" y="225.155"/>
   <object id="215" x="4498.3" y="171.633"/>
+ </objectgroup>
+ <objectgroup id="97" name="checkpoints">
+  <object id="228" x="869.483" y="154.659"/>
+  <object id="229" x="1284.42" y="176.349"/>
+  <object id="230" x="1957.75" y="196.152"/>
+  <object id="231" x="2426.44" y="206.526"/>
+  <object id="234" x="2971.78" y="146.377"/>
+  <object id="235" x="3827.93" y="151.643"/>
  </objectgroup>
 </map>

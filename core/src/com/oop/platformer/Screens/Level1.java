@@ -107,8 +107,18 @@ public class Level1 implements Screen {
     }
 
     private void addObjectsToTheWorld() {
+
+        Array<Vector2> playerCheckpoints = new Array<Vector2>();
+        for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+            //Shaped as rectangles in the map objects
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            playerCheckpoints.add(new Vector2(rect.getX(), rect.getY()));
+        }
+
+
+
         //Adds player to the world in spritePosition (30,90)
-        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM)); //!!!!!!!!!Reset this to 90
+        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM), playerCheckpoints); //!!!!!!!!!Reset this to 90
 //        droneEnemyArrayList.add(new DroneEnemy(world,new Vector2(220 / GameClass.PPM, 150 / GameClass.PPM),this));
         bullets = new Array<Bullet>();
         enemies = new Array<Enemy>();

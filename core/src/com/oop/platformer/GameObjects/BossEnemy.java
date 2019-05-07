@@ -28,7 +28,6 @@ public class BossEnemy extends  Enemy {
             setFlip(false, false);
         else
             setFlip(true, false);
-
     }
 
     @Override
