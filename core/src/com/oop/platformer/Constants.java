@@ -30,7 +30,6 @@ public class Constants {
     public static final float FIRE_RATE = 0.4f;
 
     //Audio Constants
-
     public static final String START_SCREEN_MUSIC = "Audio/Music/Perturbator - Night Slasher II (Lueur Verte).ogg";
     public static final String MUSIC = "Audio/Music/Perturbator - I Am The Program.ogg";
     public static final String INTRO_MUSIC = "IntroScreen/IntroMusic.ogg";

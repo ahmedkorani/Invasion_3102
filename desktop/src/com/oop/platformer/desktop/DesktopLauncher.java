@@ -9,25 +9,26 @@ import java.awt.*;
 
 public class DesktopLauncher {
     public static void main(String[] arg) {
+
+        //New Lightweight Java Game Library Application Configuration
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        //Adding icons for the application
         config.addIcon("Icon/Icon128.png", Files.FileType.Internal);
         config.addIcon("Icon/Icon64.png", Files.FileType.Internal);
         config.addIcon("Icon/Icon32.png", Files.FileType.Internal);
+
+        //Title and app size.
         config.title = "Invasion 3102";
         config.width = (int) screenSize.getWidth();
         config.height = (int) screenSize.getHeight();
-        /*
- 		java - get screen size using the Toolkit class
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		config.width = (int)screenSize.getWidth();
-		config.height = (int)screenSize.getHeight();
-		config.backgroundFPS = 60;
-		config.foregroundFPS = 60;
-		config.resizable = false;
-		config.fullscreen = true;
-		*/
 
+        /*
+        New Lightweight Java Game Library Application that runs our GameClass with the specified
+        screen size and configuration
+        */
         new LwjglApplication(new GameClass((float) config.width, (float) config.height), config);
     }
 }
