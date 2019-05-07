@@ -12,6 +12,7 @@ import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.*;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.Screens.GameLevel;
+import com.oop.platformer.Screens.Level2;
 
 import static com.oop.platformer.Constants.FIRE_RATE;
 
@@ -94,6 +95,9 @@ public class LevelManager {
     private LevelManager() {
     }
 
+    public GameLevel getLevel() {
+        return this.level;
+    }
     public void update(float deltaTime) {
 
         if (player.isDead()) {
@@ -210,6 +214,7 @@ public class LevelManager {
 
     private void gameOver(boolean playerState) {
         GameClass.isMusicPaused = isMusicPaused;
-        gameClass.beginOutro(playerState);
+        gameClass.switchScreen(playerState);
+//        gameClass.beginOutro(playerState);
     }
 }

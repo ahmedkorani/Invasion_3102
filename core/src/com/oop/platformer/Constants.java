@@ -21,6 +21,7 @@ public class Constants {
 
     //Level 1 Map Path
     public static final String MAP = "Map/level1.tmx";
+    public static final String MAP2 = "Map/level2.tmx";
 
     //Main Menu Buttons and Background
     public static final String BACKGROUND = "StartScreen.png";
