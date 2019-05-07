@@ -233,6 +233,7 @@ public class Player extends GameObject {
             System.out.println("you ran out of lives DEAD :( ");
             dead = true;
             deathTime = currentTime;
+            body.setLinearVelocity(0,0);
         } else {
             System.out.println("player is hit");
             Assets.instance.audio.playerHit.play();
@@ -240,7 +241,6 @@ public class Player extends GameObject {
             lives--;
         }
     }
-
     public void bouncePlayer()
     {
         isDamaged = true;

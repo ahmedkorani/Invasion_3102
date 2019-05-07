@@ -1,6 +1,5 @@
 package com.oop.platformer.util;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,9 +12,6 @@ import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.*;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.Screens.GameLevel;
-import com.oop.platformer.Screens.Level1;
-
-import java.util.logging.Level;
 
 import static com.oop.platformer.Constants.FIRE_RATE;
 
@@ -45,11 +41,12 @@ public class LevelManager {
     private boolean musicControlChecked;
     private boolean isMusicPaused;
 
+
     public void setLevel(GameLevel level)
     {
         instance.level = level;
         instance.gameClass = level.getGameClass();
-        instance.world = level.getWorld();
+        instance.world = level.getWorld(    );
         instance.player = level.getPlayer();
         instance.enemies = level.getEnemies();
         instance.bullets = level.getBullets();
@@ -68,6 +65,31 @@ public class LevelManager {
         isMusicPaused = GameClass.isMusicPaused;
         musicControlChecked = false;
     }
+
+
+//    public void setLevel(Level1 level)
+//    {
+//        instance.level = level;
+//        instance.gameClass = level.getGameClass();
+//        instance.world = level.getWorld(    );
+//        instance.player = level.getPlayer();
+//        instance.enemies = level.getEnemies();
+//        instance.bullets = level.getBullets();
+//        instance.hud = level.getHud();
+//        instance.gameCam = level.getGameCam();
+//        instance.renderer = level.getRenderer();
+//        shootTimer = 0;
+//        //finding the boss enemy in the enemies array
+//        for (Enemy enemy : enemies) {
+//            if (enemy instanceof BossEnemy) {
+//                this.bossEnemy = enemy;
+//                break;
+//            }
+//        }
+//        isDeathSoundPlayed = false;
+//        isMusicPaused = GameClass.isMusicPaused;
+//        musicControlChecked = false;
+//    }
 
     private LevelManager() {
 

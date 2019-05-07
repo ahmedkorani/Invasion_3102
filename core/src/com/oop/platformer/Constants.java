@@ -12,7 +12,7 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String PLAYER_TEXTURE_ATLAS = "Player/player.atlas";
 
-    public static final int LIVES = 100;
+    public static final int LIVES = 10;
     public static final int SCORE = 0;
 
     //Enemy Textures paths

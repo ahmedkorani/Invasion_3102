@@ -60,7 +60,7 @@ public class GameClass extends Game {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.play();
 
-            else if (this.getScreen().toString().contains("Level1"))
+            else if(this.getScreen() instanceof  GameLevel)
                 Assets.instance.audio.mainThemeMusic.play();
 
             else if (this.getScreen().toString().contains("OutroScreen")) {
@@ -74,7 +74,8 @@ public class GameClass extends Game {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.pause();
 
-            else if (this.getScreen().toString().contains("Level1"))
+
+            else if(this.getScreen() instanceof GameLevel)
                 Assets.instance.audio.mainThemeMusic.pause();
 
             else if (this.getScreen().toString().contains("OutroScreen")) {
@@ -98,7 +99,7 @@ public class GameClass extends Game {
     public void beginLevel() {
         Assets.instance.audio.introMusic.stop();
 //        setScreen(new Level1(this));
-        setScreen(new Level2(this));
+        setScreen(new Level1(this));
     }
 
     //Begins the outro screen
