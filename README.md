@@ -21,6 +21,12 @@ A retro themed 2D action platformer with a synthwave theme made with Java and Li
 **Main Theme:** [Night Slasher II (Lueur Verte) by Perturbator from "B-sides & Remixes, Vol. I"](https://youtu.be/D1bX49IuY2o)
 - Copyright/License: Blood Music
 
+**Win Music:** [The Price of Failure by Perturbator from "I Am The Night"](https://youtu.be/0Ry2pjYgiLU)
+- Copyright/License: Blood Music
+
+**Main Theme:** [Positive Attitude Jingle by Perturbator from "B-sides & Remixes, Vol. II"](https://blood-music.bandcamp.com/album/b-sides-and-remixes-vol-ii)
+- Copyright/License: Blood Music
+
 **Gun Shot:** [Retro Gun Shot](https://freesound.org/people/josepharaoh99/sounds/363698/)
 - Copyright/License: Creative Commons Zero License
 

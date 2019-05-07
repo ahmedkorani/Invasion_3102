@@ -41,13 +41,13 @@ public class OutroScreen implements Screen {
         Assets.instance.customFont.font.draw(gameClass.batch, "Space Go to Main Menu", 30, 1050);
         Assets.instance.customFont.font.draw(gameClass.batch, "ESC Exit", 1650, 1050);
         if(playerWon){
-            Assets.instance.customFont.font.draw(gameClass.batch,"Your efforts brought you victory",450,300);
-            Assets.instance.customFont.font.draw(gameClass.batch,"Amazing Work",700,200);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Your efforts have brought you to victory!",280,300);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Robots have left the city.",520,200);
         }
 
         else if(playerLost){
-            Assets.instance.customFont.font.draw(gameClass.batch,"You have tried so hard!",600,300);
-            Assets.instance.customFont.font.draw(gameClass.batch,"Goodluck next time",670,200);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Better luck next time.",600,300);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Robots have conquered the city!",450,200);
         }
         //End drawing
         gameClass.batch.end();

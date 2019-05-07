@@ -38,7 +38,7 @@ public class GameClass extends Game {
         Assets.instance.init(new AssetManager());
         isMusicPaused = true; //Change this to true if you want the music to be paused by default
         //The Play Screen
-        setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+        setScreen(new StartScreen(this)); // To view StartScreen change Level1 to StartScreen
 
     }
 

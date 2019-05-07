@@ -12,7 +12,7 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String PLAYER_TEXTURE_ATLAS = "Player/player.atlas";
 
-    public static final int LIVES = 500;
+    public static final int LIVES = 100;
     public static final int SCORE = 0;
 
     //Enemy Textures paths
@@ -35,8 +35,8 @@ public class Constants {
     public static final String MUSIC = "Audio/Music/Perturbator - I Am The Program.ogg";
     public static final String INTRO_MUSIC = "IntroScreen/IntroMusic.ogg";
     public static final String IntroFinalSoundEffect = "IntroScreen/introLastFrame.wav";
-    public static final String WIN_MUSIC = "Audio/Music/winMusic.ogg";
-    public static final String LOSE_MUSIC = "Audio/Music/loseMusic.ogg";
+    public static final String WIN_MUSIC = "Audio/Music/Perturbator - Positive Attitude Jingle.ogg";
+    public static final String LOSE_MUSIC = "Audio/Music/Perturbator - The Price of Failure.ogg";
     public static final String GUN_SHOT = "Audio/Sounds/bullet_normal.wav";
     public static final String ENEMY_DESTROYED = "Audio/Sounds/enemyDestroyed.wav";
     public static final String ENEMY_HIT = "Audio/Sounds/enemy_hit.wav";
