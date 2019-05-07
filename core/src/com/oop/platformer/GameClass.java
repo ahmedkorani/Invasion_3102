@@ -97,7 +97,8 @@ public class GameClass extends Game {
     //Loads level 1
     public void beginLevel() {
         Assets.instance.audio.introMusic.stop();
-        setScreen(new Level1(this));
+//        setScreen(new Level1(this));
+        setScreen(new Level2(this));
     }
 
     //Begins the outro screen

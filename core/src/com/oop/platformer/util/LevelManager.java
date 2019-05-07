@@ -12,7 +12,10 @@ import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.*;
 import com.oop.platformer.Scenes.Hud;
+import com.oop.platformer.Screens.GameLevel;
 import com.oop.platformer.Screens.Level1;
+
+import java.util.logging.Level;
 
 import static com.oop.platformer.Constants.FIRE_RATE;
 
@@ -21,7 +24,8 @@ public class LevelManager {
     public static final LevelManager instance = new LevelManager();
 
     private GameClass gameClass;
-    private Level1 level;
+//    private Level1 level;
+    private GameLevel level;
     private World world;
     private OrthogonalTiledMapRenderer renderer;
 
@@ -41,7 +45,7 @@ public class LevelManager {
     private boolean musicControlChecked;
     private boolean isMusicPaused;
 
-    public void setLevel(Level1 level)
+    public void setLevel(GameLevel level)
     {
         instance.level = level;
         instance.gameClass = level.getGameClass();
