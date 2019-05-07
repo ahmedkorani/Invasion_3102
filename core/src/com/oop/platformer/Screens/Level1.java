@@ -23,8 +23,6 @@ import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
 
-
-
 public class Level1 implements Screen {
 
     private GameClass gameClass;
@@ -37,7 +35,6 @@ public class Level1 implements Screen {
 
     // for rendering debugging
     private Box2DDebugRenderer floorDebugger;
-
     private Player player;
 
     private Array<Bullet> bullets;
@@ -133,7 +130,6 @@ public class Level1 implements Screen {
         path2.add(new Vector2(900 / GameClass.PPM, 200 / GameClass.PPM));
         path2.add(new Vector2(800 / GameClass.PPM, 200 / GameClass.PPM));
 
-
 //        path.add(new Vector2(650/GameClass.PPM, 50/GameClass.PPM));
 //        droneEnemy = new Enemy(world, new Vector2(250/GameClass.PPM, 200/ GameClass.PPM), this, path);
 
@@ -141,8 +137,7 @@ public class Level1 implements Screen {
 //        droneEnemy = new DroneEnemy(world, path.get(0), path);
         enemies.add(new TurretEnemy(world, path2.get(0), path2));
 //        turretEnemy = new TurretEnemy(world, path2.get(0), path2);
-
- */
+*/
         addEnemeies();
     }
 

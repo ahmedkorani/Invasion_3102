@@ -12,6 +12,8 @@ import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
+import static java.lang.Math.min;
+
 public class Player extends GameObject {
 
 
@@ -30,6 +32,10 @@ public class Player extends GameObject {
     private boolean win;
     private boolean dead;
     public boolean shooting;
+
+    private final float damagePeriod = 0.15f;
+    private boolean isDamaged = false;
+    private float damageTimer;
 
     private Array<Vector2> playerCheckpoints;
     private int currentCheckPointIndex = -1;
@@ -87,7 +93,17 @@ public class Player extends GameObject {
     }
 
     public void update(float deltaTime) {
+
         currentTime += deltaTime;
+
+        if(isDamaged)
+            damageTimer+=deltaTime;
+        if(damageTimer >= damagePeriod)
+        {
+            damageTimer = 0;
+            isDamaged = false;
+        }
+
 
         if (win && winTime == 0)
             winTime = currentTime;
@@ -185,6 +201,12 @@ public class Player extends GameObject {
 
         float verticalSpeed = body.getLinearVelocity().y;
 
+        //won't update according to input during the damaged period
+        if(!isDamaged)
+        {
+
+
+
         if (verticalSpeed == 0)
             jumpCounter = 0;
 
@@ -199,7 +221,9 @@ public class Player extends GameObject {
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             body.setLinearVelocity(1.8f, body.getLinearVelocity().y);
         } else {
-            body.setLinearVelocity(0, body.getLinearVelocity().y);
+                body.setLinearVelocity(0, body.getLinearVelocity().y);
+        }
+
         }
     }
 
@@ -212,7 +236,27 @@ public class Player extends GameObject {
         } else {
             System.out.println("player is hit");
             Assets.instance.audio.playerHit.play();
+            bouncePlayer();
             lives--;
+        }
+    }
+
+    public void bouncePlayer()
+    {
+        isDamaged = true;
+        if(body.getLinearVelocity().x >=0 )
+        {
+            if(body.getLinearVelocity().y >=0 )
+                body.setLinearVelocity((body.getLinearVelocity().x + 2)/2*-1, (body.getLinearVelocity().y + 2f));
+            else
+                body.setLinearVelocity((body.getLinearVelocity().x + 2)/2*-1, min((body.getLinearVelocity().y *-1), 4));
+        }
+        else
+        {
+            if(body.getLinearVelocity().y >=0 )
+                body.setLinearVelocity((body.getLinearVelocity().x - 2)/2*-1, (body.getLinearVelocity().y +2f));
+            else
+                body.setLinearVelocity((body.getLinearVelocity().x - 2)/2*-1, min((body.getLinearVelocity().y *-1), 4));
         }
     }
 

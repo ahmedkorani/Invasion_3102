@@ -1,5 +1,6 @@
 package com.oop.platformer.util;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.oop.platformer.GameObjects.Bullet;
 import com.oop.platformer.GameObjects.Enemy;
@@ -22,8 +23,15 @@ public class CollisionHandler implements ContactListener {
 
         if (fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy) {
 //            levelManager.playerIsHit();
-            LevelManager.instance.playerIsHit();
+
+//            LevelManager.instance.playerIsHit();
             System.out.println("Player was hit by an Enemy");
+            Gdx.app.postRunnable(new Runnable() {
+                @Override
+                public void run () {
+                    LevelManager.instance.playerIsHit();
+                }
+            });
         }
 
         if (fa.getUserData() instanceof Enemy && fb.getUserData() instanceof Bullet) {
@@ -48,10 +56,19 @@ public class CollisionHandler implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
+        Fixture fa = contact.getFixtureA();
+        Fixture fb = contact.getFixtureB();
+
+        if (fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy) {
+            contact.setEnabled(false);
+
+        }
+
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
+
     }
 
 
