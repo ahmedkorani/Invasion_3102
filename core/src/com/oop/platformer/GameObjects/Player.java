@@ -60,7 +60,7 @@ public class Player extends GameObject {
         setBounds(0, 0, 32 / GameClass.PPM, 32 / GameClass.PPM);
 
 
-        setRegion(Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true));
+        setRegion(Assets.instance.playerAssets.idleAnimation.getKeyFrame(stateTimer, true));
     }
 
 
@@ -114,24 +114,24 @@ public class Player extends GameObject {
 
         switch (currentState) {
             case Jumping:
-                region = Assets.instance.feministAssets.jumpingAnimation;
+                region = Assets.instance.playerAssets.jumpingAnimation;
                 break;
             case Running:
-                region = Assets.instance.feministAssets.runAnimation.getKeyFrame(stateTimer, true);
+                region = Assets.instance.playerAssets.runAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Shooting:
             case Jumping_Shooting:
-                region = Assets.instance.feministAssets.shootAnimation.getKeyFrame(stateTimer, true);
+                region = Assets.instance.playerAssets.shootAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Falling:
-                region = Assets.instance.feministAssets.fallingAnimation.getKeyFrame(stateTimer, true);
+                region = Assets.instance.playerAssets.fallingAnimation.getKeyFrame(stateTimer, true);
                 break;
             case Dead:
-                region = Assets.instance.feministAssets.deathAnimation.getKeyFrame(stateTimer, false);
+                region = Assets.instance.playerAssets.deathAnimation.getKeyFrame(stateTimer, false);
                 break;
             case Standing:
             default:
-                region = Assets.instance.feministAssets.idleAnimation.getKeyFrame(stateTimer, true);
+                region = Assets.instance.playerAssets.idleAnimation.getKeyFrame(stateTimer, true);
                 break;
         }
 

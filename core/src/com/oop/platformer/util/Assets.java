@@ -17,14 +17,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 
 public class Assets implements Disposable {
 
     public static final Assets instance = new Assets();
     private AssetManager assetManager;
-    public FeministAssets feministAssets;
+    public PlayerAssets playerAssets;
     public MainMenuAssets mainMenuAssets;
     public BulletAssets bulletAssets;
     public DroneEnemyAssets droneEnemyAssets;
@@ -41,7 +40,7 @@ public class Assets implements Disposable {
         assetManager.load(Constants.GIGAGAL_TEXTURE_ATLAS, TextureAtlas.class);
         assetManager.finishLoading();
 
-        feministAssets = new FeministAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
+        playerAssets = new PlayerAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
         mainMenuAssets = new MainMenuAssets();
         bulletAssets = new BulletAssets(new TextureAtlas(Constants.BULLET_TEXTURE_ATLAS));
         droneEnemyAssets = new DroneEnemyAssets(new TextureAtlas(Constants.ENEMY_TEXTURE_ATLAS));
@@ -74,7 +73,7 @@ public class Assets implements Disposable {
         }
     }
 
-    public class FeministAssets {
+    public class PlayerAssets {
         public final Animation<AtlasRegion> idleAnimation;
         public final Animation<AtlasRegion> runAnimation;
         public final Animation<AtlasRegion> shootAnimation;
@@ -83,7 +82,7 @@ public class Assets implements Disposable {
 
         public final TextureRegion jumpingAnimation;
 
-        public FeministAssets(TextureAtlas atlas) {
+        public PlayerAssets(TextureAtlas atlas) {
             Array<AtlasRegion> idleFrames = new Array<AtlasRegion>();
 
             for (int i = 0; i <= 3; i++)

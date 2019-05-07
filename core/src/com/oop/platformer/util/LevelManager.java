@@ -3,6 +3,7 @@ package com.oop.platformer.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
@@ -16,10 +17,12 @@ import static com.oop.platformer.Constants.FIRE_RATE;
 
 public class LevelManager {
 
-    GameClass gameClass;
+    public static final LevelManager instance = new LevelManager();
 
+    private GameClass gameClass;
     private Level1 level;
     private World world;
+    private OrthogonalTiledMapRenderer renderer;
 
     //Game Objects
     private Player player;
@@ -34,18 +37,18 @@ public class LevelManager {
     private boolean isDeathSoundPlayed = false;
     private float shootTimer;
 
-    public LevelManager(Level1 level)
+    public void setLevel(Level1 level)
     {
-        this.level = level;
-        this.gameClass = level.getGameClass();
-        this.world = level.getWorld();
-        this.player = level.getPlayer();
-        this.enemies = level.getEnemies();
-        this.bullets = level.getBullets();
-        this.hud = level.getHud();
-        this.gameCam = level.getGameCam();
+        instance.level = level;
+        instance.gameClass = level.getGameClass();
+        instance.world = level.getWorld();
+        instance.player = level.getPlayer();
+        instance.enemies = level.getEnemies();
+        instance.bullets = level.getBullets();
+        instance.hud = level.getHud();
+        instance.gameCam = level.getGameCam();
+        instance.renderer = level.getRenderer();
         shootTimer = 0;
-
         //finding the boss enemy in the enemies array
         for (Enemy enemy : enemies) {
             if (enemy instanceof BossEnemy) {
@@ -53,6 +56,9 @@ public class LevelManager {
                 break;
             }
         }
+    }
+
+    private LevelManager() {
 
     }
 
@@ -80,6 +86,21 @@ public class LevelManager {
         checkBulletsPosition();
         hud.setLives(player.getLives());
         hud.setScore(player.getScore());
+
+        world.step(1 / 60f, 60, 2);
+        player.update(deltaTime);
+
+        //Bullet update
+        for (Bullet bullet : bullets) {
+            bullet.update(deltaTime);
+        }
+
+        for (Enemy enemy : enemies)
+            enemy.update(deltaTime);
+
+        gameCam.position.x = player.body.getWorldCenter().x;
+        gameCam.update();
+        renderer.setView(gameCam); //tells our renderer to draw only what camera can see in our game world
     }
 
     // returns a bullet to be added to bullets ArrayList in level1 screen
