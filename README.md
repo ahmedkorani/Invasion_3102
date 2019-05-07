@@ -10,6 +10,12 @@ A retro themed 2D action platformer with a synthwave theme made with Java and Li
 
 
 # Credits
+## Developers
+- Ahmed Mahmoud "[Ahmed-MK](https://github.com/Ahmed-MK)"
+- Andrew Awni "[andrewawni](https://github.com/andrewawni)"
+- Ahmed Abuamra "[ahmedabuamra](https://github.com/ahmedabuamra)"
+- AbdulRahman Yousry "[slashdevo](https://github.com/slashdevo)"
+- Ahmed Elmayyah "[Satharus](https://github.com/Satharus)"
 
 ## List of Assets
 
