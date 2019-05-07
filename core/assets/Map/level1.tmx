@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="94" nextobjectid="173">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="310" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="96" nextobjectid="216">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
   <image source="../warped city files/ENVIRONMENT/tileset.png" width="384" height="256"/>
  </tileset>
@@ -154,7 +154,7 @@
   <object id="104" x="2566.63" y="259.762" width="16.9043" height="18.5947"/>
   <object id="105" x="2708.63" y="226.517" width="17.4677" height="17.4677"/>
   <object id="106" x="2608.89" y="126.219" width="18.0312" height="16.9043"/>
-  <object id="107" x="3039.95" y="143.123" width="17.4677" height="16.3408"/>
+  <object id="107" x="3039.95" y="133.123" width="17.4677" height="16.3408"/>
   <object id="108" x="3180.82" y="268.214" width="16.9043" height="15.7773"/>
   <object id="109" x="1323.89" y="159.182" width="16.3408" height="17.4677"/>
   <object id="110" x="1381.36" y="106.779" width="16.3408" height="17.4677"/>
@@ -197,13 +197,17 @@
   <object id="153" x="3019.67" y="85.6483" width="22.539" height="21.9755"/>
   <object id="154" x="3105.88" y="32.6816" width="23.1025" height="21.9755"/>
  </objectgroup>
- <objectgroup color="#080a17" id="93" name="boss Enemy">
-  <object id="166" x="4520.95" y="196.312"/>
-  <object id="167" x="4451.94" y="96.3813"/>
-  <object id="168" x="4334.53" y="65.7145"/>
-  <object id="169" x="4210.11" y="68.3431"/>
-  <object id="170" x="4099.71" y="117.41"/>
-  <object id="171" x="4044.51" y="207.658"/>
-  <object id="172" x="4313.5" y="156.839"/>
+ <objectgroup id="95" name="boss Enemy">
+  <object id="205" x="4509.23" y="87.5258"/>
+  <object id="206" x="4368.32" y="119.202"/>
+  <object id="207" x="4297.32" y="224.063"/>
+  <object id="208" x="4231.78" y="112.648"/>
+  <object id="209" x="4153.14" y="214.232"/>
+  <object id="210" x="4066.85" y="107.187"/>
+  <object id="211" x="4015.51" y="219.694"/>
+  <object id="212" x="4106.17" y="161.802"/>
+  <object id="213" x="4229.6" y="172.725"/>
+  <object id="214" x="4351.94" y="225.155"/>
+  <object id="215" x="4498.3" y="171.633"/>
  </objectgroup>
 </map>
