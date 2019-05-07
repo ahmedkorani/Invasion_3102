@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="15">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="102" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="39">
  <tileset firstgid="1" source="Background.tsx"/>
  <tileset firstgid="6" source="skyline-a.tsx"/>
  <tileset firstgid="126" source="tileset.tsx"/>
@@ -28,7 +28,32 @@
   <object id="11" x="1241.5" y="78" width="391.5" height="18.5"/>
   <object id="12" x="1274" y="223.5" width="358" height="14"/>
  </objectgroup>
- <objectgroup id="11" name="Ladders">
-  <object id="14" x="1455.33" y="77.3333" width="16" height="144"/>
+ <objectgroup id="12" name="2 point enemy">
+  <object id="15" x="163.784" y="138.498"/>
+  <object id="16" x="163.209" y="50.5718"/>
+  <object id="17" x="314.35" y="34.4808"/>
+  <object id="18" x="406.873" y="28.734"/>
+  <object id="19" x="494.799" y="32.1821"/>
+  <object id="20" x="492.5" y="192.518"/>
+  <object id="21" x="857.642" y="106.473"/>
+  <object id="22" x="790.751" y="159.273"/>
+  <object id="23" x="1160.85" y="244.239"/>
+  <object id="24" x="1156.83" y="51.7212"/>
+ </objectgroup>
+ <objectgroup id="13" name="4 point enemy">
+  <object id="29" x="973.173" y="140.338"/>
+  <object id="30" x="1076.33" y="142.359"/>
+  <object id="31" x="1040.46" y="253.027"/>
+  <object id="32" x="862.358" y="238.249"/>
+ </objectgroup>
+ <objectgroup id="15" name="checkpoints">
+  <object id="33" x="86.1599" y="136.329"/>
+  <object id="34" x="618.388" y="53.4409"/>
+  <object id="35" x="1379.65" y="198.495"/>
+ </objectgroup>
+ <objectgroup id="16" name="boss enemy">
+  <object id="36" x="1449.45" y="109.063"/>
+  <object id="37" x="1566.15" y="56.7128"/>
+  <object id="38" x="1570.51" y="194.132"/>
  </objectgroup>
 </map>

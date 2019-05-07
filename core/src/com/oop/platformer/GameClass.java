@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.oop.platformer.Screens.*;
 import com.oop.platformer.util.Assets;
+import com.oop.platformer.util.LevelManager;
 
 public class GameClass extends Game {
 
@@ -104,6 +105,21 @@ public class GameClass extends Game {
         Assets.instance.audio.introMusic.stop();
 //        setScreen(new Level1(this));
         setScreen(new Level1(this));
+    }
+
+    public void switchScreen(boolean playerState) {
+        if(playerState)
+        {
+            if(LevelManager.instance.getLevel() instanceof Level1)
+                setScreen(new Level2(this));
+            else if(LevelManager.instance.getLevel() instanceof Level2)
+                beginOutro(playerState);
+        }
+        else
+        {
+            beginOutro(playerState);
+        }
+
     }
 
     //Begins the outro screen
