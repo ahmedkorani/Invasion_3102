@@ -197,6 +197,7 @@ public class Assets implements Disposable {
         public final Sound enemyHit;
         public final Sound playerHit;
         public final Sound playerDied;
+        public final Sound playerWon;
 
         public Audio(AssetManager assetManager) {
             assetManager.load(Constants.START_SCREEN_MUSIC, Music.class);
@@ -212,6 +213,7 @@ public class Assets implements Disposable {
             assetManager.load(Constants.ENEMY_HIT, Sound.class);
             assetManager.load(Constants.PLAYER_HIT, Sound.class);
             assetManager.load(Constants.PLAYER_DIED, Sound.class);
+            assetManager.load(Constants.PLAYER_WON, Sound.class);
             assetManager.finishLoading();
 
             //Music loop to play forever
@@ -232,6 +234,7 @@ public class Assets implements Disposable {
             enemyHit = assetManager.get(Constants.ENEMY_HIT);
             playerHit = assetManager.get(Constants.PLAYER_HIT);
             playerDied = assetManager.get(Constants.PLAYER_DIED);
+            playerWon = assetManager.get(Constants.PLAYER_WON);
         }
     }
 }

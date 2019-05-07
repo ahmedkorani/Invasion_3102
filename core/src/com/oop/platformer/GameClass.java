@@ -36,9 +36,9 @@ public class GameClass extends Game {
     public void create() {
         batch = new SpriteBatch();
         Assets.instance.init(new AssetManager());
-        isMusicPaused = false; //Change this to true if you want the music to be paused by default
+        isMusicPaused = true; //Change this to true if you want the music to be paused by default
         //The Play Screen
-        setScreen(new OutroScreen(this, false)); // To view MainMenuScreen change Level1 to MainMenuScreen
+        setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
 
     }
 

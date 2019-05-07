@@ -34,8 +34,11 @@ public class LevelManager {
     private Hud hud;
     private OrthographicCamera gameCam;
 
-    private boolean isDeathSoundPlayed = false;
+    private boolean isDeathSoundPlayed;
     private float shootTimer;
+
+    private boolean musicControlChecked;
+    private boolean isMusicPaused;
 
     public void setLevel(Level1 level)
     {
@@ -56,6 +59,9 @@ public class LevelManager {
                 break;
             }
         }
+        isDeathSoundPlayed = false;
+        isMusicPaused = GameClass.isMusicPaused;
+        musicControlChecked = false;
     }
 
     private LevelManager() {
@@ -65,6 +71,10 @@ public class LevelManager {
     public void update(float deltaTime) {
 
         if (player.isDead()) {
+            if(!musicControlChecked){
+                isMusicPaused = GameClass.isMusicPaused;
+                musicControlChecked = true;
+            }
             GameClass.isMusicPaused = true;
             if (!isDeathSoundPlayed) {
                 Assets.instance.audio.playerDied.play();
@@ -75,10 +85,15 @@ public class LevelManager {
                 gameOver(false);
             }
         } else if (bossEnemy.destroyed) {
-            if (!player.win) {
+            if(!musicControlChecked){
+                isMusicPaused = GameClass.isMusicPaused;
+                musicControlChecked = true;
+            }
+            GameClass.isMusicPaused = true;
+            if (!player.isWin()) {
                 player.setWin();
+                Assets.instance.audio.playerWon.play();
             } else if (player.wonLevel()) {
-                System.out.println("you won");
                 gameOver(true);
             }
         } else
@@ -105,7 +120,7 @@ public class LevelManager {
 
     // returns a bullet to be added to bullets ArrayList in level1 screen
     //NOTE*** +0.06f to adjust the spritePosition of the bullet exit to the barrel
-    public Bullet spawnBullet() {
+    private Bullet spawnBullet() {
         Assets.instance.audio.gunShotSound.play();
         if (player.isRunningRight()) {
             return new Bullet(world, new Vector2(player.body.getPosition().x + 2 / GameClass.PPM + 0.20f, player.body.getPosition().y + 0.08f),
@@ -117,7 +132,7 @@ public class LevelManager {
 
     }
 
-    public void playerIsHit() {
+    void playerIsHit() {
         player.hitPlayer();
     }
 
@@ -140,21 +155,21 @@ public class LevelManager {
 
     private void checkBulletsPosition() {
         for (Bullet bullet : bullets) {
-            if (bullet.getPosition() > gameCam.position.x + 2.2 || bullet.getPosition() < gameCam.position.x - 2.2) {
+            if (bullet.getPosition() > gameCam.position.x + 3.4 || bullet.getPosition() < gameCam.position.x - 3.4) {
                 bullet.setToDestroy();
             }
         }
     }
 
 
-    public void bulletHitWall(Fixture fixture) {
+    void bulletHitWall(Fixture fixture) {
         for (Bullet bullet : bullets) {
             if (bullet.equals(fixture.getUserData()))
                 bullet.setToDestroy();
         }
     }
 
-    public void bulletHitEnemy(Fixture enemyFixture, Fixture bulletFixture) {
+    void bulletHitEnemy(Fixture enemyFixture, Fixture bulletFixture) {
         for (Bullet bullet : bullets) {
             if (bullet.equals(bulletFixture.getUserData()))
                 bullet.setToDestroy();
@@ -168,6 +183,7 @@ public class LevelManager {
     }
 
     private void gameOver(boolean playerState) {
+        GameClass.isMusicPaused = isMusicPaused;
         gameClass.beginOutro(playerState);
     }
 }

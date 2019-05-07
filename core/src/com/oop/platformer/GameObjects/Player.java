@@ -25,8 +25,8 @@ public class Player extends GameObject {
     //player Score
     private int score;
     //player dead or not
-    public boolean win;
-    public boolean dead;
+    private boolean win;
+    private boolean dead;
     public boolean shooting;
 
     private Vector2 respawnPosition;
@@ -46,6 +46,7 @@ public class Player extends GameObject {
         currentTime = 0;
         previousTime = 0;
         deathTime = 0;
+        winTime = 0;
 
         lives = Constants.LIVES;
         score = Constants.SCORE;
@@ -90,7 +91,7 @@ public class Player extends GameObject {
     public void update(float deltaTime) {
         currentTime += deltaTime;
 
-        if (win)
+        if (win && winTime == 0)
             winTime = currentTime;
 
         checkPlayerPosition();
@@ -226,6 +227,8 @@ public class Player extends GameObject {
     public boolean isDead() {
         return dead;
     }
+
+    public boolean isWin() {return win;}
 
     public void increaseScore() {
         score += 100;

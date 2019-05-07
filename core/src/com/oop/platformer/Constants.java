@@ -12,7 +12,7 @@ public class Constants {
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
-    public static final int LIVES = 1;
+    public static final int LIVES = 500;
     public static final int SCORE = 0;
 
     //Bullet atlas path
@@ -43,4 +43,5 @@ public class Constants {
     public static final String ENEMY_HIT = "Audio/Sounds/enemy_hit.wav";
     public static final String PLAYER_HIT = "Audio/Sounds/player_hurt.wav";
     public static final String PLAYER_DIED = "Audio/Sounds/player_died.wav";
+    public static final String PLAYER_WON = "Audio/Sounds/player_won.wav";
 }
