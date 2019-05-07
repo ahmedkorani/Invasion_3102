@@ -88,17 +88,20 @@ public class StartScreen implements Screen {
                 Assets.instance.customFont.font.draw(gameClass.batch, "C Credits", 1550, 120);
                 break;
             case Help:
-                Assets.instance.customFont.font.draw(gameClass.batch, "   W Jump", 750, 600);
-                Assets.instance.customFont.font.draw(gameClass.batch, "   D Left", 750, 500);
-                Assets.instance.customFont.font.draw(gameClass.batch, "   A Right", 750, 400);
-                Assets.instance.customFont.font.draw(gameClass.batch, "Space Fire gun", 750, 300);
-                Assets.instance.customFont.font.draw(gameClass.batch, "M Pause Music", 750, 200);
-                Assets.instance.customFont.font.draw(gameClass.batch, "ESC Exit", 820, 100);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Arrow Keys: Move", 680, 400);
+                Assets.instance.customFont.font.draw(gameClass.batch, "F: Shoot", 840, 300);
+                Assets.instance.customFont.font.draw(gameClass.batch, "M: Pause Music", 770, 200);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Escape: Exit", 800, 100);
                 break;
             case Credits:
-                Assets.instance.customFont.font.draw(gameClass.batch, "Invasion 3102  OOP project", 500, 600);
-                Assets.instance.customFont.font.draw(gameClass.batch, "Thanks for all who made this game free assets", 200, 500);
-                Assets.instance.customFont.font.draw(gameClass.batch, "All assets links are in project readme on github", 200, 400);
+                Assets.instance.customFont.font.draw(gameClass.batch, "OOP 2019 project", 710, 900);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Ahmed Mahmoud \"Ahmed-MK\"", 500, 700);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Andrew Awni \"andrewawni\"", 500, 600);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Ahmed Abuamra \"ahmedabuamra\"", 450, 500);
+                Assets.instance.customFont.font.draw(gameClass.batch, "AbdulRahman Yousry \"slashdevo\"", 400, 400);
+                Assets.instance.customFont.font.draw(gameClass.batch, "Ahmed Elmayyah \"Satharus\"", 480, 300);
+
+                Assets.instance.customFont.font.draw(gameClass.batch, "All assets are credited in project's readme file on GitHub", 30, 150);
                 break;
         }
     }
