@@ -9,9 +9,6 @@ public class Constants {
     public static final String STORY_FILE = "IntroScreen/IntroStory.txt";
     public static final String RETRO_FONT = "IntroScreen/SFAlienEncounters.ttf";
 
-    //GigaGal Atlas path
-    public static final String GIGAGAL_TEXTURE_ATLAS = "GigaGal/gigagal.pack.atlas";
-
     //Rambo Texture Atlas path
     public static final String FEMINIST_TEXTURE_ATLAS = "Feminist/feminist.atlas";
 
@@ -35,10 +32,12 @@ public class Constants {
 
     //Audio Constants
 
-    public static final String STARTSCREENMUSIC = "Audio/Music/Perturbator - Night Slasher II (Lueur Verte).ogg";
+    public static final String START_SCREEN_MUSIC = "Audio/Music/Perturbator - Night Slasher II (Lueur Verte).ogg";
     public static final String MUSIC = "Audio/Music/Perturbator - I Am The Program.ogg";
     public static final String INTRO_MUSIC = "IntroScreen/IntroMusic.ogg";
     public static final String IntroFinalSoundEffect = "IntroScreen/introLastFrame.wav";
+    public static final String WIN_MUSIC = "Audio/Music/winMusic.ogg";
+    public static final String LOSE_MUSIC = "Audio/Music/loseMusic.ogg";
     public static final String GUN_SHOT = "Audio/Sounds/bullet_normal.wav";
     public static final String ENEMY_DESTROYED = "Audio/Sounds/enemyDestroyed.wav";
     public static final String ENEMY_HIT = "Audio/Sounds/enemy_hit.wav";

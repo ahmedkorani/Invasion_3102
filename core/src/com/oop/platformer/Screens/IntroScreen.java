@@ -159,7 +159,6 @@ public class IntroScreen implements Screen {
             gameClass.beginLevel();
         }
 
-
         if (!end)
             updateGameFrames(delta);
 

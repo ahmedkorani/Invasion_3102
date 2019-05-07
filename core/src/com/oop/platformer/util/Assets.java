@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import com.oop.platformer.Constants;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 
 public class Assets implements Disposable {
@@ -38,8 +37,6 @@ public class Assets implements Disposable {
 
     public void init(AssetManager assetManager) {
         this.assetManager = assetManager;
-        assetManager.load(Constants.GIGAGAL_TEXTURE_ATLAS, TextureAtlas.class);
-        assetManager.finishLoading();
 
         feministAssets = new FeministAssets(new TextureAtlas(Constants.FEMINIST_TEXTURE_ATLAS));
         mainMenuAssets = new MainMenuAssets();
@@ -191,6 +188,9 @@ public class Assets implements Disposable {
         public final Music startScreenMusic;
         public final Music mainThemeMusic;
         public final Music introMusic;
+        public final Music winMusic;
+        public final Music loseMusic;
+
         public final Sound introLastSound;
         public final Sound gunShotSound;
         public final Sound enemyDestroyed;
@@ -199,9 +199,12 @@ public class Assets implements Disposable {
         public final Sound playerDied;
 
         public Audio(AssetManager assetManager) {
-            assetManager.load(Constants.STARTSCREENMUSIC, Music.class);
+            assetManager.load(Constants.START_SCREEN_MUSIC, Music.class);
             assetManager.load(Constants.MUSIC, Music.class);
             assetManager.load(Constants.INTRO_MUSIC, Music.class);
+            assetManager.load(Constants.WIN_MUSIC, Music.class);
+            assetManager.load(Constants.LOSE_MUSIC, Music.class);
+
             assetManager.load(Constants.IntroFinalSoundEffect, Sound.class);
             assetManager.load(Constants.GUN_SHOT, Sound.class);
             assetManager.load(Constants.ENEMY_DESTROYED, Sound.class);
@@ -214,8 +217,12 @@ public class Assets implements Disposable {
             //Music loop to play forever
             mainThemeMusic = assetManager.get(Constants.MUSIC);
             mainThemeMusic.setLooping(true);
-            startScreenMusic = assetManager.get(Constants.STARTSCREENMUSIC);
+            startScreenMusic = assetManager.get(Constants.START_SCREEN_MUSIC);
             startScreenMusic.setLooping(true);
+            winMusic = assetManager.get(Constants.WIN_MUSIC);
+            winMusic.setLooping(true);
+            loseMusic = assetManager.get(Constants.LOSE_MUSIC);
+            loseMusic.setLooping(true);
 
             introMusic = assetManager.get(Constants.INTRO_MUSIC);
             introLastSound = assetManager.get(Constants.IntroFinalSoundEffect);

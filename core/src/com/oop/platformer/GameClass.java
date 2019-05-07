@@ -23,7 +23,6 @@ public class GameClass extends Game {
     public SpriteBatch batch;
 
     public static boolean isMusicPaused;
-    private boolean gameOver;
 
     public GameClass() {
     }
@@ -38,9 +37,8 @@ public class GameClass extends Game {
         batch = new SpriteBatch();
         Assets.instance.init(new AssetManager());
         isMusicPaused = false; //Change this to true if you want the music to be paused by default
-        gameOver = false;
         //The Play Screen
-        setScreen(new StartScreen(this)); // To view MainMenuScreen change Level1 to MainMenuScreen
+        setScreen(new OutroScreen(this, false)); // To view MainMenuScreen change Level1 to MainMenuScreen
 
     }
 
@@ -56,22 +54,33 @@ public class GameClass extends Game {
     }
 
     private void checkMusicControl() {
-        if (!isMusicPaused)
-        {
+        if (!isMusicPaused) {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.play();
 
             else if (this.getScreen().toString().contains("Level1"))
                 Assets.instance.audio.mainThemeMusic.play();
-        }
 
-        else
-        {
+            else if (this.getScreen().toString().contains("OutroScreen")) {
+                if (OutroScreen.playerWon)
+                    Assets.instance.audio.winMusic.play();
+                else if (OutroScreen.playerLost)
+                    Assets.instance.audio.loseMusic.play();
+            }
+
+        } else {
             if (this.getScreen().toString().contains("StartScreen"))
                 Assets.instance.audio.startScreenMusic.pause();
 
             else if (this.getScreen().toString().contains("Level1"))
                 Assets.instance.audio.mainThemeMusic.pause();
+
+            else if (this.getScreen().toString().contains("OutroScreen")) {
+                if (OutroScreen.playerWon)
+                    Assets.instance.audio.winMusic.pause();
+                else if (OutroScreen.playerLost)
+                    Assets.instance.audio.loseMusic.pause();
+            }
 
         }
 
@@ -87,9 +96,12 @@ public class GameClass extends Game {
         setScreen(new Level1(this));
     }
 
-    public void beginOutro(boolean playerState){
+    public void beginOutro(boolean playerState) {
         setScreen(new OutroScreen(this, playerState));
     }
 
 
+    public void endOutro() {
+        setScreen(new StartScreen(this));
+    }
 }

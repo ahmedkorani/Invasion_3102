@@ -3,7 +3,6 @@ package com.oop.platformer.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -14,16 +13,13 @@ public class OutroScreen implements Screen {
 
     private GameClass gameClass;
 
-    private boolean playerState;
-    private boolean playerWon;
-    private boolean playerLost;
+    public static boolean playerWon;
+    public static boolean playerLost;
 
     private Viewport viewport;
 
     public OutroScreen(GameClass gameClass, boolean playerState) {
         this.gameClass = gameClass;
-
-        this.playerState = playerState;
 
         if(playerState)
             playerWon = true;
@@ -41,15 +37,41 @@ public class OutroScreen implements Screen {
     private void update(float deltaTime){
         //Begin drawing
         gameClass.batch.begin();
-        gameClass.batch.draw(Assets.instance.mainMenuAssets.mainBackground, 0, 0, GameClass.V_WIDTH, GameClass.V_HEIGHT);
-        if(playerWon)
-            Assets.instance.customFont.font.draw(gameClass.batch,"Your efforts brought you victory",200,300);
+        gameClass.batch.draw(Assets.instance.mainMenuAssets.mainBackground, 0, 0, GameClass.screenWidth, GameClass.screenHeight);
+        Assets.instance.customFont.font.draw(gameClass.batch, "Space Go to Main Menu", 30, 1050);
+        Assets.instance.customFont.font.draw(gameClass.batch, "ESC Exit", 1650, 1050);
+        if(playerWon){
+            Assets.instance.customFont.font.draw(gameClass.batch,"Your efforts brought you victory",450,300);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Amazing Work",700,200);
+        }
+
         else if(playerLost){
-            Assets.instance.customFont.font.draw(gameClass.batch,"You have tried so hard !",200,300);
+            Assets.instance.customFont.font.draw(gameClass.batch,"You have tried so hard!",600,300);
+            Assets.instance.customFont.font.draw(gameClass.batch,"Goodluck next time",670,200);
         }
         //End drawing
         gameClass.batch.end();
 
+    }
+
+    private void handleInput(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+            Gdx.app.exit();
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            if(Assets.instance.audio.winMusic.isPlaying()){
+                Assets.instance.audio.winMusic.stop();
+            }
+
+            if(Assets.instance.audio.loseMusic.isPlaying()){
+                Assets.instance.audio.loseMusic.stop();
+            }
+
+            gameClass.endOutro();
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.M))
+            GameClass.isMusicPaused = !GameClass.isMusicPaused;
     }
 
 
@@ -60,10 +82,11 @@ public class OutroScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(.1f, .12f, .16f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        gameClass.batch.setProjectionMatrix(viewport.getCamera().combined);
 
         update(delta);
+        handleInput();
     }
 
     @Override
