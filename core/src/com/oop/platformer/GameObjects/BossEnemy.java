@@ -8,6 +8,8 @@ import com.oop.platformer.util.Assets;
 
 public class BossEnemy extends  Enemy {
 
+
+
     public BossEnemy(World world, Vector2 spritePosition, Array<Vector2> path, float[] durations) {
         super(world, spritePosition, path, durations);
     }
@@ -21,7 +23,12 @@ public class BossEnemy extends  Enemy {
     @Override
     public void updateSprite() {
         setRegion(Assets.instance.bossEnemyAssets.flyingAnimation.getKeyFrame(stateTime, true));
-        setFlip(true, false);
+
+        if(body.getLinearVelocity().x > 0)
+            setFlip(false, false);
+        else
+            setFlip(true, false);
+
     }
 
     @Override

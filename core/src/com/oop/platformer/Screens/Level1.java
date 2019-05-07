@@ -224,7 +224,6 @@ public class Level1 implements Screen {
             MapObject object = map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class).get(i);
             RectangleMapObject rect = (RectangleMapObject) object;
             enemyPath.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
-//            enemyDurations[i] = 2;
         }
         enemyDurations = new float[]{0.4f, 0.5f, 0.8f, 1f, 2f, 0.4f, 1.0f, 1.3f, 0.9f, 0.7f, 1.2f};
         enemies.add(new BossEnemy(world, enemyPath.get(0), enemyPath, enemyDurations));
