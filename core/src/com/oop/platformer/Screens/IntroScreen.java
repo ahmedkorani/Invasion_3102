@@ -152,7 +152,7 @@ public class IntroScreen implements Screen {
         checkIntroEnd();
 
         if (end) {
-            gameClass.beginLevel();
+            gameClass.beginGame();
         }
 
         if (!end)

@@ -48,6 +48,7 @@ public class Bullet extends GameObject {
         shape.setRadius(1 / GameClass.PPM);
 
         fixtureDef.shape = shape;
+
         body.createFixture(fixtureDef).setUserData(this);
     }
 

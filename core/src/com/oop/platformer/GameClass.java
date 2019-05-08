@@ -101,7 +101,7 @@ public class GameClass extends Game {
     }
 
     //Loads level 1
-    public void beginLevel() {
+    public void beginGame() {
         Assets.instance.audio.introMusic.stop();
 //        setScreen(new Level1(this));
         setScreen(new Level1(this));

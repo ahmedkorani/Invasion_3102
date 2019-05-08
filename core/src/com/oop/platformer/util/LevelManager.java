@@ -67,31 +67,6 @@ public class LevelManager {
         musicControlChecked = false;
     }
 
-
-//    public void setLevel(Level1 level)
-//    {
-//        instance.level = level;
-//        instance.gameClass = level.getGameClass();
-//        instance.world = level.getWorld(    );
-//        instance.player = level.getPlayer();
-//        instance.enemies = level.getEnemies();
-//        instance.bullets = level.getBullets();
-//        instance.hud = level.getHud();
-//        instance.gameCam = level.getGameCam();
-//        instance.renderer = level.getRenderer();
-//        shootTimer = 0;
-//        //finding the boss enemy in the enemies array
-//        for (Enemy enemy : enemies) {
-//            if (enemy instanceof BossEnemy) {
-//                this.bossEnemy = enemy;
-//                break;
-//            }
-//        }
-//        isDeathSoundPlayed = false;
-//        isMusicPaused = GameClass.isMusicPaused;
-//        musicControlChecked = false;
-//    }
-
     private LevelManager() {
     }
 
@@ -215,6 +190,5 @@ public class LevelManager {
     private void gameOver(boolean playerState) {
         GameClass.isMusicPaused = isMusicPaused;
         gameClass.switchScreen(playerState);
-//        gameClass.beginOutro(playerState);
     }
 }

@@ -56,7 +56,6 @@ public abstract class GameLevel implements Screen {
         world.setContactListener(CollisionHandler.instance);
         addObjectsToTheWorld();
 
-//        LevelManager.instance.setLevel(this);
         setInLevelManager();
 
 
@@ -127,7 +126,8 @@ public abstract class GameLevel implements Screen {
         //render our game map
         renderer.render();
 
-        floorDebugger.render(world, gameCam.combined); //remove this line to remove green debugging lines on objects
+        // uncomment if you want to see the outline of all bodies in the world
+        // floorDebugger.render(world, gameCam.combined);
 
         gameClass.batch.setProjectionMatrix(gameCam.combined);
         gameClass.batch.begin();

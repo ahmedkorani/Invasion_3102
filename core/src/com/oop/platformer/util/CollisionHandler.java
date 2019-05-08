@@ -22,10 +22,7 @@ public class CollisionHandler implements ContactListener {
         Fixture fb = contact.getFixtureB();
 
         if (fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy) {
-//            levelManager.playerIsHit();
-
-//            LevelManager.instance.playerIsHit();
-            System.out.println("Player was hit by an Enemy");
+            //invokes a new thread to modify values on bodies while the world is locked in the collision event
             Gdx.app.postRunnable(new Runnable() {
                 @Override
                 public void run () {
@@ -35,17 +32,11 @@ public class CollisionHandler implements ContactListener {
         }
 
         if (fa.getUserData() instanceof Enemy && fb.getUserData() instanceof Bullet) {
-//            levelManager.bulletHitEnemy(fa, fb);
             LevelManager.instance.bulletHitEnemy(fa,fb);
-            System.out.println("Enemy was hit by a bullet");
         } else if (fa.getUserData() instanceof Bullet && fb.getUserData() instanceof Enemy) {
-//            levelManager.bulletHitEnemy(fb, fa);
             LevelManager.instance.bulletHitEnemy(fb, fa);
-            System.out.println("Enemy was hit by a bullet");
         } else if (fb.getUserData() instanceof Bullet) {
-//            levelManager.bulletHitWall(fb);
             LevelManager.instance.bulletHitWall(fb);
-            System.out.println("Bullet was destroyed by a wall");
         }
 
     }
@@ -58,17 +49,13 @@ public class CollisionHandler implements ContactListener {
     public void preSolve(Contact contact, Manifold oldManifold) {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
-
         if (fa.getUserData() instanceof Player && fb.getUserData() instanceof Enemy) {
+            //disables the default world physics calculations to apply custom bounce effect
             contact.setEnabled(false);
-
         }
-
     }
-
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-
     }
 
 
