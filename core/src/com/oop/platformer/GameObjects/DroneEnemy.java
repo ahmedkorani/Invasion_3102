@@ -30,21 +30,22 @@ public class DroneEnemy extends Enemy {
 
     @Override
     public void define() {
-//        super.define();
+
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         bodyDef.position.set(spritePosition);
-        body = world.createBody(bodyDef);
-        PolygonShape bodyShape = new PolygonShape();
-        bodyShape.setAsBox(35 / (2f) / GameClass.PPM, 50 / (2f) / GameClass.PPM);
-        FixtureDef fixtureDef = new FixtureDef();
 
+        body = world.createBody(bodyDef);
+
+        FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = 1f;
         fixtureDef.restitution = 1f;
-//        fixtureDef.shape = bodyShape;
+
         CircleShape shape = new CircleShape();
         shape.setRadius(14 / GameClass.PPM);
+
         fixtureDef.shape = shape;
+
         body.createFixture(fixtureDef).setUserData(this);
     }
 

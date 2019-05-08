@@ -34,8 +34,7 @@ public class Level1 extends GameLevel {
             playerCheckpoints.add(new Vector2(rect.getX(), rect.getY()));
         }
 
-        //Adds player to the world in spritePosition (30,90)
-        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM), playerCheckpoints); //!!!!!!!!!Reset this to 90
+        player = new Player(world, new Vector2(450 / GameClass.PPM, 200 / GameClass.PPM), playerCheckpoints);
 
         bullets = new Array<Bullet>();
         enemies = new Array<Enemy>();
@@ -66,8 +65,6 @@ public class Level1 extends GameLevel {
 
             floorBodyDef.type = BodyDef.BodyType.StaticBody;
 
-            //getX return the start of rect then add half of the width to get the center
-            //The same for Y
             floorBodyDef.position.set((rect.getX() + rect.getWidth() / 2) / GameClass.PPM, (rect.getY() + rect.getHeight() / 2) / GameClass.PPM);
 
             floor = world.createBody(floorBodyDef);

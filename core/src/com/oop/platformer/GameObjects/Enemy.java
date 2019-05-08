@@ -24,8 +24,6 @@ public abstract class Enemy extends GameObject {
         this.path = new Path(path.size);
         for(int i =0; i<path.size; i++)
             this.path.AddPoint(path.get(i), durations[i]);
-//        for (Vector2 p : path)
-//            this.path.AddPoint(p, durations.get());
         this.path.Reset();
         initSprite();
         setHealthPoints();
@@ -105,10 +103,6 @@ public abstract class Enemy extends GameObject {
             SetNextPointVelocity();
         }
 
-        Vector2 GetCurrentPoint() {
-            return points.get(currentPointIndex);
-        }
-
         boolean UpdatePath(Vector2 bodyPosition) {
             return ReachedNextPoint(bodyPosition);
         }
@@ -130,7 +124,6 @@ public abstract class Enemy extends GameObject {
             return (currentPointIndex + 1) % countPoints;
 
         }
-
         void SetNextPointVelocity() {
             Vector2 nextPosition = points.get(nextPointIndex);
             Vector2 currentPosition = points.get(currentPointIndex);

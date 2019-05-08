@@ -193,47 +193,44 @@ public class Player extends GameObject {
 
         float verticalSpeed = body.getLinearVelocity().y;
 
-        //won't update according to input during the damaged period
+        //ignores player input while the player is taking damage
         if(!isDamaged)
         {
-
-
-
-        if (verticalSpeed == 0)
-            jumpCounter = 0;
-
-        if (jumpCounter == 0 && verticalSpeed < 0)
-            jumpCounter = 2;
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2) {
-            body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
-            jumpCounter++;
-        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            body.setLinearVelocity(-1.8f, body.getLinearVelocity().y);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            body.setLinearVelocity(1.8f, body.getLinearVelocity().y);
-        } else {
-                body.setLinearVelocity(0, body.getLinearVelocity().y);
-        }
-
+            if (verticalSpeed == 0){
+                jumpCounter = 0;
+            }
+            if (jumpCounter == 0 && verticalSpeed < 0){
+                jumpCounter = 2;
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpCounter != 2) {
+                body.setLinearVelocity(body.getLinearVelocity().x, 2.5f);
+                jumpCounter++;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                body.setLinearVelocity(-1.8f, body.getLinearVelocity().y);
+            } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                body.setLinearVelocity(1.8f, body.getLinearVelocity().y);
+            } else {
+                    body.setLinearVelocity(0, body.getLinearVelocity().y);
+            }
         }
     }
 
     public void hitPlayer() {
+
         if (lives == 0) {
-            System.out.println("you ran out of lives DEAD :( ");
+            //player is dead
             dead = true;
             if(deathTime == 0)
                 deathTime = currentTime;
             body.setLinearVelocity(0,0);
         } else {
-            System.out.println("player is hit");
+            //player is hit
             Assets.instance.audio.playerHit.play();
             bouncePlayer();
             lives--;
         }
     }
-    public void bouncePlayer()
+    private void bouncePlayer()
     {
         isDamaged = true;
         if(body.getLinearVelocity().x >=0 )

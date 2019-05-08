@@ -26,6 +26,7 @@ public class Level2 extends GameLevel {
 
     @Override
     protected void addObjectsToTheWorld() {
+
         renderFloor();
         Array<Vector2> playerCheckpoints = new Array<Vector2>();
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
@@ -34,12 +35,9 @@ public class Level2 extends GameLevel {
             playerCheckpoints.add(new Vector2(rect.getX(), rect.getY()));
         }
 
-        //Adds player to the world in spritePosition (30,90)
-        player = new Player(world, new Vector2(52 / GameClass.PPM, 190 / GameClass.PPM), playerCheckpoints); //!!!!!!!!!Reset this to 90
-
+        player = new Player(world, new Vector2(52 / GameClass.PPM, 190 / GameClass.PPM), playerCheckpoints);
         bullets = new Array<Bullet>();
         enemies = new Array<Enemy>();
-
         addEnemies();
     }
     private void addEnemies()
@@ -105,10 +103,8 @@ public class Level2 extends GameLevel {
 
     private void renderFloor() {
         floorDebugger = new Box2DDebugRenderer();
-
         //defines what the body consists of
         BodyDef floorBodyDef = new BodyDef();
-
         PolygonShape floorShape = new PolygonShape();
 
         //to add bodies to the world
@@ -116,8 +112,7 @@ public class Level2 extends GameLevel {
 
         Body floor;
 
-        //Create Floor Objects which's in the 4th layer
-
+        //Create Floor Objects which's in the 3rd layer
         for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
             //Shaped as rectangles in the map objects
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -125,8 +120,6 @@ public class Level2 extends GameLevel {
 
             floorBodyDef.type = BodyDef.BodyType.StaticBody;
 
-            //getX return the start of rect then add half of the width to get the center
-            //The same for Y
             floorBodyDef.position.set((rect.getX() + rect.getWidth() / 2) / GameClass.PPM, (rect.getY() + rect.getHeight() / 2) / GameClass.PPM);
 
             floor = world.createBody(floorBodyDef);

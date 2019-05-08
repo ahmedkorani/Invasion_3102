@@ -34,20 +34,18 @@ public class TurretEnemy extends Enemy {
     public void define() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
-
         bodyDef.position.set(spritePosition);
-
         body = world.createBody(bodyDef);
-//        PolygonShape bodyShape = new PolygonShape();
-//        bodyShape.setAsBox(35 / (2f) / GameClass.PPM, 50 / (2f) / GameClass.PPM);
-        FixtureDef fixtureDef = new FixtureDef();
 
+        FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.density = 1f;
         fixtureDef.restitution = 1f;
-//        fixtureDef.shape = bodyShape;
+
         CircleShape shape = new CircleShape();
         shape.setRadius(15 / GameClass.PPM);
+
         fixtureDef.shape = shape;
+
         body.createFixture(fixtureDef).setUserData(this);
     }
 }
