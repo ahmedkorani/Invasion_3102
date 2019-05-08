@@ -20,21 +20,15 @@ public class IntroScreen implements Screen {
 
     private boolean end;
 //    private boolean mainThemeMusicPlayState;
-
-    private enum FrameState {FirstFrame, SecondFrame, ThirdFrame}
-
     private FrameState currentFrame;
     private int currentLine;
     private String currentStoryLine;
     private ArrayList<String> storyLines;
     private boolean introEndingSoundEffect;
-
     private float currentTime;
     private float previousTime;
-
     private GameClass gameClass;
     private Viewport viewport;
-
     public IntroScreen(GameClass gameClass) {
         this.gameClass = gameClass;
 //        mainThemeMusicPlayState = GameClass.isMusicPaused;
@@ -189,4 +183,6 @@ public class IntroScreen implements Screen {
     @Override
     public void dispose() {
     }
+
+    private enum FrameState {FirstFrame, SecondFrame, ThirdFrame}
 }

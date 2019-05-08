@@ -43,6 +43,7 @@ public class Level1 extends GameLevel {
 
 
     }
+
     private void renderFloor() {
         floorDebugger = new Box2DDebugRenderer();
 
@@ -75,11 +76,9 @@ public class Level1 extends GameLevel {
         }
     }
 
-    private void addEnemies()
-    {
+    private void addEnemies() {
 
-        for(int i = 0; i<map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).size; i+=2)
-        {
+        for (int i = 0; i < map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).size; i += 2) {
             Array<Vector2> path = new Array<Vector2>();
             float[] durations = new float[2];
             MapObject object = map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).get(i);
@@ -87,7 +86,7 @@ public class Level1 extends GameLevel {
             RectangleMapObject rect = (RectangleMapObject) object;
 
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
-            object = map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            object = map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class).get(i + 1);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
@@ -96,8 +95,7 @@ public class Level1 extends GameLevel {
 
         }
 
-        for(int i = 0; i<map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).size; i+=4)
-        {
+        for (int i = 0; i < map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).size; i += 4) {
             Array<Vector2> path = new Array<Vector2>();
             float[] durations = new float[4];
 
@@ -105,15 +103,15 @@ public class Level1 extends GameLevel {
             RectangleMapObject rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i + 1);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+2);
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i + 2);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i+3);
+            object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i + 3);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
@@ -124,8 +122,7 @@ public class Level1 extends GameLevel {
 
         Array<Vector2> enemyPath = new Array<Vector2>();
         float[] enemyDurations;
-        for(int i = 0; i<11; i++)
-        {
+        for (int i = 0; i < 11; i++) {
             MapObject object = map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class).get(i);
             RectangleMapObject rect = (RectangleMapObject) object;
             enemyPath.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));

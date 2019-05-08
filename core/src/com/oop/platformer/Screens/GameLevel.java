@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.GameObjects.Bullet;
 import com.oop.platformer.GameObjects.Enemy;
@@ -23,24 +21,20 @@ import com.oop.platformer.util.CollisionHandler;
 import com.oop.platformer.util.LevelManager;
 
 public abstract class GameLevel implements Screen {
+    protected TiledMap map;//reference for the map itself
+    protected OrthogonalTiledMapRenderer renderer;
+    protected World world;
+    // for rendering debugging
+    protected Box2DDebugRenderer floorDebugger;
+    protected Player player;
+    protected Array<Bullet> bullets;
+    protected Array<Enemy> enemies;
     private GameClass gameClass;
     private OrthographicCamera gameCam; //game camera instance to move with the player character
     private Viewport gamePort; //Manages a Camera and determines how world coordinates are mapped to and from the screen.
-    protected TiledMap map;//reference for the map itself
     private Hud hud;
-    protected OrthogonalTiledMapRenderer renderer;
-    protected World world;
 
-    // for rendering debugging
-    protected Box2DDebugRenderer floorDebugger;
-
-    protected Player player;
-
-    protected Array<Bullet> bullets;
-    protected Array<Enemy> enemies;
-
-    public GameLevel(GameClass gameClass)
-    {
+    public GameLevel(GameClass gameClass) {
         this.gameClass = gameClass;
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(GameClass.V_WIDTH / GameClass.PPM, GameClass.V_HEIGHT / GameClass.PPM, gameCam);
@@ -72,7 +66,8 @@ public abstract class GameLevel implements Screen {
     public Hud getHud() {
         return hud;
     }
-    public OrthogonalTiledMapRenderer getRenderer(){
+
+    public OrthogonalTiledMapRenderer getRenderer() {
         return renderer;
     }
 
@@ -93,8 +88,10 @@ public abstract class GameLevel implements Screen {
     }
 
     protected abstract void loadLevelMap();
+
     protected abstract void addObjectsToTheWorld();
-    protected  abstract void setInLevelManager();
+
+    protected abstract void setInLevelManager();
 
     //update the game state
     private void update(float deltaTime) {

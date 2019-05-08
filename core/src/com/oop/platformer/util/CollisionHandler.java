@@ -11,8 +11,8 @@ public class CollisionHandler implements ContactListener {
 
     public static final CollisionHandler instance = new CollisionHandler();
 
-    private CollisionHandler() {}
-
+    private CollisionHandler() {
+    }
 
 
     @Override
@@ -25,14 +25,14 @@ public class CollisionHandler implements ContactListener {
             //invokes a new thread to modify values on bodies while the world is locked in the collision event
             Gdx.app.postRunnable(new Runnable() {
                 @Override
-                public void run () {
+                public void run() {
                     LevelManager.instance.playerIsHit();
                 }
             });
         }
 
         if (fa.getUserData() instanceof Enemy && fb.getUserData() instanceof Bullet) {
-            LevelManager.instance.bulletHitEnemy(fa,fb);
+            LevelManager.instance.bulletHitEnemy(fa, fb);
         } else if (fa.getUserData() instanceof Bullet && fb.getUserData() instanceof Enemy) {
             LevelManager.instance.bulletHitEnemy(fb, fa);
         } else if (fb.getUserData() instanceof Bullet) {
@@ -54,6 +54,7 @@ public class CollisionHandler implements ContactListener {
             contact.setEnabled(false);
         }
     }
+
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
     }

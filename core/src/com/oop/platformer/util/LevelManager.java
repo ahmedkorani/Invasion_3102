@@ -9,10 +9,12 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
-import com.oop.platformer.GameObjects.*;
+import com.oop.platformer.GameObjects.BossEnemy;
+import com.oop.platformer.GameObjects.Bullet;
+import com.oop.platformer.GameObjects.Enemy;
+import com.oop.platformer.GameObjects.Player;
 import com.oop.platformer.Scenes.Hud;
 import com.oop.platformer.Screens.GameLevel;
-import com.oop.platformer.Screens.Level2;
 
 import static com.oop.platformer.Constants.FIRE_RATE;
 
@@ -21,7 +23,7 @@ public class LevelManager {
     public static final LevelManager instance = new LevelManager();
 
     private GameClass gameClass;
-//    private Level1 level;
+    //    private Level1 level;
     private GameLevel level;
     private World world;
     private OrthogonalTiledMapRenderer renderer;
@@ -43,11 +45,17 @@ public class LevelManager {
     private boolean isMusicPaused;
 
 
-    public void setLevel(GameLevel level)
-    {
+    private LevelManager() {
+    }
+
+    public GameLevel getLevel() {
+        return this.level;
+    }
+
+    public void setLevel(GameLevel level) {
         instance.level = level;
         instance.gameClass = level.getGameClass();
-        instance.world = level.getWorld(    );
+        instance.world = level.getWorld();
         instance.player = level.getPlayer();
         instance.enemies = level.getEnemies();
         instance.bullets = level.getBullets();
@@ -67,16 +75,10 @@ public class LevelManager {
         musicControlChecked = false;
     }
 
-    private LevelManager() {
-    }
-
-    public GameLevel getLevel() {
-        return this.level;
-    }
     public void update(float deltaTime) {
 
         if (player.isDead()) {
-            if(!musicControlChecked){
+            if (!musicControlChecked) {
                 isMusicPaused = GameClass.isMusicPaused;
                 musicControlChecked = true;
             }
@@ -90,7 +92,7 @@ public class LevelManager {
                 gameOver(false);
             }
         } else if (bossEnemy.destroyed) {
-            if(!musicControlChecked){
+            if (!musicControlChecked) {
                 isMusicPaused = GameClass.isMusicPaused;
                 musicControlChecked = true;
             }

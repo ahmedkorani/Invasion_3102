@@ -12,16 +12,11 @@ import com.oop.platformer.util.Assets;
 
 public class StartScreen implements Screen {
 
-    enum ScreenState {MainMenu, Help, Credits}
-
     private GameClass gameClass;
-
     private Viewport viewport;
-
     private boolean showMainMenu;
     private boolean showCredits;
     private boolean showHelp;
-
     public StartScreen(GameClass gameClass) {
 
         this.gameClass = gameClass;
@@ -58,20 +53,24 @@ public class StartScreen implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
             gameClass.beginIntro();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-            GameClass.isMusicPaused = !GameClass.isMusicPaused;
-        }
-
         if (Gdx.input.isKeyJustPressed(Input.Keys.F1)) {
-            showMainMenu = !showMainMenu;
+            if (showMainMenu)
+                showMainMenu = false;
+            if (showCredits)
+                showCredits = false;
             showHelp = !showHelp;
         }
 
-
         if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-            showMainMenu = !showMainMenu;
+            if (showMainMenu)
+                showMainMenu = false;
+            if (showHelp)
+                showHelp = false;
             showCredits = !showCredits;
         }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M))
+            GameClass.isMusicPaused = !GameClass.isMusicPaused;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             System.exit(0);
@@ -147,4 +146,6 @@ public class StartScreen implements Screen {
     @Override
     public void dispose() {
     }
+
+    enum ScreenState {MainMenu, Help, Credits}
 }

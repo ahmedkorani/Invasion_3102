@@ -1,10 +1,8 @@
-
 package com.oop.platformer;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.oop.platformer.Screens.*;
 import com.oop.platformer.util.Assets;
 import com.oop.platformer.util.LevelManager;
@@ -14,16 +12,12 @@ public class GameClass extends Game {
     //Map width and height
     public static final int V_WIDTH = 700;
     public static final int V_HEIGHT = 336;
-
-    public static float screenWidth;
-    public static float screenHeight;
-
     //Pixels per meter value to fix the ration in the world, for physics scaling.
     public static final float PPM = 100;
-
-    public SpriteBatch batch; //SpriteBatch to draw all of the graphics on the screen.
-
+    public static float screenWidth;
+    public static float screenHeight;
     public static boolean isMusicPaused;
+    public SpriteBatch batch; //SpriteBatch to draw all of the graphics on the screen.
 
     public GameClass() {
     }
@@ -108,15 +102,12 @@ public class GameClass extends Game {
     }
 
     public void switchScreen(boolean playerState) {
-        if(playerState)
-        {
-            if(LevelManager.instance.getLevel() instanceof Level1)
+        if (playerState) {
+            if (LevelManager.instance.getLevel() instanceof Level1)
                 setScreen(new Level2(this));
-            else if(LevelManager.instance.getLevel() instanceof Level2)
+            else if (LevelManager.instance.getLevel() instanceof Level2)
                 beginOutro(playerState);
-        }
-        else
-        {
+        } else {
             beginOutro(playerState);
         }
 

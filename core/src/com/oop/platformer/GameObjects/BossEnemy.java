@@ -1,12 +1,15 @@
 package com.oop.platformer.GameObjects;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
-public class BossEnemy extends  Enemy {
+public class BossEnemy extends Enemy {
 
     public BossEnemy(World world, Vector2 spritePosition, Array<Vector2> path, float[] durations) {
         super(world, spritePosition, path, durations);
@@ -22,7 +25,7 @@ public class BossEnemy extends  Enemy {
     public void updateSprite() {
         setRegion(Assets.instance.bossEnemyAssets.flyingAnimation.getKeyFrame(stateTime, true));
 
-        if(body.getLinearVelocity().x > 0)
+        if (body.getLinearVelocity().x > 0)
             setFlip(false, false);
         else
             setFlip(true, false);

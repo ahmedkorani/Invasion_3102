@@ -18,6 +18,7 @@ public class Level2 extends GameLevel {
         super(gameClass);
 
     }
+
     @Override
     protected void loadLevelMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
@@ -40,11 +41,10 @@ public class Level2 extends GameLevel {
         enemies = new Array<Enemy>();
         addEnemies();
     }
-    private void addEnemies()
-    {
 
-        for(int i = 0; i<map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class).size; i+=2)
-        {
+    private void addEnemies() {
+
+        for (int i = 0; i < map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class).size; i += 2) {
             Array<Vector2> path = new Array<Vector2>();
             float[] durations = new float[2];
             MapObject object = map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class).get(i);
@@ -52,7 +52,7 @@ public class Level2 extends GameLevel {
             RectangleMapObject rect = (RectangleMapObject) object;
 
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
-            object = map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            object = map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class).get(i + 1);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
@@ -61,8 +61,7 @@ public class Level2 extends GameLevel {
 
         }
 
-        for(int i = 0; i<map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).size; i+=4)
-        {
+        for (int i = 0; i < map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).size; i += 4) {
             Array<Vector2> path = new Array<Vector2>();
             float[] durations = new float[4];
 
@@ -70,15 +69,15 @@ public class Level2 extends GameLevel {
             RectangleMapObject rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i+1);
+            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i + 1);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i+2);
+            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i + 2);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
-            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i+3);
+            object = map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class).get(i + 3);
             rect = (RectangleMapObject) object;
             path.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
 
@@ -87,15 +86,13 @@ public class Level2 extends GameLevel {
         }
         Array<Vector2> enemyPath = new Array<Vector2>();
         float[] enemyDurations;
-        for(int i = 0; i<3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             MapObject object = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class).get(i);
             RectangleMapObject rect = (RectangleMapObject) object;
             enemyPath.add(new Vector2(rect.getRectangle().getX() / GameClass.PPM, (rect.getRectangle().getY()) / GameClass.PPM));
         }
         enemyDurations = new float[]{0.9f, 1.2f, 1.5f};
         enemies.add(new BossEnemy(world, enemyPath.get(0), enemyPath, enemyDurations));
-
 
 
     }
@@ -129,6 +126,7 @@ public class Level2 extends GameLevel {
             floor.createFixture(floorFixtureDef).setUserData("Floor");
         }
     }
+
     @Override
     protected void setInLevelManager() {
         LevelManager.instance.setLevel(this);
