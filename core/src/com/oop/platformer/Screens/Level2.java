@@ -36,7 +36,7 @@ public class Level2 extends GameLevel {
             playerCheckpoints.add(new Vector2(rect.getX(), rect.getY()));
         }
 
-        player = new Player(world, new Vector2(52 / GameClass.PPM, 190 / GameClass.PPM), playerCheckpoints);
+        player = new Player(world, new Vector2(580 / GameClass.PPM, 190 / GameClass.PPM), playerCheckpoints);
         bullets = new Array<Bullet>();
         enemies = new Array<Enemy>();
         addEnemies();
