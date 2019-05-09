@@ -1,4 +1,4 @@
-![Invasion 3102](https://github.com/Ahmed-MK/Invasion_3102/blob/master/core/assets/Banner%20and%20Screenshot/Logo.png)
+![Invasion 3102](https://github.com/Ahmed-MK/Invasion_3102/blob/master/core/assets/Banner%20and%20Screenshot/Banner.png)
 
 ## A retro themed 2D action platformer with a synthwave theme made with Java and LibGDX.
 
