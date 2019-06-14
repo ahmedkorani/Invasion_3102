@@ -1,0 +1,271 @@
+player.png
+size: 959, 1072
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Ellie frame_aim
+  rotate: false
+  xy: 782, 880
+  size: 122, 192
+  orig: 122, 192
+  offset: 64, -29
+  index: 0
+Ellie frame_aim
+  rotate: false
+  xy: 127, 880
+  size: 132, 192
+  orig: 132, 192
+  offset: 64, -29
+  index: 1
+Ellie frame_aim
+  rotate: false
+  xy: 259, 880
+  size: 142, 192
+  orig: 142, 192
+  offset: 64, -29
+  index: 2
+Ellie frame_aim
+  rotate: false
+  xy: 0, 334
+  size: 142, 177
+  orig: 142, 177
+  offset: 64, -44
+  index: 3
+Ellie frame_aim
+  rotate: false
+  xy: 725, 157
+  size: 142, 177
+  orig: 142, 177
+  offset: 64, -44
+  index: 4
+Ellie frame_aim
+  rotate: false
+  xy: 137, 511
+  size: 142, 177
+  orig: 142, 177
+  offset: 64, -44
+  index: 5
+Ellie frame_aim
+  rotate: false
+  xy: 608, 334
+  size: 142, 177
+  orig: 142, 177
+  offset: 64, -44
+  index: 6
+Ellie frame_aim
+  rotate: false
+  xy: 750, 334
+  size: 142, 177
+  orig: 142, 177
+  offset: 64, -44
+  index: 7
+Ellie frame_death
+  rotate: false
+  xy: 401, 880
+  size: 122, 192
+  orig: 122, 192
+  offset: 64, -29
+  index: 0
+Ellie frame_death
+  rotate: false
+  xy: 471, 334
+  size: 137, 177
+  orig: 137, 177
+  offset: 54, -44
+  index: 1
+Ellie frame_death
+  rotate: false
+  xy: 810, 0
+  size: 132, 157
+  orig: 132, 157
+  offset: 59, -64
+  index: 2
+Ellie frame_death
+  rotate: false
+  xy: 663, 0
+  size: 147, 137
+  orig: 147, 137
+  offset: 59, -84
+  index: 3
+Ellie frame_death
+  rotate: false
+  xy: 501, 0
+  size: 162, 107
+  orig: 162, 107
+  offset: 59, -109
+  index: 4
+Ellie frame_death
+  rotate: false
+  xy: 334, 0
+  size: 167, 72
+  orig: 167, 72
+  offset: 59, -149
+  index: 5
+Ellie frame_death
+  rotate: false
+  xy: 167, 0
+  size: 167, 57
+  orig: 167, 57
+  offset: 59, -164
+  index: 6
+Ellie frame_death
+  rotate: false
+  xy: 0, 0
+  size: 167, 47
+  orig: 167, 47
+  offset: 59, -174
+  index: 7
+Ellie frame_idle
+  rotate: false
+  xy: 523, 880
+  size: 122, 192
+  orig: 122, 192
+  offset: 64, -29
+  index: 0
+Ellie frame_idle
+  rotate: false
+  xy: 645, 880
+  size: 137, 192
+  orig: 137, 192
+  offset: 49, -29
+  index: 1
+Ellie frame_idle
+  rotate: false
+  xy: 690, 693
+  size: 137, 187
+  orig: 137, 187
+  offset: 49, -34
+  index: 2
+Ellie frame_idle
+  rotate: false
+  xy: 137, 693
+  size: 122, 182
+  orig: 122, 182
+  offset: 64, -39
+  index: 3
+Ellie frame_run
+  rotate: false
+  xy: 0, 880
+  size: 127, 187
+  orig: 127, 187
+  offset: 19, -34
+  index: 0
+Ellie frame_run
+  rotate: false
+  xy: 0, 157
+  size: 137, 177
+  orig: 137, 177
+  offset: 24, -44
+  index: 1
+Ellie frame_run
+  rotate: false
+  xy: 259, 693
+  size: 122, 182
+  orig: 122, 182
+  offset: 34, -39
+  index: 2
+Ellie frame_run
+  rotate: false
+  xy: 137, 157
+  size: 152, 177
+  orig: 152, 177
+  offset: 29, -44
+  index: 3
+Ellie frame_run
+  rotate: false
+  xy: 528, 693
+  size: 162, 182
+  orig: 162, 182
+  offset: 14, -39
+  index: 4
+Ellie frame_run
+  rotate: false
+  xy: 381, 693
+  size: 147, 182
+  orig: 147, 182
+  offset: 24, -39
+  index: 5
+Ellie frame_run
+  rotate: false
+  xy: 279, 511
+  size: 137, 182
+  orig: 137, 182
+  offset: 44, -39
+  index: 6
+Ellie frame_run
+  rotate: false
+  xy: 827, 693
+  size: 132, 187
+  orig: 132, 187
+  offset: 14, -34
+  index: 7
+Ellie frame_run
+  rotate: false
+  xy: 441, 157
+  size: 137, 177
+  orig: 137, 177
+  offset: 24, -44
+  index: 8
+Ellie frame_run
+  rotate: false
+  xy: 416, 511
+  size: 122, 182
+  orig: 122, 182
+  offset: 34, -39
+  index: 9
+Ellie frame_run
+  rotate: false
+  xy: 289, 157
+  size: 152, 177
+  orig: 152, 177
+  offset: 29, -44
+  index: 10
+Ellie frame_run
+  rotate: false
+  xy: 538, 511
+  size: 162, 182
+  orig: 162, 182
+  offset: 14, -39
+  index: 11
+Ellie frame_run
+  rotate: false
+  xy: 700, 511
+  size: 147, 182
+  orig: 147, 182
+  offset: 24, -39
+  index: 12
+Ellie frame_run
+  rotate: false
+  xy: 0, 693
+  size: 137, 182
+  orig: 137, 182
+  offset: 34, -39
+  index: 13
+Ellie frame_shoot
+  rotate: false
+  xy: 0, 511
+  size: 137, 177
+  orig: 137, 177
+  offset: 69, -44
+  index: 0
+Ellie frame_shoot
+  rotate: false
+  xy: 294, 334
+  size: 177, 177
+  orig: 177, 177
+  offset: 49, -44
+  index: 1
+Ellie frame_shoot
+  rotate: false
+  xy: 142, 334
+  size: 152, 177
+  orig: 152, 177
+  offset: 49, -44
+  index: 2
+Ellie frame_shoot
+  rotate: false
+  xy: 578, 157
+  size: 147, 177
+  orig: 147, 177
+  offset: 59, -44
+  index: 3

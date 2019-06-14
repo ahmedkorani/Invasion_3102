@@ -1,0 +1,54 @@
+Boss.png
+size: 54, 490
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Boss-1
+  rotate: false
+  xy: 0, 0
+  size: 52, 70
+  orig: 52, 70
+  offset: 0, 0
+  index: -1
+Boss-2
+  rotate: false
+  xy: 0, 70
+  size: 54, 70
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+Boss-3
+  rotate: false
+  xy: 0, 140
+  size: 54, 70
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+Boss-4
+  rotate: false
+  xy: 0, 210
+  size: 54, 70
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+Boss-5
+  rotate: false
+  xy: 0, 280
+  size: 53, 70
+  orig: 53, 70
+  offset: 0, 0
+  index: -1
+Boss-6
+  rotate: false
+  xy: 0, 350
+  size: 46, 70
+  orig: 46, 70
+  offset: 0, 0
+  index: -1
+Boss-7
+  rotate: false
+  xy: 0, 420
+  size: 47, 70
+  orig: 47, 70
+  offset: 0, 0
+  index: -1

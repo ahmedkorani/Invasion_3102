@@ -1,22 +1,21 @@
 package com.oop.platformer.Scenes;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.oop.platformer.Constants;
 import com.oop.platformer.GameClass;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Disposable;
 
 
 public class Hud implements Disposable {
     public Stage stage;
-    private Viewport viewport;
 
     private Integer score;
     private Integer lives;
@@ -30,7 +29,7 @@ public class Hud implements Disposable {
         lives = Constants.LIVES;
         score = Constants.SCORE;
 
-        viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
+        Viewport viewport = new FitViewport(GameClass.V_WIDTH, GameClass.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, spriteBatch);
 
         Table table = new Table();

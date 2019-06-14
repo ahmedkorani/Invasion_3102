@@ -1,26 +1,24 @@
 package com.oop.platformer.GameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.oop.platformer.GameClass;
 import com.oop.platformer.util.Assets;
 
-public class Bullet extends Sprite {
+public class Bullet extends GameObject {
 
-    private Vector2 spritePosition;
     private Vector2 velocity;
-    private World world;
-    private Body body;
 
     private boolean destroyed;
     private boolean isSetToDestroy;
     private float destroyTimer;
 
     public Bullet(World world, Vector2 position, boolean playerIsRight) {
-        this.world = world;
-        this.spritePosition = position;
+        super(world, position);
 
         if (playerIsRight) {
             if (Assets.instance.bulletAssets.bulletTexture.isFlipX())
@@ -32,8 +30,6 @@ public class Bullet extends Sprite {
             this.velocity = new Vector2(-3f, 0.1f);
         }
 
-        define();
-
         setBounds(position.x, position.y, 8 / GameClass.PPM, 4 / GameClass.PPM);
         setRegion(Assets.instance.bulletAssets.bulletTexture);
 
@@ -42,8 +38,8 @@ public class Bullet extends Sprite {
         destroyTimer = 0;
     }
 
-    private void define() {
-
+    @Override
+    public void define() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(spritePosition);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -55,13 +51,14 @@ public class Bullet extends Sprite {
         shape.setRadius(1 / GameClass.PPM);
 
         fixtureDef.shape = shape;
+
         body.createFixture(fixtureDef).setUserData(this);
     }
 
     public void update(float deltaTime) {
         destroyTimer += deltaTime;
 
-        if ((destroyTimer >= 1 || isSetToDestroy) && !destroyed) {
+        if ((destroyTimer >= 1.5f || isSetToDestroy) && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
         } else if (!destroyed) {
