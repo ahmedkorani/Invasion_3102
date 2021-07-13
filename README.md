@@ -18,7 +18,7 @@
 
 # Credits
 ## Developers
-- Ahmed Mahmoud "[Ahmed-MK](https://github.com/Ahmed-MK)"
+- Ahmed Korani "[ahmedkorani](https://github.com/ahmedkorani)"
 - Andrew Awni "[andrewawni](https://github.com/andrewawni)"
 - Ahmed Abuamra "[ahmedabuamra](https://github.com/ahmedabuamra)"
 - Ahmed Elmayyah "[Satharus](https://github.com/Satharus)"
